@@ -8,6 +8,10 @@ FOCUS = 5
 CONSTITUTION = 5
 LUCK = 5
 
+# Status of charater, determines used interface
+
+CURRENT_STATUS = "inRoom"
+
 # Inventory List
 
 INVENTORY = []
