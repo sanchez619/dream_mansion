@@ -8,3 +8,6 @@ FOCUS = 5
 CONSTITUTION = 5
 LUCK = 5
 
+# Inventory List
+
+INVENTORY = []
