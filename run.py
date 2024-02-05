@@ -11,3 +11,10 @@ LUCK = 5
 # Inventory List
 
 INVENTORY = []
+
+print("...")
+print("...")
+print("I'm so tired...")
+print("...")
+print("...")
+initiate_game = input("Do you want to wake up? (Yes = 1; No = 0)")
