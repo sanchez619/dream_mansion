@@ -41,3 +41,16 @@ def room_menu():
     print("2. Perceive")
     print("3. Rearrange")
     print("0: Change rooms")
+
+def investigate():
+    print("You carefully investigate the room...")
+
+def perceive():
+    print("You perceive your surroundings, trying to gather more information...")
+
+def rearrange():
+    print("You rearrange items in the room, looking for hidden clues...")
+
+def change_rooms():
+    print("You head to another room...")
+    print("You enter...")
