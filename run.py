@@ -4,9 +4,13 @@ Dream Mansion - a text based game
 # Global Variables - especially inventories and stats
 
 # Stats of the player character
-FOCUS = 5
-CONSTITUTION = 5
-LUCK = 5
+class samurai:
+    def __init__(self, constitution, focus, luck, inventory, status):
+        self.constitution = 5
+        self.focus = 5
+        self.luck = 5
+        self.inventory = []
+        self.status = 
 
 # Status of charater, determines used interface
 GAME_STATUS = False
