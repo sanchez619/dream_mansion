@@ -1,4 +1,4 @@
-class Events:
+class Event:
     def __init__(self, name, trigger, effect):
         self.name = name
         self.trigger = trigger
@@ -6,8 +6,8 @@ class Events:
 
 
 
-class Items:
+class Item:
 
 
 
-class Endings:
+class Ending:

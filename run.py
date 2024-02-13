@@ -1,7 +1,8 @@
 """
 Dream Mansion - a text based game
 """
-# Global Variables - especially inventories and stats
+# Import Statement for Events, Items and Endings
+from game_classes import Event,  Item, Ending
 
 # Stats of the player character
 class samurai:
