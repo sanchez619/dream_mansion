@@ -2,7 +2,7 @@
 Dream Mansion - a text based game
 """
 # Import Statement for Events, Items and Endings
-from game_classes import Event,  Item, Ending
+from game_classes import room,  Item, Ending
 
 # Stats of the player character
 class samurai:
