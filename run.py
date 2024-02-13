@@ -1,43 +1,21 @@
 """
 Dream Mansion - a text based game
 """
-# Import Statement for Events, Items and Endings
-from game_classes import room,  Item, Ending
-
-# Stats of the player character
+from library import room, Item, Ending
 class samurai:
-    def __init__(self, constitution, focus, luck, inventory, status):
+    def __init__(self, constitution, focus, luck, inventory):
         self.constitution = 5
         self.focus = 5
         self.luck = 5
         self.inventory = []
-        self.status = 
 
-# Status of charater, determines used interface
+
 GAME_STATUS = False
 CURRENT_STATUS = "inRoom"
 
-# Inventory List
-
 INVENTORY = []
 
-print("...")
-print("...")
-print("I'm so tired...")
-print("...")
-print("...")
-initiate_game = input("Do you want to wake up? (Yes = 1; No = 0)")
-if initiate_game == "0":
-    print("...")
-    print("...")
-    print("You close your eyes, one last time...")
-elif initiate_game == "1":
-    print("...")
-    print("...")
-    print("You wake up in an unknown location...")
-    print("...")
-    print("...")
-    True
+
 
 
 # Menu for interacting in rooms
@@ -66,17 +44,34 @@ def change_rooms():
     print("You enter...")
 
 
-while True:
-    if CURRENT_STATUS == "inRoom":
-        room_menu()
-        choice = input("Enter your choice (0-3): ")
-        if choice == '0':
-            change_rooms()
-        elif choice == '1':
-            investigate()
-        elif choice == '2':
-            perceive()
-        elif choice == '3':
-            rearrange()
-        else:
-            print("Invalid choice. Please enter a number between 1 and 3.")
+def start_floor1():
+    room_menu()
+    choice = input("Enter your choice (0-3): ")
+    if choice == '0':
+        change_rooms()
+    elif choice == '1':
+        investigate()
+    elif choice == '2':
+        perceive()
+    elif choice == '3':
+        rearrange()
+    else:
+        print("Invalid choice. Please enter a number between 1 and 3.")
+
+print("...")
+print("...")
+print("I'm so tired...")
+print("...")
+print("...")
+initiate_game = input("Do you want to wake up? (Yes = 1; No = 0)")
+if initiate_game == "0":
+    print("...")
+    print("...")
+    print("You close your eyes, one last time...")
+elif initiate_game == "1":
+    print("...")
+    print("...")
+    print("You wake up in an unknown location...")
+    print("...")
+    print("...")
+    start_floor1()
