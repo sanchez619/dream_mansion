@@ -36,7 +36,7 @@ def rearrange():
 
 def change_rooms():
     print("You head to another room...")
-    print("You enter...")
+    room_menu()
 
 def error_input():
     print("Invalid choice. Please enter a number between 1 and 3.")
@@ -122,6 +122,7 @@ def floor_lobby3():
         if solution_1 == "samurai":
             print("The powers cannot hold you anymore.")
             print("You descend to the first floor.")
+            start_floor2()
         else:
             print("'That is incorrect!'")
             print("'Turn back to the shadows where thou came from!'")
@@ -136,7 +137,12 @@ def floor_lobby3():
         print("Luck was decreased by 1")
     else:
         error_input()
- 
+
+def start_floor2():
+    print("The second floor has an even more ominous feeling.")
+    print("This most likely has to do with the large figure.")
+    print("It stands at the end of the corridor, waiting...")
+    room_menu2()
 
 
 print("...")
