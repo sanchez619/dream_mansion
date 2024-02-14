@@ -328,6 +328,50 @@ def living_room():
     else:
         error_input()
 
+def guest_room():
+    print("You enter the guest room.")
+    print("Something is lurking under the bed sheet.")
+    print("You can see two bumps.")
+    choice = room_menu()
+    if choice == '1':
+        print("On the table, you find some beer bottles.")
+        print("You take one that is not empty and drink it.")
+        print("Constitution was raised by 1.")
+        print("Focus was decreased by 1")
+    elif choice == '2':
+        print("You listen more closely to the radio.")
+        print("Thousands of voices tell you to give in.")
+        print("Your mind becomes foggier.")
+        print("Focus was decreased by 1.")
+    elif choice == '3':
+        print("You rearrange the furniture, looking for clues.")
+        print("After 15 minutes of dragging large objects, you give up.")
+        print("Luck was decreased by 1.")
+    else:
+        error_input()
+
+def bed_room():
+    print("You enter the guest room.")
+    print("Something is lurking under the bed sheet.")
+    print("You can see two bumps.")
+    choice = room_menu()
+    if choice == '1':
+        print("On the table, you find some beer bottles.")
+        print("You take one that is not empty and drink it.")
+        print("Constitution was raised by 1.")
+        print("Focus was decreased by 1")
+    elif choice == '2':
+        print("You listen more closely to the radio.")
+        print("Thousands of voices tell you to give in.")
+        print("Your mind becomes foggier.")
+        print("Focus was decreased by 1.")
+    elif choice == '3':
+        print("You rearrange the furniture, looking for clues.")
+        print("After 15 minutes of dragging large objects, you give up.")
+        print("Luck was decreased by 1.")
+    else:
+        error_input()
+
 def closet():
     print("There is nothing in the room.")
     print("It is completely empty...")
