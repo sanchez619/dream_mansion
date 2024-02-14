@@ -200,6 +200,27 @@ def gym():
     else:
         error_input()
 
+def office():
+    print("You enter the office.")
+    print("A dark figure sits on a chair behind the desk.")
+    choice = room_menu()
+    if choice == '1':
+        print("You ascertain whether the figure is actually a demon.")
+        print("You find that it is only a coat on the chair.")
+        print("Focus was decreased by 1.")
+        print("Luck was raised by 1.")
+    elif choice == '2':
+        print("Just as you start listening to your surroundings...")
+        print("A dagger pierces your right chest!")
+        print("Constitution was decreased by 2")
+    elif choice == '3':
+        print("You throw a coat rack, which was right next to the door...")
+        print("directly in the direction of the chair.")
+        print("You hear a terrifying cry.")
+        print("Focus was decreased by 2.")
+    else:
+        error_input()
+
 def bathroom():
     print("You enter the bathroom.")
     print("This room is actually lit. You can see the bathtub filled with water.")
@@ -217,7 +238,7 @@ def bathroom():
         print("You throw a small cupboard in-between you and the demon.")
         print("You ready your weapon as you realize:'He's gone'.")
         print("Instead, you find some bandages, which fell out of the cupboard.")
-        print("Constitution was increased by 2.")
+        print("Constitution was raised by 2.")
     else:
         error_input()
 
