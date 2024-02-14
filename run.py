@@ -200,6 +200,27 @@ def gym():
     else:
         error_input()
 
+def bathroom():
+    print("You enter the bathroom.")
+    print("This room is actually lit. You can see the bathtub filled with water.")
+    choice = room_menu()
+    if choice == '1':
+        print("Next to the bathtub is another cupboard.")
+        print("In one of the drawers, you find a small book.")
+        print("Added 'Fighting demons 101' to your inventory.")
+    elif choice == '2':
+        print("You feel that the room is devoid of malice.")
+        print("You choose to enter the bath and relax")
+        print("Constitution was raised by 2")
+        print("Luck was raised by 1")
+    elif choice == '3':
+        print("You throw a small cupboard in-between you and the demon.")
+        print("You ready your weapon as you realize:'He's gone'.")
+        print("Instead, you find some bandages, which fell out of the cupboard.")
+        print("Constitution was increased by 2.")
+    else:
+        error_input()
+
 print("...")
 print("...")
 print("I'm so tired...")
