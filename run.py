@@ -76,6 +76,9 @@ def start_floor1():
         floor_lobby3()
 
 def lounge():
+    print("You enter the floor lobby.")
+    print("It contains multiple cupboards.")
+    print("They once seemed to contain many different items.")
     choice = room_menu()
     if choice == '1':
         print("As you look around the lobby, you find a small book.")
@@ -87,6 +90,23 @@ def lounge():
     elif choice == '3':
         print("As you move the cupboard, you find a worn-out spear behind it.")
         print("Added 'spear' to inventory.")
+    else:
+        error_input()
+
+def storage_chamber():
+    print("You enter the storage chamber.")
+    print("Someone took all consumable items.")
+    choice = room_menu()
+    if choice == '1':
+        print("As you try to inspect the room further, you hear something.")
+        print("Lowered focus by 1.")
+        print("Luck was increased by 1.")
+    elif choice == '2':
+        print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
+        print("Focus was raised by 2.")
+    elif choice == '3':
+        print("As you move the cupboard, you find a worn-out spear behind it.")
+        print("Constitution was lowered by 3.")
     else:
         error_input()
 
