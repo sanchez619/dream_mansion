@@ -61,8 +61,21 @@ def room_menu():
         error_input()
     return choice
 
-
 def start_floor1():
+    print("Several doors appear in front of you.")
+    print("Which one do you want to enter")
+    print("1. The Lounge")
+    print("2. The Storage Chamber")
+    print("3. The Floor Lobby")
+    room_choice = input("Enter your choice (1-3): ")
+    if room_choice == '1':
+        lounge()
+    elif room_choice == '2':
+        storage_chamber()
+    elif room_choice == '3':
+        floor_lobby3()
+
+def lounge():
     choice = room_menu()
     if choice == '1':
         print("As you look around the lobby, you find a small book.")
