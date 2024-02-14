@@ -90,7 +90,34 @@ def lounge():
     else:
         error_input()
 
-    
+def floor_lobby3():
+    print("You enter the floor lobby.")
+    print("As you enter, you see a door leading to a spiraling stairway.")
+    choice = room_menu()
+    if choice == '1':
+        print("As you try to go down the stairs, you hear a voice.")
+        print("'Those without identity cannot pass!'")
+        print("'Who are you?'")
+        solution_1 = input ("I am a...")
+        if solution_1 == "samurai":
+            print("The powers cannot hold you anymore.")
+            print("You descend to the first floor.")
+        else:
+            print("'That is incorrect!'")
+            print("'Turn back to the shadows where thou came from!'")
+    elif choice == '2':
+        print("This room is filled with malice.")
+        print("You should not do anything unnecessary")
+        print("Luck was increased by 1.")
+    elif choice == '3':
+        print("You try to move the couch when your leg suddenly starts hurting.")
+        print("You have stepped into a beartrap.")
+        print("Constitution was decreased by 2")
+        print("Luck was decreased by 1")
+    else:
+        error_input()
+ 
+
 
 print("...")
 print("...")
