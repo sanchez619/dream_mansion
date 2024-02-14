@@ -59,23 +59,19 @@ def room_menu():
         rearrange()
     else:
         error_input()
+    return choice
 
 
 def start_floor1():
-    room_menu()
-    if choice == '0':
-        change_rooms()
-    elif choice == '1':
-        investigate()
+    choice = room_menu()
+    if choice == '1':
         print("As you look around the lobby, you find a small book.")
         print("It says 'Musashi's Diary'.")
         print("Added 'Musashi's Diary' to your inventory.")
     elif choice == '2':
-        perceive()
         print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
         print("Focus was lowered by 1.")
     elif choice == '3':
-        rearrange()
         print("As you move the cupboard, you find a worn-out spear behind it.")
         print("Added 'spear' to inventory.")
     else:
