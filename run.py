@@ -61,24 +61,15 @@ def room_menu():
         error_input()
     return choice
 
-def room_menu():
-    print("You are in the 'filler text'")
-    print("1. Investigate")
-    print("2. Perceive")
-    print("3. Rearrange")
-    print("0: Change rooms")
-    choice = input("Enter your choice (0-3): ")
-    if choice == '0':
-        change_rooms()
-    elif choice == '1':
-        investigate()
-    elif choice == '2':
-        perceive()
-    elif choice == '3':
-        rearrange()
-    else:
-        error_input()
-    return choice
+def fight_menu():
+    print("You are engaged in a fight.'")
+    print("From where do you want to strike?")
+    print("1. Strike from above")
+    print("2. Strike from left flank")
+    print("3. Strike from right flank")
+    print("0: Strike from below")
+    strike_direction = input("Enter your choice (0-3): ")
+    return strike_direction
 
 def start_floor1():
     print("Several doors appear in front of you.")
@@ -241,6 +232,26 @@ def bathroom():
         print("Constitution was raised by 2.")
     else:
         error_input()
+
+def second_floor_boss():
+    print("You engage a terrifying monster.")
+    strike_direction = fight_menu()
+    if strike_direction == '0':
+        print("You have hit the enemy's weak spot.")
+        start_floor3()
+    elif strike_direction == '1':
+        print("Just before your blade hits...")
+        second_floor_gameover()
+    elif strike_direction == '2':
+        print("Just before your blade hits...")
+        second_floor_gameover()
+    elif strike_direction == '3':
+        print("Just before your blade hits...")
+        second_floor_gameover()
+    else:
+        print("You were too slow to react!")
+        second_floor_gameover()
+
 
 print("...")
 print("...")
