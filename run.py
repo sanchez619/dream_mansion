@@ -172,12 +172,33 @@ def start_floor2():
     print("4. End of the Corridor")
     room_choice = input("Enter your choice (1-3): ")
     if room_choice == '1':
-        lounge()
+        gym()
     elif room_choice == '2':
-        storage_chamber()
+        office()
     elif room_choice == '3':
-        floor_lobby3()
+        bathroom()
+    elif room_choice == '4':
+        second_floor_boss()
+    else:
+        error_input
 
+def gym():
+    print("You enter the gym.")
+    print("Before you can see anything else, a demon appears in front of you!")
+    choice = room_menu()
+    if choice == '1':
+        print("You try finding something to help against the demon.")
+        print("However, you cannot spot something in that instance.")
+    elif choice == '2':
+        print("But before you can even react, the demon strikes you in the head.")
+        print("Constitution was decreased by 3")
+    elif choice == '3':
+        print("You throw a small cupboard in-between you and the demon.")
+        print("You ready your weapon as you realize:'He's gone'.")
+        print("Instead, you find some bandages, which fell out of the cupboard.")
+        print("Constitution was increased by 2.")
+    else:
+        error_input()
 
 print("...")
 print("...")
