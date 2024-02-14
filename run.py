@@ -296,13 +296,35 @@ def kitchen():
     elif choice == '2':
         print("You feel the demon's greed for blood.")
         print("He is too entranced to notice you.")
-        print("You approachh him from behind and slice his throat.")
+        print("You approach him from behind and slice his throat.")
         print("Luck was raised by 1")
     elif choice == '3':
         print("You try to flip the table onto the demon.")
         print("It is too heavy, and you cannot.")
         print("In the meantime, the demon jumps you!")
         print("Constitution was decreased by 2.")
+    else:
+        error_input()
+
+def living_room():
+    print("You enter the living room.")
+    print("It is dark, and you can find nothing of note.")
+    print("A radio is placed on a table. It is turned on.")
+    choice = room_menu()
+    if choice == '1':
+        print("On the table, you find some beer bottles.")
+        print("You take one that is not empty and drink it.")
+        print("Constitution was raised by 1.")
+        print("Focus was decreased by 1")
+    elif choice == '2':
+        print("You listen more closely to the radio.")
+        print("Thousands of voices tell you to give in.")
+        print("Your mind becomes foggier.")
+        print("Focus was decreased by 1.")
+    elif choice == '3':
+        print("You rearrange the furniture, looking for clues.")
+        print("After 15 minutes of dragging large objects, you give up.")
+        print("Luck was decreased by 1.")
     else:
         error_input()
 
