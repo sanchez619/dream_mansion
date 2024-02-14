@@ -283,6 +283,29 @@ def start_floor3():
     else:
         error_input
 
+def kitchen():
+    print("You enter the kitchen.")
+    print("You see a demon eating something red on a plate.")
+    print("It has not seen you yet.")
+    choice = room_menu()
+    if choice == '1':
+        print("You find a note.")
+        print("It says: 'Keep important things close to your chest.'")
+        print("The demon notices you and attacks!")
+        print("Focus was decreased by 1")
+    elif choice == '2':
+        print("You feel the demon's greed for blood.")
+        print("He is too entranced to notice you.")
+        print("You approachh him from behind and slice his throat.")
+        print("Luck was raised by 1")
+    elif choice == '3':
+        print("You try to flip the table onto the demon.")
+        print("It is too heavy, and you cannot.")
+        print("In the meantime, the demon jumps you!")
+        print("Constitution was decreased by 2.")
+    else:
+        error_input()
+
 def closet():
     print("There is nothing in the room.")
     print("It is completely empty...")
@@ -293,6 +316,7 @@ def closet():
     print("DO FEAR LIVING AS A PUPPET")
     print()
     print("One word is oversoaked with blood.")
+
 
 print("...")
 print("...")
