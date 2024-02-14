@@ -1,7 +1,6 @@
 """
 Dream Mansion - a text based game
 """
-from library import room, Item, Ending
 class samurai:
     def __init__(self, constitution, focus, luck, inventory):
         self.constitution = 5
