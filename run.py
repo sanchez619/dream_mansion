@@ -161,7 +161,7 @@ def start_floor2():
     print("2. The Office")
     print("3. The Bathroom")
     print("4. End of the Corridor")
-    room_choice = input("Enter your choice (1-3): ")
+    room_choice = input("Enter your choice (1-4): ")
     if room_choice == '1':
         gym()
     elif room_choice == '2':
@@ -252,6 +252,32 @@ def second_floor_boss():
         print("You were too slow to react!")
         second_floor_gameover()
 
+def start_floor3():
+    print()
+    print()
+    print("You arrive at the first floor.")
+    print("You feel an overwhelming maelstrom from all directions.")
+    print("No place here is safe")
+    print()
+    print()
+    print("Which room do you want to enter?")
+    print("1. The Gym")
+    print("2. The Office")
+    print("3. The Bathroom")
+    print("4. End of the Corridor")
+    print("5. ")
+    print("6. The exit")
+    room_choice = input("Enter your choice (1-6): ")
+    if room_choice == '1':
+        gym()
+    elif room_choice == '2':
+        office()
+    elif room_choice == '3':
+        bathroom()
+    elif room_choice == '4':
+        second_floor_boss()
+    else:
+        error_input
 
 print("...")
 print("...")
