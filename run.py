@@ -9,23 +9,19 @@ class samurai:
         self.luck = 5
         self.inventory = []
 
+    def display_stat(self):
+        """
+        Displays the character's status and inventory
+        """
+        print(f"constitution: {self.constitution}")
+        print(f"focus: {self.focus}")
+        print(f"luck: {self.luck}")
+        print(f"inventory: {self.inventory}")
 
 GAME_STATUS = False
 CURRENT_STATUS = "inRoom"
 
 INVENTORY = []
-
-
-
-
-# Menu for interacting in rooms
-def room_menu():
-    print("You are in the 'filler text'")
-    print("1. Investigate")
-    print("2. Perceive")
-    print("3. Rearrange")
-    print("0: Change rooms")
-
 
 def investigate():
     print("You carefully investigate the room...")
@@ -43,9 +39,13 @@ def change_rooms():
     print("You head to another room...")
     print("You enter...")
 
-
-def start_floor1():
-    room_menu()
+# Menu for interacting in rooms
+def room_menu():
+    print("You are in the 'filler text'")
+    print("1. Investigate")
+    print("2. Perceive")
+    print("3. Rearrange")
+    print("0: Change rooms")
     choice = input("Enter your choice (0-3): ")
     if choice == '0':
         change_rooms()
@@ -57,6 +57,11 @@ def start_floor1():
         rearrange()
     else:
         print("Invalid choice. Please enter a number between 1 and 3.")
+
+
+def start_floor1():
+    room_menu()
+    
 
 print("...")
 print("...")
