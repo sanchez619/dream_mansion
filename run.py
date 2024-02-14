@@ -61,6 +61,25 @@ def room_menu():
         error_input()
     return choice
 
+def room_menu():
+    print("You are in the 'filler text'")
+    print("1. Investigate")
+    print("2. Perceive")
+    print("3. Rearrange")
+    print("0: Change rooms")
+    choice = input("Enter your choice (0-3): ")
+    if choice == '0':
+        change_rooms()
+    elif choice == '1':
+        investigate()
+    elif choice == '2':
+        perceive()
+    elif choice == '3':
+        rearrange()
+    else:
+        error_input()
+    return choice
+
 def start_floor1():
     print("Several doors appear in front of you.")
     print("Which one do you want to enter")
@@ -139,10 +158,25 @@ def floor_lobby3():
         error_input()
 
 def start_floor2():
+    print()
+    print()
     print("The second floor has an even more ominous feeling.")
     print("This most likely has to do with the large figure.")
     print("It stands at the end of the corridor, waiting...")
-    room_menu2()
+    print()
+    print()
+    print("Which room do you want to enter?")
+    print("1. The Gym")
+    print("2. The Office")
+    print("3. The Bathroom")
+    print("4. End of the Corridor")
+    room_choice = input("Enter your choice (1-3): ")
+    if room_choice == '1':
+        lounge()
+    elif room_choice == '2':
+        storage_chamber()
+    elif room_choice == '3':
+        floor_lobby3()
 
 
 print("...")
