@@ -257,27 +257,42 @@ def start_floor3():
     print()
     print("You arrive at the first floor.")
     print("You feel an overwhelming maelstrom from all directions.")
-    print("No place here is safe")
+    print("No place here is safe.")
     print()
     print()
     print("Which room do you want to enter?")
-    print("1. The Gym")
-    print("2. The Office")
-    print("3. The Bathroom")
-    print("4. End of the Corridor")
-    print("5. ")
-    print("6. The exit")
+    print("1. The Kitchen")
+    print("2. The Living Room")
+    print("3. The Guest Room")
+    print("4. The Bed Room")
+    print("5. The Closet")
+    print("6. The Exit")
     room_choice = input("Enter your choice (1-6): ")
     if room_choice == '1':
-        gym()
+        kitchen()
     elif room_choice == '2':
-        office()
+        living_room()
     elif room_choice == '3':
-        bathroom()
+        guest_room()
     elif room_choice == '4':
-        second_floor_boss()
+        bed_room()
+    elif room_choice == '5':
+        closet()
+    elif room_choice == '4':
+        final_room()
     else:
         error_input
+
+def closet():
+    print("There is nothing in the room.")
+    print("It is completely empty...")
+    print("As you were about to leave the room")
+    print("You see something written on the wall:")
+    print()
+    print("DO NOT FEAR ...")
+    print("DO FEAR LIVING AS A PUPPET")
+    print()
+    print("One word is oversoaked with blood.")
 
 print("...")
 print("...")
