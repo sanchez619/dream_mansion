@@ -62,7 +62,7 @@ class samurai:
 player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
 
 CHOICES_MADE = set()
-CURRENT_STATUS = "inRoom"
+IN_ROOM = True
 
 def investigate():
     print("You carefully investigate the room...")
@@ -75,13 +75,12 @@ def perceive():
 def rearrange():
     print("You rearrange items in the room, looking for hidden clues...")
 
-
-def change_rooms():
-    print("You head to another room...")
-    room_menu()
+def redundant_choice():
+    print("You have already taken this action.")
+    print("You will not find anything new repeating it.")
 
 def error_input():
-    print("Invalid choice. Please enter a number between 1 and 3.")
+    print("Invalid choice. Please enter a number indicating one of the rooms.")
 
 # Menu for interacting in rooms
 def room_menu():
@@ -89,18 +88,14 @@ def room_menu():
     print("1. Investigate")
     print("2. Perceive")
     print("3. Rearrange")
-    print("0: Change rooms")
-    choice = input("Enter your choice (0-3): ")
-    if choice == '0':
-        change_rooms()
-    elif choice == '1':
+    print("4: Change rooms")
+    choice = input("Enter your choice (1-4): ")
+    if choice == '1':
         investigate()
     elif choice == '2':
         perceive()
     elif choice == '3':
         rearrange()
-    else:
-        error_input()
     return choice
 
 def fight_menu():
@@ -127,26 +122,45 @@ def start_floor1():
         storage_chamber()
     elif room_choice == '3':
         floor_lobby3()
+    else:
+        error_input()
 
 def lounge():
     print("You enter the floor lobby.")
     print("It contains multiple cupboards.")
     print("They once seemed to contain many different items.")
-
-    choice = room_menu()
-    if choice == '1':
-        print("As you look around the lobby, you find a small book.")
-        print("It says 'Musashi's Diary'.")
-        print("Added 'Musashi's Diary' to your inventory.")
-    elif choice == '2':
-        print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
-        print("Focus was lowered by 1.")
-        player.decrease_stat('focus', 1)
-    elif choice == '3':
-        print("As you move the cupboard, you find a worn-out spear behind it.")
-        print("Added 'spear' to inventory.")
-    else:
-        error_input()
+    IN_ROOM = True
+    while IN_ROOM == True:
+        choice = room_menu()
+        if choice == '1':
+            if 'diary' not in CHOICES_MADE:
+                print("As you look around the lobby, you find a small book.")
+                print("It says 'Musashi's Diary'.")
+                print("Added 'Musashi's Diary' to your inventory.")
+                CHOICES_MADE.add('diary')
+            else:
+                redundant_choice()
+        elif choice == '2':
+            if 'lounge_voices' not in CHOICES_MADE:
+                print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
+                print("Focus was lowered by 1.")
+                player.decrease_stat('focus', 1)
+                CHOICES_MADE.add('lounge_voices')
+            else:
+                redundant_choice()
+        elif choice == '3':
+            if 'spear' not in CHOICES_MADE:
+                print("As you move the cupboard, you find a worn-out spear behind it.")
+                print("Added 'Spear' to inventory.")
+                CHOICES_MADE.add('spear')
+            else:
+                redundant_choice()
+        elif choice == '4':
+            IN_ROOM = False
+            start_floor1()
+            break
+        else:
+            error_input()
 
 def storage_chamber():
     print("You enter the storage chamber.")
