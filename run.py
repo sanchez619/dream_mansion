@@ -146,13 +146,17 @@ def storage_chamber():
         print("As you turn around, you see black smoke a few meters in front of you.")
         print("Focus was decreased by 1.")
         print("Luck was raised by 1.")
+        player.decrease_stat('focus', 1)
+        player.raise_stat('luck', 1)
     elif choice == '2':
         print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
         print("Focus was decreased by 1.")
+        player.decrease_stat('focus', 1)
     elif choice == '3':
         print("While rearranging the shelves, a dark figure jumps you!")
         print("You fell hard onto the ground, but you cannot see anyone...")
         print("Constitution was decreased by 2.")
+        player.decrease_stat('constitution', 2)
     else:
         error_input()
 
@@ -174,13 +178,16 @@ def floor_lobby3():
             print("'Turn back to the shadows where thou came from!'")
     elif choice == '2':
         print("This room is filled with malice.")
-        print("You should not do anything unnecessary")
-        print("Luck was increased by 1.")
+        print("You should not do anything unnecessary"")
+        print("Luck was raised by 1.")
+        player.raise_stat('focus', 1)
     elif choice == '3':
         print("You try to move the couch when your leg suddenly starts hurting.")
         print("You have stepped into a beartrap.")
         print("Constitution was decreased by 2")
         print("Luck was decreased by 1")
+        player.decrease_stat('constitution', 2)
+        player.decrease_stat('luck', 1)
     else:
         error_input()
 
@@ -219,11 +226,13 @@ def gym():
     elif choice == '2':
         print("But before you can even react, the demon strikes you in the head.")
         print("Constitution was decreased by 3")
+        player.decrease_stat('constitution', 3)
     elif choice == '3':
         print("You throw a small cupboard in-between you and the demon.")
         print("You ready your weapon as you realize:'He's gone'.")
         print("Instead, you find some bandages, which fell out of the cupboard.")
         print("Constitution was increased by 2.")
+        player.raise_stat('constitution', 2)
     else:
         error_input()
 
@@ -236,15 +245,19 @@ def office():
         print("You find that it is only a coat on the chair.")
         print("Focus was decreased by 1.")
         print("Luck was raised by 1.")
+        player.decrease_stat('focus', 1)
+        player.raise_stat('luck', 1)
     elif choice == '2':
         print("Just as you start listening to your surroundings...")
         print("A dagger pierces your right chest!")
         print("Constitution was decreased by 2")
+        player.decrease_stat('constitution', 2)
     elif choice == '3':
         print("You throw a coat rack, which was right next to the door...")
-        print("directly in the direction of the chair.")
+        print("directly in the direction of the chair!")
         print("You hear a terrifying cry.")
-        print("Focus was decreased by 2.")
+        print("Focus was raised by 1.")
+        player.raise_stat('focus', 1)
     else:
         error_input()
 
@@ -258,14 +271,19 @@ def bathroom():
         print("Added 'Fighting demons 101' to your inventory.")
     elif choice == '2':
         print("You feel that the room is devoid of malice.")
-        print("You choose to enter the bath and relax")
+        print("You choose to enter the bath and relax.")
         print("Constitution was raised by 2")
         print("Luck was raised by 1")
+        player.raise_stat('constitution', 2)
+        player.raise_stat('luck', 1)
     elif choice == '3':
-        print("You throw a small cupboard in-between you and the demon.")
-        print("You ready your weapon as you realize:'He's gone'.")
-        print("Instead, you find some bandages, which fell out of the cupboard.")
-        print("Constitution was raised by 2.")
+        print("You try to move the bathtub, as it suddenly gets dark.")
+        print("You feel something crush you feet and")
+        print("your body being soaked in water.")
+        print("Constitution was decreased by 2.")
+        print("Luck was decreased by 2.")
+        player.decrease_stat('constitution', 2)
+        player.decrease_stat('luck', 2)
     else:
         error_input()
 
