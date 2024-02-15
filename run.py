@@ -229,7 +229,9 @@ def floor_lobby3():
             if solution_1 == "samurai":
                 print("The powers cannot hold you anymore.")
                 print("You descend to the first floor.")
+                IN_ROOM = False
                 start_floor2()
+                break
             else:
                 print("'That is incorrect!'")
                 print("'Turn back to the shadows where thou came from!'")
@@ -254,6 +256,10 @@ def floor_lobby3():
                 CHOICES_MADE.add('beartrap')
             else:
                 redundant_choice()
+        elif choice == '4':
+            IN_ROOM = False
+            start_floor1()
+            break
         else:
             error_input()
 
@@ -285,47 +291,86 @@ def start_floor2():
 def gym():
     print("You enter the gym.")
     print("Before you can see anything else, a demon appears in front of you!")
-    choice = room_menu()
-    if choice == '1':
-        print("You try finding something to help against the demon.")
-        print("However, you cannot spot something in that instance.")
-    elif choice == '2':
-        print("But before you can even react, the demon strikes you in the head.")
-        print("Constitution was decreased by 3")
-        player.decrease_stat('constitution', 3)
-    elif choice == '3':
-        print("You throw a small cupboard in-between you and the demon.")
-        print("You ready your weapon as you realize:'He's gone'.")
-        print("Instead, you find some bandages, which fell out of the cupboard.")
-        print("Constitution was increased by 2.")
-        player.raise_stat('constitution', 2)
-    else:
-        error_input()
+    IN_ROOM = True
+    while IN_ROOM == True:
+        choice = room_menu()
+        if choice == '1':
+            if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
+                print("You try finding something to help against the demon.")
+                print("However, you cannot spot something in that instance.")
+                print("The demon approaches you!")
+                print("Focus was decreased by 1.")
+                player.decrease_stat('focus', 1)
+                CHOICES_MADE.add('gym_approach')
+            else:
+                redundant_choice2()
+        elif choice == '2':
+            if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
+                print("But before you can even react, the demon strikes you in the head.")
+                print("Constitution was decreased by 3")
+                player.decrease_stat('constitution', 3)
+                CHOICES_MADE.add('gym_ambush')
+            else:
+                redundant_choice2()
+        elif choice == '3':
+            if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
+                print("You throw a small cupboard in-between you and the demon.")
+                print("You ready your weapon as you realize:'He's gone'.")
+                print("Instead, you find some bandages, which fell out of the cupboard.")
+                print("Constitution was increased by 2.")
+                player.raise_stat('constitution', 2)
+                CHOICES_MADE.add('gym_vanish')
+            else:
+                redundant_choice2()
+        elif choice == '4':
+            IN_ROOM = False
+            start_floor2()
+            break
+        else:
+            error_input()
 
 def office():
     print("You enter the office.")
     print("A dark figure sits on a chair behind the desk.")
-    choice = room_menu()
-    if choice == '1':
-        print("You ascertain whether the figure is actually a demon.")
-        print("You find that it is only a coat on the chair.")
-        print("Focus was decreased by 1.")
-        print("Luck was raised by 1.")
-        player.decrease_stat('focus', 1)
-        player.raise_stat('luck', 1)
-    elif choice == '2':
-        print("Just as you start listening to your surroundings...")
-        print("A dagger pierces your right chest!")
-        print("Constitution was decreased by 2")
-        player.decrease_stat('constitution', 2)
-    elif choice == '3':
-        print("You throw a coat rack, which was right next to the door...")
-        print("directly in the direction of the chair!")
-        print("You hear a terrifying cry.")
-        print("Focus was raised by 1.")
-        player.raise_stat('focus', 1)
-    else:
-        error_input()
+    IN_ROOM = True
+    while IN_ROOM == True:
+        choice = room_menu()
+        if choice == '1':
+            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):    
+                print("You ascertain whether the figure is actually a demon.")
+                print("You find that it is only a coat on the chair.")
+                print("Focus was decreased by 1.")
+                print("Luck was raised by 1.")
+                player.decrease_stat('focus', 1)
+                player.raise_stat('luck', 1)
+                CHOICES_MADE.add('coat_demon')
+            else:
+                redundant_choice2()
+        elif choice == '2':
+            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):     
+                print("Just as you start listening to your surroundings...")
+                print("A dagger pierces your right chest!")
+                print("Constitution was decreased by 2")
+                player.decrease_stat('constitution', 2)
+                CHOICES_MADE.add('dagger_pierce')
+            else:
+                redundant_choice2()    
+        elif choice == '3':
+            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']): 
+                print("You throw a coat rack, which was right next to the door...")
+                print("directly in the direction of the chair!")
+                print("You hear a terrifying cry.")
+                print("Focus was raised by 1.")
+                player.raise_stat('focus', 1)
+                CHOICES_MADE.add('coat_rack')
+            else:
+                redundant_choice2()
+        elif choice == '4':
+            IN_ROOM = False
+            start_floor2()
+            break
+        else:
+            error_input()
 
 def bathroom():
     print("You enter the bathroom.")
