@@ -83,6 +83,10 @@ def redundant_choice2():
     print("You do not feel an enemy presence anymore.")
     print("There is nothing more to find here...")
 
+def redundant_choice3():
+    print("You have already used up the bathroom with your actions.")
+    print("Hopefully, you haven't broken it...")
+
 def error_input():
     print("Invalid choice. Please enter a number indicating one of the rooms.")
 
@@ -375,28 +379,46 @@ def office():
 def bathroom():
     print("You enter the bathroom.")
     print("This room is actually lit. You can see the bathtub filled with water.")
-    choice = room_menu()
-    if choice == '1':
-        print("Next to the bathtub is another cupboard.")
-        print("In one of the drawers, you find a small book.")
-        print("Added 'Fighting demons 101' to your inventory.")
-    elif choice == '2':
-        print("You feel that the room is devoid of malice.")
-        print("You choose to enter the bath and relax.")
-        print("Constitution was raised by 2")
-        print("Luck was raised by 1")
-        player.raise_stat('constitution', 2)
-        player.raise_stat('luck', 1)
-    elif choice == '3':
-        print("You try to move the bathtub, as it suddenly gets dark.")
-        print("You feel something crush you feet and")
-        print("your body being soaked in water.")
-        print("Constitution was decreased by 2.")
-        print("Luck was decreased by 2.")
-        player.decrease_stat('constitution', 2)
-        player.decrease_stat('luck', 2)
-    else:
-        error_input()
+    IN_ROOM = True
+    while IN_ROOM == True:
+        choice = room_menu() 
+        if choice == '1':
+            if not any(choice in CHOICES_MADE for choice in ['demons_101', 'power_out']):
+                print("Next to the bathtub is another cupboard.")
+                print("In one of the drawers, you find a small book.")
+                print("Added 'Fighting demons 101' to your inventory.")
+                CHOICES_MADE.add('demons_101')
+            else:
+                redundant_choice3()
+        elif choice == '2':
+            if not any(choice in CHOICES_MADE for choice in ['bathtub', 'power_out']):
+                print("You feel that the room is devoid of malice.")
+                print("You choose to enter the bath and relax.")
+                print("Constitution was raised by 2")
+                print("Luck was raised by 1")
+                player.raise_stat('constitution', 2)
+                player.raise_stat('luck', 1)
+                CHOICES_MADE.add('bathtub')
+            else:
+                redundant_choice3()
+        elif choice == '3':
+            if not 'power_out' in CHOICES_MADE:
+                print("You try to move the bathtub, as it suddenly gets dark.")
+                print("You feel something crush you feet and")
+                print("your body being soaked in water.")
+                print("Constitution was decreased by 2.")
+                print("Luck was decreased by 2.")
+                player.decrease_stat('constitution', 2)
+                player.decrease_stat('luck', 2)
+                CHOICES_MADE.add('power_out')
+            else:
+                redundant_choice3()
+        elif choice == '4':
+            IN_ROOM = False
+            start_floor2()
+            break
+        else:
+            error_input()
 
 def second_floor_boss():
     print("You engage a terrifying monster.")
