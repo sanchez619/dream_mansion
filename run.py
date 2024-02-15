@@ -32,7 +32,7 @@ class samurai:
         else:
             print("Stat change not valid!")
 
-    def raise_stat(self, stat, number)
+    def raise_stat(self, stat, number):
         """
         Raises the characters stats after certain events
         """
@@ -178,7 +178,7 @@ def floor_lobby3():
             print("'Turn back to the shadows where thou came from!'")
     elif choice == '2':
         print("This room is filled with malice.")
-        print("You should not do anything unnecessary"")
+        print("You should not do anything unnecessary")
         print("Luck was raised by 1.")
         player.raise_stat('focus', 1)
     elif choice == '3':
@@ -346,17 +346,20 @@ def kitchen():
         print("You find a note.")
         print("It says: 'Keep important things close to your chest.'")
         print("The demon notices you and attacks!")
-        print("Focus was decreased by 1")
+        print("Luck was decreased by 1.")
+        player.decrease_stat('luck', 1)
     elif choice == '2':
         print("You feel the demon's greed for blood.")
         print("He is too entranced to notice you.")
         print("You approach him from behind and slice his throat.")
-        print("Luck was raised by 1")
+        print("Focus was raised by 1.")
+        player.raise_stat('focus', 1)
     elif choice == '3':
         print("You try to flip the table onto the demon.")
-        print("It is too heavy, and you cannot.")
+        print("It is too heavy, and you are unable to.")
         print("In the meantime, the demon jumps you!")
         print("Constitution was decreased by 2.")
+        player.decrease_stat('constitution', 2)
     else:
         error_input()
 
@@ -370,15 +373,19 @@ def living_room():
         print("You take one that is not empty and drink it.")
         print("Constitution was raised by 1.")
         print("Focus was decreased by 1")
+        player.raise_stat('constitution', 1)
+        player.decrease_stat('focus', 1)
     elif choice == '2':
         print("You listen more closely to the radio.")
         print("Thousands of voices tell you to give in.")
         print("Your mind becomes foggier.")
         print("Focus was decreased by 1.")
+        player.decrease_stat('focus', 1)
     elif choice == '3':
         print("You rearrange the furniture, looking for clues.")
         print("After 15 minutes of dragging large objects, you give up.")
         print("Luck was decreased by 1.")
+        player.decrease_stat('luck', 1)
     else:
         error_input()
 
@@ -392,16 +399,19 @@ def guest_room():
         print("A demon was hidden under the sheet!")
         print("It uses the opportunity to jump you.")
         print("Constitution was decreased by 2")
+        player.decrease_stat('constitution', 2)
     elif choice == '2':
         print("You hear a musical box. You decide to turn up the volume.")
         print("The demon under the bed falls asleep.")
         print("You then cleanly slice its neck.")
         print("Focus was raised by 1.")
+        player.raise_stat('focus', 1)
     elif choice == '3':
         print("You lever the mattress to the right.")
         print("You hear a loud thud. It sounded like someone fell to the floor.")
         print("As you ready yourself, a demon approaches you.")
         print("Luck was decreased by 1.")
+        player.decrease_stat('luck', 1)
     else:
         error_input()
 
@@ -421,12 +431,15 @@ def bed_room():
         print("Why? Why?? Why couldn't you SAVE US???")
         print("You feel as if your head is about to explode.")
         print("Focus was decreased by 2.")
+        player.decrease_stat('focus', 2)
     elif choice == '3':
         print("As you try to push the closet away, it buckles.")
         print("You are buried under the closet.")
         print("You can barely escape your grave.")
         print("Luck was decreased by 2.")
         print("Constitution was decreased by 1.")
+        player.decrease_stat('luck', 2)
+        player.decrease_stat('constitution', 1)
     else:
         error_input()
 
