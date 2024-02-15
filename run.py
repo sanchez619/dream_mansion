@@ -61,10 +61,8 @@ class samurai:
 #Creates a player based on samurai class
 player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
 
-GAME_STATUS = False
+CHOICES_MADE = set()
 CURRENT_STATUS = "inRoom"
-
-INVENTORY = []
 
 def investigate():
     print("You carefully investigate the room...")
@@ -134,6 +132,7 @@ def lounge():
     print("You enter the floor lobby.")
     print("It contains multiple cupboards.")
     print("They once seemed to contain many different items.")
+
     choice = room_menu()
     if choice == '1':
         print("As you look around the lobby, you find a small book.")
