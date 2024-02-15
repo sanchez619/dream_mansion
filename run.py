@@ -1,12 +1,14 @@
 """
 Dream Mansion - a text based game
 """
+
+#Main Class - Containts player's starting stats
 class samurai:
     def __init__(self, constitution, focus, luck, inventory):
-        self.constitution = 5
-        self.focus = 5
-        self.luck = 5
-        self.inventory = []
+        self.constitution = constitution
+        self.focus = focus
+        self.luck = luck
+        self.inventory = inventory
 
     def display_stat(self):
         """
@@ -16,6 +18,9 @@ class samurai:
         print(f"focus: {self.focus}")
         print(f"luck: {self.luck}")
         print(f"inventory: {self.inventory}")
+
+#Creates a player based on samurai class
+player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
 
 GAME_STATUS = False
 CURRENT_STATUS = "inRoom"
@@ -71,6 +76,7 @@ def fight_menu():
     strike_direction = input("Enter your choice (0-3): ")
     return strike_direction
 
+# Functions for main story
 def start_floor1():
     print("Several doors appear in front of you.")
     print("Which one do you want to enter")
