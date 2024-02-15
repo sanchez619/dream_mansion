@@ -45,6 +45,18 @@ class samurai:
         else:
             print("Stat change not valid!")
 
+    def check_stats(self):
+        """
+        Checks whether one of the player's stats are either 0 or below.
+        Triggers Game Over text.
+        """
+        if self.constitution <= 0:
+            print("Constitution Game Over")
+        elif self.focus <= 0:
+            print("Focus Game Over")
+        elif self.luck <= 0:
+            print("Luck Game Over")
+
 
 #Creates a player based on samurai class
 player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
@@ -152,7 +164,6 @@ def storage_chamber():
         print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
         print("Focus was decreased by 1.")
         player.decrease_stat('focus', 1)
-        print(player.display_stat())
     elif choice == '3':
         print("While rearranging the shelves, a dark figure jumps you!")
         print("You fell hard onto the ground, but you cannot see anyone...")
