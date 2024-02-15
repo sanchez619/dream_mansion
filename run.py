@@ -353,23 +353,26 @@ def guest_room():
 
 def bed_room():
     print("You enter the bed room.")
-    print("Something is lurking under the bed sheet.")
-    print("You can see two bumps.")
+    print("You see a silver briefcase lying on the bed.")
+    print("Faint voices can be heard.")
     choice = room_menu()
     if choice == '1':
-        print("On the table, you find some beer bottles.")
-        print("You take one that is not empty and drink it.")
-        print("Constitution was raised by 1.")
-        print("Focus was decreased by 1")
+        print("You open the briefcase.")
+        print("You find a bottle of sake and a shortsword.")
+        print("A note lies next to it.")
+        print("Added 'Wakizashi' to inventory.")
+        print("Added 'Seppuku Instructions' to inventory.")
     elif choice == '2':
-        print("You listen more closely to the radio.")
-        print("Thousands of voices tell you to give in.")
-        print("Your mind becomes foggier.")
-        print("Focus was decreased by 1.")
+        print("The voices become stronger!")
+        print("Why? Why?? Why couldn't you SAVE US???")
+        print("You feel as if your head is about to explode.")
+        print("Focus was decreased by 2.")
     elif choice == '3':
-        print("You rearrange the furniture, looking for clues.")
-        print("After 15 minutes of dragging large objects, you give up.")
-        print("Luck was decreased by 1.")
+        print("As you try to push the closet away, it buckles.")
+        print("You are buried under the closet.")
+        print("You can barely escape your grave.")
+        print("Luck was decreased by 2.")
+        print("Constitution was decreased by 1.")
     else:
         error_input()
 
@@ -379,10 +382,11 @@ def closet():
     print("As you were about to leave the room")
     print("You see something written on the wall:")
     print()
-    print("DO NOT FEAR ...")
-    print("DO FEAR LIVING AS A PUPPET")
+    print("DO NOT FEAR ...!!!")
+    print("DO FEAR LIVING AS A PUPPET!!!")
     print()
-    print("One word is oversoaked with blood.")
+    print("One word is stained with blood.")
+    print("You cannot decipher it.")
 
 
 print("...")
