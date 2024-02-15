@@ -129,6 +129,9 @@ def start_floor1():
     else:
         error_input()
 
+"""
+Lounge Room - on Floor Three (Each event can be triggered)
+"""
 def lounge():
     print("You enter the floor lobby.")
     print("It contains multiple cupboards.")
@@ -166,6 +169,10 @@ def lounge():
         else:
             error_input()
 
+
+"""
+Storage Chamber - on Floor Three (Only one event can be triggered)
+"""
 def storage_chamber():
     print("You enter the storage chamber.")
     print("Someone took all consumable items.")
@@ -226,18 +233,26 @@ def floor_lobby3():
             else:
                 print("'That is incorrect!'")
                 print("'Turn back to the shadows where thou came from!'")
+                floor_lobby3()
         elif choice == '2':
-            print("This room is filled with malice.")
-            print("You should not do anything unnecessary")
-            print("Luck was raised by 1.")
-            player.raise_stat('focus', 1)
+            if 'lobby_warning' not in CHOICES_MADE:
+                print("This room is filled with malice.")
+                print("You should not do anything unnecessary")
+                print("Luck was raised by 1.")
+                player.raise_stat('focus', 1)
+                CHOICES_MADE.add('lobby_warning')
+            else:
+                redundant_choice()
         elif choice == '3':
-            print("You try to move the couch when your leg suddenly starts hurting.")
-            print("You have stepped into a beartrap.")
-            print("Constitution was decreased by 2")
-            print("Luck was decreased by 1")
-            player.decrease_stat('constitution', 2)
-            player.decrease_stat('luck', 1)
+            if 'beartrap' not in CHOICES_MADE:
+                print("You try to move the couch when your leg suddenly starts hurting.")
+                print("You have stepped into a beartrap.")
+                print("Constitution was decreased by 2")
+                print("Luck was decreased by 1")
+                player.decrease_stat('constitution', 2)
+                player.decrease_stat('luck', 1)
+            else:
+                redundant_choice()
         else:
             error_input()
 
