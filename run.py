@@ -90,6 +90,15 @@ def redundant_choice3():
 def error_input():
     print("Invalid choice. Please enter a number indicating one of the rooms.")
 
+def second_floor_gameover():
+    print("You feel a large object piercing your throat.")
+    print("You desperately try to breathe, but the...")
+    print(...)
+    print(...)
+    print("Can't... move...")
+    print(...)
+    print(...)
+
 # Menu for interacting in rooms
 def room_menu():
     print("You are in the 'filler text'")
@@ -112,8 +121,8 @@ def fight_menu():
     print("1. Strike from above")
     print("2. Strike from left flank")
     print("3. Strike from right flank")
-    print("0: Strike from below")
-    strike_direction = input("Enter your choice (0-3): ")
+    print("4: Strike from below")
+    strike_direction = input("Enter your choice (1-4): ")
     return strike_direction
 
 # Functions for main story
@@ -423,10 +432,7 @@ def bathroom():
 def second_floor_boss():
     print("You engage a terrifying monster.")
     strike_direction = fight_menu()
-    if strike_direction == '0':
-        print("You have hit the enemy's weak spot.")
-        start_floor3()
-    elif strike_direction == '1':
+    if strike_direction == '1':
         print("Just before your blade hits...")
         second_floor_gameover()
     elif strike_direction == '2':
@@ -435,6 +441,9 @@ def second_floor_boss():
     elif strike_direction == '3':
         print("Just before your blade hits...")
         second_floor_gameover()
+    elif strike_direction == '4':
+        print("You have hit the enemy's weak spot!")
+        start_floor3()
     else:
         print("You were too slow to react!")
         second_floor_gameover()
@@ -465,7 +474,7 @@ def start_floor3():
         bed_room()
     elif room_choice == '5':
         closet()
-    elif room_choice == '4':
+    elif room_choice == '6':
         final_room()
     else:
         error_input
@@ -474,13 +483,15 @@ def kitchen():
     print("You enter the kitchen.")
     print("You see a demon eating something red on a plate.")
     print("It has not seen you yet.")
-    choice = room_menu()
-    if choice == '1':
-        print("You find a note.")
-        print("It says: 'Keep important things close to your chest.'")
-        print("The demon notices you and attacks!")
-        print("Luck was decreased by 1.")
-        player.decrease_stat('luck', 1)
+    IN_ROOM = True
+    while IN_ROOM == True:
+        choice = room_menu()
+        if choice == '1':
+            print("You find a note.")
+            print("It says: 'Keep important things close to your chest.'")
+            print("The demon notices you and attacks!")
+            print("Luck was decreased by 1.")
+            player.decrease_stat('luck', 1)
     elif choice == '2':
         print("You feel the demon's greed for blood.")
         print("He is too entranced to notice you.")
