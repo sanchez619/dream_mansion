@@ -14,20 +14,20 @@ class samurai:
         """
         Displays the character's status and inventory
         """
-        print(f"constitution: {self.constitution}")
-        print(f"focus: {self.focus}")
-        print(f"luck: {self.luck}")
-        print(f"inventory: {self.inventory}")
+        print(f"Constitution: {self.constitution}")
+        print(f"Focus: {self.focus}")
+        print(f"Luck: {self.luck}")
+        print(f"Inventory: {self.inventory}")
 
     def decrease_stat(self, stat, number):
         """
         Decreases the characters stats after certain events
         """
-        if stat == constitution:
+        if stat == 'constitution':
             self.constitution -= number
-        elif stat == focus:
+        elif stat == 'focus':
             self.focus -= number
-        elif stat == luck:
+        elif stat == 'luck':
             self.luck -= number
         else:
             print("Stat change not valid!")
@@ -36,11 +36,11 @@ class samurai:
         """
         Raises the characters stats after certain events
         """
-        if stat == constitution:
+        if stat == 'constitution':
             self.constitution += number
-        elif stat == focus:
+        elif stat == 'focus':
             self.focus += number
-        elif stat == luck:
+        elif stat == 'luck':
             self.luck += number
         else:
             print("Stat change not valid!")
@@ -152,6 +152,7 @@ def storage_chamber():
         print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
         print("Focus was decreased by 1.")
         player.decrease_stat('focus', 1)
+        print(player.display_stat())
     elif choice == '3':
         print("While rearranging the shelves, a dark figure jumps you!")
         print("You fell hard onto the ground, but you cannot see anyone...")
