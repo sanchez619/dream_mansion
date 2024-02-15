@@ -388,6 +388,27 @@ def closet():
     print("One word is stained with blood.")
     print("You cannot decipher it.")
 
+def final_room():
+    print("The door to the outside is sealed.")
+    print("On the seal, you can spot one empty circle.")
+    print("You hear a voice!")
+    print("'You want to leave this place?!'")
+    print("'Write the word of your salvation onto the seal!'")
+    print("'Accept it, and become a samurai once again!'")
+    final_riddle = input ("The salvation of a samurai is...")
+    if final_riddle == "death":
+        print("After you step away from the seal, it begins to shine.")
+        print("Suddenly, everything around you is engulfed in light!")
+        print("Congrats! You have beaten 'Dream Mansion'!")
+    else:
+        print("After you step away from the seal, it begins to wither.")
+        print("Suddenly, you and everything around you begins to decay!")
+        print("You try to reach...")
+        print("...")
+        print("...")
+        print("...")
+
+
 def game_start():
     print("...")
     print("...")
