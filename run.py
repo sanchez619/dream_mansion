@@ -79,6 +79,10 @@ def redundant_choice():
     print("You have already taken this action.")
     print("You will not find anything new repeating it.")
 
+def redundant_choice2():
+    print("You do not feel an enemy presence anymore.")
+    print("There is nothing more to find here...")
+
 def error_input():
     print("Invalid choice. Please enter a number indicating one of the rooms.")
 
@@ -165,56 +169,77 @@ def lounge():
 def storage_chamber():
     print("You enter the storage chamber.")
     print("Someone took all consumable items.")
-    choice = room_menu()
-    if choice == '1':
-        print("As you try to inspect the room further, you hear something!")
-        print("As you turn around, you see black smoke a few meters in front of you.")
-        print("Focus was decreased by 1.")
-        print("Luck was raised by 1.")
-        player.decrease_stat('focus', 1)
-        player.raise_stat('luck', 1)
-    elif choice == '2':
-        print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
-        print("Focus was decreased by 1.")
-        player.decrease_stat('focus', 1)
-    elif choice == '3':
-        print("While rearranging the shelves, a dark figure jumps you!")
-        print("You fell hard onto the ground, but you cannot see anyone...")
-        print("Constitution was decreased by 2.")
-        player.decrease_stat('constitution', 2)
-    else:
-        error_input()
+    IN_ROOM = True
+    while IN_ROOM == True:
+        choice = room_menu()
+        if choice == '1':
+            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage ambush']):
+                print("As you try to inspect the room further, you hear something!")
+                print("As you turn around, you see black smoke a few meters in front of you.")
+                print("Focus was decreased by 1.")
+                print("Luck was raised by 1.")
+                player.decrease_stat('focus', 1)
+                player.raise_stat('luck', 1)
+                CHOICES_MADE.add('storage_investigation')
+            else:
+                redundant_choice2()
+        elif choice == '2':
+            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage ambush']):
+                print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
+                print("You anxiously turn around to see some black some disappearing.")
+                print("Focus was decreased by 1.")
+                player.decrease_stat('focus', 1)
+                CHOICES_MADE.add('storage_voices')
+            else:
+                redundant_choice2()
+        elif choice == '3':
+            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage ambush']):
+                print("While rearranging the shelves, a dark figure jumps you!")
+                print("You fell hard onto the ground, but you cannot see anyone...")
+                print("Constitution was decreased by 2.")
+                player.decrease_stat('constitution', 2)
+                CHOICES_MADE.add('storage_ambush')
+            else:
+                redundant_choice2()
+        elif choice == '4':
+            IN_ROOM = False
+            start_floor1()
+            break
+        else:
+            error_input()
 
 def floor_lobby3():
     print("You enter the floor lobby.")
     print("As you enter, you see a door leading to a spiraling stairway.")
     choice = room_menu()
-    if choice == '1':
-        print("As you try to go down the stairs, you hear a voice.")
-        print("'Those without identity cannot pass!'")
-        print("'Who are you?'")
-        solution_1 = input ("I am a...")
-        if solution_1 == "samurai":
-            print("The powers cannot hold you anymore.")
-            print("You descend to the first floor.")
-            start_floor2()
+    IN_ROOM = True
+    while IN_ROOM == True:
+        if choice == '1':
+            print("As you try to go down the stairs, you hear a voice.")
+            print("'Those without identity cannot pass!'")
+            print("'Who are you?'")
+            solution_1 = input ("I am a...")
+            if solution_1 == "samurai":
+                print("The powers cannot hold you anymore.")
+                print("You descend to the first floor.")
+                start_floor2()
+            else:
+                print("'That is incorrect!'")
+                print("'Turn back to the shadows where thou came from!'")
+        elif choice == '2':
+            print("This room is filled with malice.")
+            print("You should not do anything unnecessary")
+            print("Luck was raised by 1.")
+            player.raise_stat('focus', 1)
+        elif choice == '3':
+            print("You try to move the couch when your leg suddenly starts hurting.")
+            print("You have stepped into a beartrap.")
+            print("Constitution was decreased by 2")
+            print("Luck was decreased by 1")
+            player.decrease_stat('constitution', 2)
+            player.decrease_stat('luck', 1)
         else:
-            print("'That is incorrect!'")
-            print("'Turn back to the shadows where thou came from!'")
-    elif choice == '2':
-        print("This room is filled with malice.")
-        print("You should not do anything unnecessary")
-        print("Luck was raised by 1.")
-        player.raise_stat('focus', 1)
-    elif choice == '3':
-        print("You try to move the couch when your leg suddenly starts hurting.")
-        print("You have stepped into a beartrap.")
-        print("Constitution was decreased by 2")
-        print("Luck was decreased by 1")
-        player.decrease_stat('constitution', 2)
-        player.decrease_stat('luck', 1)
-    else:
-        error_input()
+            error_input()
 
 def start_floor2():
     print()
