@@ -218,9 +218,9 @@ def storage_chamber():
 def floor_lobby3():
     print("You enter the floor lobby.")
     print("As you enter, you see a door leading to a spiraling stairway.")
-    choice = room_menu()
     IN_ROOM = True
     while IN_ROOM == True:
+        choice = room_menu()
         if choice == '1':
             print("As you try to go down the stairs, you hear a voice.")
             print("'Those without identity cannot pass!'")
@@ -251,6 +251,7 @@ def floor_lobby3():
                 print("Luck was decreased by 1")
                 player.decrease_stat('constitution', 2)
                 player.decrease_stat('luck', 1)
+                CHOICES_MADE.add('beartrap')
             else:
                 redundant_choice()
         else:
