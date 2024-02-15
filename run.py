@@ -334,24 +334,25 @@ def guest_room():
     print("You can see two bumps.")
     choice = room_menu()
     if choice == '1':
-        print("On the table, you find some beer bottles.")
-        print("You take one that is not empty and drink it.")
-        print("Constitution was raised by 1.")
-        print("Focus was decreased by 1")
+        print("You pull the sheet from the bed.")
+        print("A demon was hidden under the sheet!")
+        print("It uses the opportunity to jump you.")
+        print("Constitution was decreased by 2")
     elif choice == '2':
-        print("You listen more closely to the radio.")
-        print("Thousands of voices tell you to give in.")
-        print("Your mind becomes foggier.")
-        print("Focus was decreased by 1.")
+        print("You hear a musical box. You decide to turn up the volume.")
+        print("The demon under the bed falls asleep.")
+        print("You then cleanly slice its neck.")
+        print("Focus was raised by 1.")
     elif choice == '3':
-        print("You rearrange the furniture, looking for clues.")
-        print("After 15 minutes of dragging large objects, you give up.")
+        print("You lever the mattress to the right.")
+        print("You hear a loud thud. It sounded like someone fell to the floor.")
+        print("As you ready yourself, a demon approaches you.")
         print("Luck was decreased by 1.")
     else:
         error_input()
 
 def bed_room():
-    print("You enter the guest room.")
+    print("You enter the bed room.")
     print("Something is lurking under the bed sheet.")
     print("You can see two bumps.")
     choice = room_menu()
