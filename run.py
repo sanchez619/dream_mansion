@@ -19,6 +19,33 @@ class samurai:
         print(f"luck: {self.luck}")
         print(f"inventory: {self.inventory}")
 
+    def decrease_stat(self, stat, number):
+        """
+        Decreases the characters stats after certain events
+        """
+        if stat == constitution:
+            self.constitution -= number
+        elif stat == focus:
+            self.focus -= number
+        elif stat == luck:
+            self.luck -= number
+        else:
+            print("Stat change not valid!")
+
+    def raise_stat(self, stat, number)
+        """
+        Raises the characters stats after certain events
+        """
+        if stat == constitution:
+            self.constitution += number
+        elif stat == focus:
+            self.focus += number
+        elif stat == luck:
+            self.luck += number
+        else:
+            print("Stat change not valid!")
+
+
 #Creates a player based on samurai class
 player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
 
@@ -103,6 +130,7 @@ def lounge():
     elif choice == '2':
         print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
         print("Focus was lowered by 1.")
+        player.decrease_stat('focus', 1)
     elif choice == '3':
         print("As you move the cupboard, you find a worn-out spear behind it.")
         print("Added 'spear' to inventory.")
@@ -114,15 +142,17 @@ def storage_chamber():
     print("Someone took all consumable items.")
     choice = room_menu()
     if choice == '1':
-        print("As you try to inspect the room further, you hear something.")
-        print("Lowered focus by 1.")
-        print("Luck was increased by 1.")
+        print("As you try to inspect the room further, you hear something!")
+        print("As you turn around, you see black smoke a few meters in front of you.")
+        print("Focus was decreased by 1.")
+        print("Luck was raised by 1.")
     elif choice == '2':
         print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
-        print("Focus was raised by 2.")
+        print("Focus was decreased by 1.")
     elif choice == '3':
-        print("As you move the cupboard, you find a worn-out spear behind it.")
-        print("Constitution was lowered by 3.")
+        print("While rearranging the shelves, a dark figure jumps you!")
+        print("You fell hard onto the ground, but you cannot see anyone...")
+        print("Constitution was decreased by 2.")
     else:
         error_input()
 
