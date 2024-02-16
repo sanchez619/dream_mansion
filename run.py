@@ -1,6 +1,7 @@
 """
 Dream Mansion - a text based game
 """
+import sys
 
 #Main Class - Containts player's starting stats
 class samurai:
@@ -29,6 +30,7 @@ class samurai:
             self.focus -= number
         elif stat == 'luck':
             self.luck -= number
+
         else:
             print("Stat change not valid!")
 
@@ -52,10 +54,13 @@ class samurai:
         """
         if self.constitution <= 0:
             print("Constitution Game Over")
+            sys.exit()
         elif self.focus <= 0:
             print("Focus Game Over")
+            sys.exit()
         elif self.luck <= 0:
             print("Luck Game Over")
+            sys.exit()
 
 
 #Creates a player based on samurai class
@@ -181,6 +186,7 @@ def lounge():
             break
         else:
             error_input()
+        player.check_stats()
 
 
 """
@@ -227,6 +233,7 @@ def storage_chamber():
             break
         else:
             error_input()
+        player.check_stats()
 
 def floor_lobby3():
     print("You enter the floor lobby.")
@@ -275,6 +282,7 @@ def floor_lobby3():
             break
         else:
             error_input()
+        player.check_stats()
 
 def start_floor2():
     print()
@@ -341,6 +349,7 @@ def gym():
             break
         else:
             error_input()
+        player.check_stats()
 
 def office():
     print("You enter the office.")
@@ -384,6 +393,7 @@ def office():
             break
         else:
             error_input()
+        player.check_stats()
 
 def bathroom():
     print("You enter the bathroom.")
@@ -428,6 +438,7 @@ def bathroom():
             break
         else:
             error_input()
+        player.check_stats()
 
 def second_floor_boss():
     print("You engage a terrifying monster.")
@@ -522,6 +533,7 @@ def kitchen():
             break
         else:
             error_input()
+        player.check_stats()
 
 def living_room():
     print("You enter the living room.")
@@ -566,6 +578,7 @@ def living_room():
             break
         else:
             error_input()
+        player.check_stats()
 
 def guest_room():
     print("You enter the guest room.")
@@ -610,6 +623,7 @@ def guest_room():
             break
         else:
             error_input()
+        player.check_stats()
 
 def bed_room():
     print("You enter the bed room.")
@@ -656,6 +670,7 @@ def bed_room():
             break
         else:
             error_input()
+        player.check_stats()
 
 def closet():
     print("There is nothing in the room.")
