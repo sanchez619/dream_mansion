@@ -21,9 +21,10 @@ class samurai:
         print(f"Inventory: {self.inventory}")
 
     def display_inventory(self):
-        print("You currently carry the following objects:")
+        print("You currently are carrying the following items:")
         for item in self.inventory:
-            print(item)
+            print(f"- {item.name}")
+
 
     def decrease_stat(self, stat, number):
         """
@@ -273,6 +274,7 @@ def lounge():
                 print("It says 'Musashi's Diary'.")
                 print("Added 'Musashi's Diary' to your inventory.")
                 CHOICES_MADE.add('diary')
+                player.inventory.append(diary)
             else:
                 redundant_choice()
         elif choice == '2':
@@ -288,6 +290,7 @@ def lounge():
                 print("As you move the cupboard, you find a katana behind it.")
                 print("Added 'Katana' to inventory.")
                 CHOICES_MADE.add('katana')
+                player.inventory.append(katana)
             else:
                 redundant_choice()
         elif choice == '4':
@@ -517,6 +520,7 @@ def bathroom():
                 print("In one of the drawers, you find a small book.")
                 print("Added 'Fighting Demons 101' to your inventory.")
                 CHOICES_MADE.add('demons_101')
+                player.inventory.append(demons_101)
             else:
                 redundant_choice3()
         elif choice == '2':
@@ -749,6 +753,8 @@ def bed_room():
                 print("Added 'Wakizashi' to inventory.")
                 print("Added 'Key' to inventory.")
                 CHOICES_MADE.add('wakizashi')
+                player.inventory.append(wakizashi)
+                player.inventory.append(key)
             else:
                 redundant_choice()
         elif choice == '2':
