@@ -529,7 +529,7 @@ def living_room():
     print("A radio is placed on a table. It is turned on.")
     IN_ROOM = True
     while IN_ROOM == True:
-    choice = room_menu()
+        choice = room_menu()
         if choice == '1':
             if 'beer_bottle' not in CHOICES_MADE:
                 print("On the table, you find some beer bottles.")
