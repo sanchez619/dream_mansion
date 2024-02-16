@@ -615,29 +615,47 @@ def bed_room():
     print("You enter the bed room.")
     print("You see a silver briefcase lying on the bed.")
     print("Faint voices can be heard.")
-    choice = room_menu()
-    if choice == '1':
-        print("You open the briefcase.")
-        print("You find a bottle of sake and a shortsword.")
-        print("A note lies next to it.")
-        print("Added 'Wakizashi' to inventory.")
-        print("Added 'Seppuku Instructions' to inventory.")
-    elif choice == '2':
-        print("The voices become stronger!")
-        print("Why? Why?? Why couldn't you SAVE US???")
-        print("You feel as if your head is about to explode.")
-        print("Focus was decreased by 2.")
-        player.decrease_stat('focus', 2)
-    elif choice == '3':
-        print("As you try to push the closet away, it buckles.")
-        print("You are buried under the closet.")
-        print("You can barely escape your grave.")
-        print("Luck was decreased by 2.")
-        print("Constitution was decreased by 1.")
-        player.decrease_stat('luck', 2)
-        player.decrease_stat('constitution', 1)
-    else:
-        error_input()
+    IN_ROOM = True
+    while IN_ROOM == True:
+        choice = room_menu()
+        if choice == '1':
+            if 'wakizashi' not in CHOICES_MADE:
+                print("You open the briefcase.")
+                print("You find a bottle of sake and a shortsword.")
+                print("A note lies next to it.")
+                print("Added 'Wakizashi' to inventory.")
+                print("Added 'Seppuku Instructions' to inventory.")
+                CHOICES_MADE.add('wakizashi')
+            else:
+                redundant_choice()
+        elif choice == '2':
+            if 'head_explosion' not in CHOICES_MADE:
+                print("The voices become stronger!")
+                print("Why? Why?? Why couldn't you SAVE US???")
+                print("You feel as if your head is about to explode.")
+                print("Focus was decreased by 2.")
+                player.decrease_stat('focus', 2)
+                CHOICES_MADE.add('head_explosion')
+            else:
+                redundant_choice()
+        elif choice == '3':
+            if 'closet_burial' not in CHOICES_MADE:
+                print("As you try to push the closet away, it buckles.")
+                print("You are buried under the closet.")
+                print("You can barely escape your grave.")
+                print("Luck was decreased by 2.")
+                print("Constitution was decreased by 1.")
+                player.decrease_stat('luck', 2)
+                player.decrease_stat('constitution', 1)
+                CHOICES_MADE.add('closet_burial')
+            else:
+                redundant_choice()
+        elif choice == '4':
+            IN_ROOM = False
+            start_floor3()
+            break
+        else:
+            error_input()
 
 def closet():
     print("There is nothing in the room.")
