@@ -70,8 +70,8 @@ class samurai:
         return final_stat
 
 
-class item:
-    def __init__(self, name, description, room_found, action, content):
+class items:
+    def __init__(self, name, description, action, content):
         self.name = name
         self.description = description
         self.action = action
@@ -94,6 +94,56 @@ player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
 
 # Creates an instance for the final sum of player character
 end_stat = player.check_final_stats()
+
+"""
+Instances for items class
+"""
+katana_descr = "It is a sharp longsword with only one cutting edge."
+katana_use = "You feel your own soul reverberating in it."
+katana = items("Katana", description = katana_descr, "swing", content = katana_use)
+
+diary_descr = "It contains the daily life stories of an unbeaten swordsman."
+diary_cont = """
+There is only one readable entry:
+
+I tell Katsuma every day. He won't listen.
+Don't act, react!
+Mirror the opponent's atttack with the opposite movement.
+Still, he does nothing but blindly rush into a fight.
+At this rate, he will never be a true samurai...
+"""
+diary = items("Musashi's Diary", description = diary_descr, "read", content = diary_cont)
+
+demons_101_descr = "They are notes about how to fight demons effectively."
+demons_101_cont = """
+Fighting demons in a combat of strength is futile.
+Their strength far surpasses anything a human is capable of.
+However, they are slow, and they are vunerable to sword slashes.
+This means that a swing from the opposite side will always hit a demon.
+If a demon attacks with their left arm, swing your sword from the right.
+Do the opposite if they attack with their right arm...
+...
+All other notes were ripped out.
+"""
+demons_101 ("'Fighting Demons 101'", description = demons_101_descr, "read", content = demons_101_cont)
+
+waki_descr = "It is a shortsword used for rituals. You cannot fight with it."
+waki_use = """
+While you take a closer look at it, you remember something.
+Centuries ago, wakizashis were used for ritual suicide.
+Samurai were not to bring their master shame.
+They would serve their lord until the bitter end.
+Sacrificing their lives to protect their own
+and their lord's honor was seen as a virtue.
+"""
+wakizashi = items("Wakizashi", description = waki_descr, "look at", content = waki_use)
+
+key_descr = "It is a short key, probably for one of the mansion's rooms."
+key_use = """
+Weird. There were no rooms locked in this mansion until now.
+This probably does not open one of the bigger rooms then.
+"""
+key = items("Key", description = key_descr, "grab", content = key_use)
 
 CHOICES_MADE = set()
 IN_ROOM = False
@@ -434,7 +484,7 @@ def bathroom():
             if not any(choice in CHOICES_MADE for choice in ['demons_101', 'power_out']):
                 print("Next to the bathtub is another cupboard.")
                 print("In one of the drawers, you find a small book.")
-                print("Added 'Fighting demons 101' to your inventory.")
+                print("Added 'Fighting Demons 101' to your inventory.")
                 CHOICES_MADE.add('demons_101')
             else:
                 redundant_choice3()
@@ -612,7 +662,6 @@ def living_room():
 def guest_room():
     print("You enter the guest room.")
     print("Something is lurking under the bed sheet.")
-    print("You can see two bumps.")
     IN_ROOM = True
     while IN_ROOM == True:
         choice = room_menu()
@@ -664,10 +713,10 @@ def bed_room():
         if choice == '1':
             if 'wakizashi' not in CHOICES_MADE:
                 print("You open the briefcase.")
-                print("You find a bottle of sake and a shortsword.")
-                print("A note lies next to it.")
+                print("You find a shortsword.")
+                print("A key lies next to it")
                 print("Added 'Wakizashi' to inventory.")
-                print("Added 'Seppuku Instructions' to inventory.")
+                print("Added 'Key' to inventory.")
                 CHOICES_MADE.add('wakizashi')
             else:
                 redundant_choice()
