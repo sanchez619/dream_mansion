@@ -73,7 +73,7 @@ class samurai:
 # Creates a player based on samurai class
 player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
 # Creates an instance for the final sum of player character
-finish_stat = player.final_stat()
+end_stat = player.check_final_stats()
 
 CHOICES_MADE = set()
 IN_ROOM = False
@@ -704,7 +704,7 @@ def final_room():
     if final_riddle == "death":
         print("After you step away from the seal, it begins to shine.")
         print("Suddenly, everything around you is engulfed in light!")
-        print("Congrats! You have beaten 'Dream Mansion'!")
+        final_scene()
     else:
         print("After you step away from the seal, it begins to wither.")
         print("Suddenly, you and everything around you begins to decay!")
@@ -713,6 +713,19 @@ def final_room():
         print("...")
         print("...")
 
+def final_scene():
+    print("You have done it! You have broken the illusion!")
+    print("Your opponent, the demon Maboroshi, stands before you.")
+    print("'It seems this illusion could not bend you to my will...'")
+    print("'Whatever! Face me, samurai!'")
+    print("'You can struggle as much as you want...'")
+    print("'But in the end, you will still become my puppet!'")
+    if end_stat <= 5:
+        print("Bad Ending")
+    elif end_stat <= 10:
+        print("Neutral Ending")
+    else:
+        print("True Ending")
 
 def game_start():
     print("...")
