@@ -20,6 +20,11 @@ class samurai:
         print(f"Luck: {self.luck}")
         print(f"Inventory: {self.inventory}")
 
+    def display_inventory(self):
+        print("You currently carry the following objects:")
+        for item in self.inventory:
+            print(item)
+
     def decrease_stat(self, stat, number):
         """
         Decreases the characters stats after certain events
@@ -100,7 +105,7 @@ Instances for items class
 """
 katana_descr = "It is a sharp longsword with only one cutting edge."
 katana_use = "You feel your own soul reverberating in it."
-katana = items("Katana", description = katana_descr, "swing", content = katana_use)
+katana = items("Katana", description = katana_descr, action = "swing", content = katana_use)
 
 diary_descr = "It contains the daily life stories of an unbeaten swordsman."
 diary_cont = """
@@ -112,7 +117,7 @@ Mirror the opponent's atttack with the opposite movement.
 Still, he does nothing but blindly rush into a fight.
 At this rate, he will never be a true samurai...
 """
-diary = items("Musashi's Diary", description = diary_descr, "read", content = diary_cont)
+diary = items("Musashi's Diary", description = diary_descr, action = "read", content = diary_cont)
 
 demons_101_descr = "They are notes about how to fight demons effectively."
 demons_101_cont = """
@@ -125,7 +130,7 @@ Do the opposite if they attack with their right arm...
 ...
 All other notes were ripped out.
 """
-demons_101 ("'Fighting Demons 101'", description = demons_101_descr, "read", content = demons_101_cont)
+demons_101 = items("'Fighting Demons 101'", description = demons_101_descr, action = "read", content = demons_101_cont)
 
 waki_descr = "It is a shortsword used for rituals. You cannot fight with it."
 waki_use = """
@@ -136,17 +141,18 @@ They would serve their lord until the bitter end.
 Sacrificing their lives to protect their own
 and their lord's honor was seen as a virtue.
 """
-wakizashi = items("Wakizashi", description = waki_descr, "look at", content = waki_use)
+wakizashi = items("Wakizashi", description = waki_descr, action = "look at", content = waki_use)
 
 key_descr = "It is a short key, probably for one of the mansion's rooms."
 key_use = """
 Weird. There were no rooms locked in this mansion until now.
 This probably does not open one of the bigger rooms then.
 """
-key = items("Key", description = key_descr, "grab", content = key_use)
+key = items("Key", description = key_descr, action = "grab", content = key_use)
 
 CHOICES_MADE = set()
 IN_ROOM = False
+IN_INVENTORY = False
 
 def investigate():
     print("You carefully investigate the room...")
@@ -190,13 +196,38 @@ def room_menu():
     print("2. Perceive")
     print("3. Rearrange")
     print("4: Change rooms")
-    choice = input("Enter your choice (1-4): ")
+    print("5: Display items")
+    choice = input("Enter your choice (1-5): ")
     if choice == '1':
         investigate()
     elif choice == '2':
         perceive()
     elif choice == '3':
         rearrange()
+    elif choice == '5':
+        print("You take a look at your equipment.")
+        print("What do you want to do?")
+        print("1.List collected items")
+        print("2.Take closer look at an item")
+        item_input = input("Enter your choice (1-2):")
+        if item_input == "1":
+            player.display_inventory()
+        elif item_input == "2":
+            print("You take out the...")
+            select_item = input("Write out the item you want to use:")
+            for item in player.inventory:
+                if select_item.lower() == items.name.lower():
+                    print("What would you want to do with it?")
+                    print("1.Remember what it is")
+                    print("2.Use it")
+                    item_detail = input("Enter your choice (1-2):")
+                    if item_detail == "1":
+                        items.display_description()
+                    if item_detail == "2":
+                        items.use_item()
+                    break
+            else: 
+                print("This item is currently not in your possession.")                 
     return choice
 
 def fight_menu():
