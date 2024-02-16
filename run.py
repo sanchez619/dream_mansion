@@ -70,8 +70,28 @@ class samurai:
         return final_stat
 
 
+class item:
+    def __init__(self, name, description, room_found, action, content):
+        self.name = name
+        self.description = description
+        self.action = action
+        self.content = content
+    
+    def display_description(self):
+        print(f"You hold a {self.name} in your hand.") 
+        print(f"{self.description}")
+
+    def use_item(self):
+        print(f"You {self.action} the {self.name}.")
+        print(self.content)
+
+
+"""
+Instances for samurai class
+"""
 # Creates a player based on samurai class
 player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
+
 # Creates an instance for the final sum of player character
 end_stat = player.check_final_stats()
 
@@ -115,7 +135,7 @@ def second_floor_gameover():
 
 # Menu for interacting in rooms
 def room_menu():
-    print("You are in the 'filler text'")
+    print("What would you like to do?")
     print("1. Investigate")
     print("2. Perceive")
     print("3. Rearrange")
@@ -183,10 +203,10 @@ def lounge():
             else:
                 redundant_choice()
         elif choice == '3':
-            if 'spear' not in CHOICES_MADE:
-                print("As you move the cupboard, you find a worn-out spear behind it.")
-                print("Added 'Spear' to inventory.")
-                CHOICES_MADE.add('spear')
+            if 'katana' not in CHOICES_MADE:
+                print("As you move the cupboard, you find a katana behind it.")
+                print("Added 'Katana' to inventory.")
+                CHOICES_MADE.add('katana')
             else:
                 redundant_choice()
         elif choice == '4':
