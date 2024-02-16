@@ -217,15 +217,15 @@ def room_menu():
             print("You take out the...")
             select_item = input("Write out the item you want to use:")
             for item in player.inventory:
-                if select_item.lower() == items.name.lower():
+                if select_item.lower() == item.name.lower():
                     print("What would you want to do with it?")
                     print("1.Remember what it is")
                     print("2.Use it")
                     item_detail = input("Enter your choice (1-2):")
                     if item_detail == "1":
-                        items.display_description()
+                        item.display_description()
                     if item_detail == "2":
-                        items.use_item()
+                        item.use_item()
                     break
             else: 
                 print("This item is currently not in your possession.")                 
