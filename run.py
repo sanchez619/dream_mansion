@@ -61,13 +61,22 @@ class samurai:
         elif self.luck <= 0:
             print("Luck Game Over")
             sys.exit()
+    
+    def check_final_stats(self):
+        """
+        Adds the sum of all player character's stats after reaching the final scene.
+        """
+        final_stat = self.constitution + self.focus + self.luck
+        return final_stat
 
 
-#Creates a player based on samurai class
+# Creates a player based on samurai class
 player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
+# Creates an instance for the final sum of player character
+finish_stat = player.final_stat()
 
 CHOICES_MADE = set()
-IN_ROOM = True
+IN_ROOM = False
 
 def investigate():
     print("You carefully investigate the room...")
