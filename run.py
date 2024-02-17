@@ -13,12 +13,11 @@ class samurai:
 
     def display_stat(self):
         """
-        Displays the character's status and inventory
+        Displays the character's status
         """
         print(f"Constitution: {self.constitution}")
         print(f"Focus: {self.focus}")
         print(f"Luck: {self.luck}")
-        print(f"Inventory: {self.inventory}")
 
     def display_inventory(self):
         print("You currently are carrying the following items:")
@@ -97,9 +96,6 @@ Instances for samurai class
 """
 # Creates a player based on samurai class
 player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
-
-# Creates an instance for the final sum of player character
-end_stat = player.check_final_stats()
 
 """
 Instances for items class
@@ -198,7 +194,8 @@ def room_menu():
     print("3. Rearrange")
     print("4: Change rooms")
     print("5: Display items")
-    choice = input("Enter your choice (1-5): ")
+    print("6. Display stats")
+    choice = input("Enter your choice (1-6): ")
     if choice == '1':
         investigate()
     elif choice == '2':
@@ -228,7 +225,9 @@ def room_menu():
                         item.use_item()
                     break
             else: 
-                print("This item is currently not in your possession.")                 
+                print("This item is currently not in your possession.")
+    elif choice == "6":
+        player.display_stat()               
     return choice
 
 def fight_menu():
@@ -923,11 +922,12 @@ def final_scene():
     print("'Whatever! Face me, samurai!'")
     print("'You can struggle as much as you want...'")
     print("'But in the end, you will still become my puppet!'")
+    end_stat = player.check_final_stats()
     if end_stat <= 5:
         print("Bad Ending")
     elif end_stat <= 10:
         print("Neutral Ending")
-    else:
+    elif end_stat >= 11:
         print("True Ending")
 
 def game_start():
