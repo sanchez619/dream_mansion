@@ -241,6 +241,101 @@ def fight_menu():
     strike_direction = input("Enter your choice (1-4): ")
     return strike_direction
 
+# Function for title screen
+
+def title_screen():
+    print("Ladies and gentleman!")
+    print("I welcome you to...")
+    print()
+    print()
+    print("""
+    ________                                         
+    \______ \_______   ____ _____    _____           
+     |    |  \_  __ \_/ __ \\__  \  /     \          
+     |    `   \  | \/\  ___/ / __ \|  Y Y  \         
+    /_______  /__|    \___  >____  /__|_|  /         
+            \/            \/     \/      \/          
+       _____                       .__               
+      /     \ _____    ____   _____|__| ____   ____  
+     /  \ /  \\__  \  /    \ /  ___/  |/  _ \ /    \ 
+    /    Y    \/ __ \|   |  \\___ \|  (  <_> )   |  \
+    \____|__  (____  /___|  /____  >__|\____/|___|  /
+            \/     \/     \/     \/               \/ 
+    """)
+    print()
+    print("What would you like to do?")
+    print("1.Start game")
+    print("2.How to play")
+    print("3.Credits")
+    title_choice = input("Enter your choice (1-3):")
+    if title_choice == "1":
+        game_start()
+    elif title_choice == "2":
+        display_faq()
+    elif title_choice == "3":
+        display_credits()
+    else:
+        error_input()
+
+def display_faq():
+    print("""
+    About Dream Mansion:
+    This program is a text-based game. Its story plays out in a mansion.
+    It does look eerie, and many dangers lie ahead...
+    Can you find the exit?
+
+    General Gameplay:
+    While traversing the mansion, you will find yourself in its different rooms.
+    After most events, you will be shown a list of options.
+    To take actions in this game, simply put in a number to take the respective action.
+
+    User Input:
+    There will be times when the game requires you to put in a word.
+    In that case, fill in the word or phrase.
+    You do not need to capitalize your words, but watch out for spelling errors.
+
+    Your Character:
+    The player character starts with five points in each of their stats.
+    If any of these stats fall to zero, the game ends.
+    Try maintaining each stat, and avoid scenarios which might seem dangerous.
+
+    Your Inventory:
+    In the game, you will find many items.
+    Some are neccessary to proceed, some provide very important information.
+    You can check your inventory whenever you are in a room.
+    """)
+    print("What would you like to do?")
+    print("1.Start game")
+    print("2.How to play")
+    print("3.Credits")
+    title_choice = input("Enter your choice (1-3):")
+    if title_choice == "1":
+        game_start()
+    elif title_choice == "2":
+        display_faq()
+    elif title_choice == "3":
+        display_credits()
+    else:
+        error_input()
+
+def display_credits():
+    print("Code Institute")
+    print()
+    print()
+    print("What would you like to do?")
+    print("1.Start game")
+    print("2.How to play")
+    print("3.Credits")
+    title_choice = input("Enter your choice (1-3):")
+    if title_choice == "1":
+        game_start()
+    elif title_choice == "2":
+        display_faq()
+    elif title_choice == "3":
+        display_credits()
+    else:
+        error_input()
+
 # Functions for main story
 def start_floor1():
     print("Several doors appear in front of you.")
@@ -852,4 +947,4 @@ def game_start():
         print("...")
         start_floor1()
 
-game_start()
+title_screen()
