@@ -885,7 +885,7 @@ def bed_room():
 def closet():
     print("There is nothing in the room.")
     print("It is completely empty...")
-    print("As you were about to leave the room")
+    print("As you were about to leave the room...")
     print("You see something written on the wall:")
     print()
     print("DO NOT FEAR ...!!!")
@@ -893,6 +893,8 @@ def closet():
     print()
     print("One word is stained with blood.")
     print("You cannot decipher it.")
+    print("You leave the closet.")
+    start_floor3()
 
 def final_room():
     print("The door to the outside is sealed.")
