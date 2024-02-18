@@ -873,12 +873,16 @@ def second_floor_boss():
         print("The monster staggers, but goes back on the attack...")
         print("with a haymaker from its left side.")
         fight_menu()
-        if strike_direction == '2':
+        if strike_direction != '2':
+            second_floor_gameover()
+        elif strike_direction == '2':
             print("The monster can't keep up with your speed.")
             print("You wound it once more. It can barely stand.")
             print("It uses its remaining power to punch you...")
             print("...in the gut.")
             fight_menu()
+            if strike_direction != '1':
+                second_floor_gameover()
             if strike_direction == '1':
                 print("Once more, your blade strikes true.")
                 print("You hit the monster the third time.")
@@ -886,6 +890,8 @@ def second_floor_boss():
                 print("...before turning into black smoke.")
                 print("You descend another spiraling staircase.")
                 start_floor3()
+            else: 
+                second_floor_gameover()
     else:
         second_floor_gameover()
 
