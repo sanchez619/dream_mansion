@@ -450,15 +450,20 @@ def start_floor1():
     print("1. The Lounge")
     print("2. The Storage Chamber")
     print("3. The Floor Lobby")
-    room_choice = input("Enter your choice (1-3): ")
-    if room_choice == '1':
-        lounge()
-    elif room_choice == '2':
-        storage_chamber()
-    elif room_choice == '3':
-        floor_lobby3()
-    else:
-        error_input()
+    IN_FLOOR = True
+    while IN_FLOOR:
+        room_choice = input("Enter your choice (1-3): ")
+        if room_choice == '1':
+            IN_FLOOR = False
+            lounge()
+        elif room_choice == '2':
+            IN_FLOOR = False
+            storage_chamber()
+        elif room_choice == '3':
+            IN_FLOOR = False
+            floor_lobby3()
+        else:
+            error_input()
 
 
 """
@@ -471,7 +476,7 @@ def lounge():
     print("It contains multiple cupboards.")
     print("They once seemed to contain many different items.")
     IN_ROOM = True
-    if cond is True:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             if 'diary' not in CHOICES_MADE:
@@ -502,7 +507,6 @@ def lounge():
         elif choice == '4':
             IN_ROOM = False
             start_floor1()
-            break
         else:
             error_input()
         player.check_stats()
@@ -517,7 +521,7 @@ def storage_chamber():
     print("You enter the storage chamber.")
     print("Someone took all consumable items.")
     IN_ROOM = True
-    if cond is True:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage_ambush']):
@@ -559,7 +563,6 @@ def storage_chamber():
         elif choice == '4':
             IN_ROOM = False
             start_floor1()
-            break
         else:
             error_input()
         player.check_stats()
@@ -569,7 +572,7 @@ def floor_lobby3():
     print("You enter the floor lobby.")
     print("As you enter, you see a door leading to a spiraling stairway.")
     IN_ROOM = True
-    if cond is true:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             print("As you try to go down the stairs, you hear a voice.")
@@ -582,7 +585,6 @@ def floor_lobby3():
                     print("You descend to the first floor.")
                     IN_ROOM = False
                     start_floor2()
-                    break
                 else:
                     print("You feel that you have given the correct answer...")
                     print("However, you seem to lack something important!")
@@ -614,7 +616,6 @@ def floor_lobby3():
         elif choice == '4':
             IN_ROOM = False
             start_floor1()
-            break
         else:
             error_input()
         player.check_stats()
@@ -633,24 +634,30 @@ def start_floor2():
     print("2. The Office")
     print("3. The Bathroom")
     print("4. End of the Corridor")
-    room_choice = input("Enter your choice (1-4): ")
-    if room_choice == '1':
-        gym()
-    elif room_choice == '2':
-        office()
-    elif room_choice == '3':
-        bathroom()
-    elif room_choice == '4':
-        second_floor_boss()
-    else:
-        error_input
+    IN_FLOOR = True
+    while IN_FLOOR:
+        room_choice = input("Enter your choice (1-4): ")
+        if room_choice == '1':
+            IN_FLOOR = False
+            gym()
+        elif room_choice == '2':
+            IN_FLOOR = False
+            office()
+        elif room_choice == '3':
+            IN_FLOOR = False
+            bathroom()
+        elif room_choice == '4':
+            IN_FLOOR = False
+            second_floor_boss()
+        else:
+            error_input()
 
 
 def gym():
     print("You enter the gym.")
     print("Before you can see anything else, a demon appears in front of you!")
     IN_ROOM = True
-    if cond is true:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
@@ -694,7 +701,6 @@ def gym():
         elif choice == '4':
             IN_ROOM = False
             start_floor2()
-            break
         else:
             error_input()
         player.check_stats()
@@ -704,7 +710,7 @@ def office():
     print("You enter the office.")
     print("A dark figure sits on a chair behind the desk.")
     IN_ROOM = True
-    while IN_ROOM == True:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):
@@ -750,7 +756,6 @@ def office():
         elif choice == '4':
             IN_ROOM = False
             start_floor2()
-            break
         else:
             error_input()
         player.check_stats()
@@ -760,7 +765,7 @@ def bathroom():
     print("You enter the bathroom.")
     print("This room is actually lit. You can see the bathtub filled with water.")
     IN_ROOM = True
-    if cond is True:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['demons_101', 'power_out']):
@@ -797,7 +802,6 @@ def bathroom():
         elif choice == '4':
             IN_ROOM = False
             start_floor2()
-            break
         else:
             error_input()
         player.check_stats()
@@ -845,28 +849,36 @@ def start_floor3():
     print("4. The Bed Room")
     print("5. The Closet")
     print("6. The Exit")
-    room_choice = input("Enter your choice (1-6): ")
-    if room_choice == '1':
-        kitchen()
-    elif room_choice == '2':
-        living_room()
-    elif room_choice == '3':
-        guest_room()
-    elif room_choice == '4':
-        bed_room()
-    elif room_choice == '5':
-        closet()
-    elif room_choice == '6':
-        final_room()
-    else:
-        error_input
+    IN_FLOOR = True
+    while IN_FLOOR:
+        room_choice = input("Enter your choice (1-6): ")
+        if room_choice == '1':
+            IN_FLOOR = False
+            kitchen()
+        elif room_choice == '2':
+            IN_FLOOR = False
+            living_room()
+        elif room_choice == '3':
+            IN_FLOOR = False
+            guest_room()
+        elif room_choice == '4':
+            IN_FLOOR = False
+            bed_room()
+        elif room_choice == '5':
+            IN_FLOOR = False
+            closet()
+        elif room_choice == '6':
+            IN_FLOOR = False
+            final_room()
+        else:
+            error_input()
 
 def kitchen():
     print("You enter the kitchen.")
     print("You see a demon eating something red on a plate.")
     print("It has not seen you yet.")
     IN_ROOM = True
-    if cond is True:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['kitchen_note', 'kitchen_slice', 'table_flip']):
@@ -901,7 +913,6 @@ def kitchen():
         elif choice == '4':
             IN_ROOM = False
             start_floor3()
-            break
         else:
             error_input()
         player.check_stats()
@@ -912,7 +923,7 @@ def living_room():
     print("It is dark, and you can find nothing of note.")
     print("A radio is placed on a table. It is turned on.")
     IN_ROOM = True
-    if cond is True:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             if 'beer_bottle' not in CHOICES_MADE:
@@ -947,7 +958,6 @@ def living_room():
         elif choice == '4':
             IN_ROOM = False
             start_floor3()
-            break
         else:
             error_input()
         player.check_stats()
@@ -956,7 +966,7 @@ def guest_room():
     print("You enter the guest room.")
     print("Something is lurking under the bed sheet.")
     IN_ROOM = True
-    if cond is True:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['bed_sheet', 'musical_box', 'mattress']):
@@ -991,7 +1001,6 @@ def guest_room():
         elif choice == '4':
             IN_ROOM = False
             start_floor3()
-            break
         else:
             error_input()
         player.check_stats()
@@ -1002,7 +1011,7 @@ def bed_room():
     print("You see a silver briefcase lying on the bed.")
     print("Faint voices can be heard.")
     IN_ROOM = True
-    if cond is True:
+    while IN_ROOM:
         choice = room_menu()
         if choice == '1':
             if 'wakizashi' not in CHOICES_MADE:
@@ -1041,7 +1050,6 @@ def bed_room():
         elif choice == '4':
             IN_ROOM = False
             start_floor3()
-            break
         else:
             error_input()
         player.check_stats()
