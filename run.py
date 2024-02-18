@@ -122,8 +122,10 @@ Fighting demons in a combat of strength is futile.
 Their strength far surpasses anything a human is capable of.
 However, they are slow, and they are vunerable to sword slashes.
 This means that a swing from the opposite side will always hit a demon.
-If a demon attacks with their left arm, swing your sword from the right.
-Do the opposite if they attack with their right arm...
+If a demon attacks from above, hit him from below.
+Do the opposite when they try to use their feet for attacks.
+Remember though that strike from their one flank
+will hit you on the other side...
 ...
 All other notes were ripped out.
 """
@@ -461,15 +463,19 @@ def floor_lobby3():
             print("'Who are you?'")
             solution_1 = input ("I am a...")
             if solution_1 == "samurai":
-                print("The powers cannot hold you anymore.")
-                print("You descend to the first floor.")
-                IN_ROOM = False
-                start_floor2()
-                break
+                if katana in player.inventory:
+                    print("The powers cannot hold you anymore.")
+                    print("You descend to the first floor.")
+                    IN_ROOM = False
+                    start_floor2()
+                    break
+                else:
+                    print("You feel that you have given the correct answer...")
+                    print("However, you seem to lack something important!")
+                    print("You should go back and check the other rooms...")
             else:
                 print("'That is incorrect!'")
                 print("'Turn back to the shadows where thou came from!'")
-                floor_lobby3()
         elif choice == '2':
             if 'lobby_warning' not in CHOICES_MADE:
                 print("This room is filled with malice.")
@@ -532,17 +538,28 @@ def gym():
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
                 print("You try finding something to help against the demon.")
-                print("However, you cannot spot something in that instance.")
-                print("The demon approaches you!")
-                print("Focus was decreased by 1.")
-                player.decrease_stat('focus', 1)
-                CHOICES_MADE.add('gym_approach')
+                print("However, you cannot find anything useful.")
+                print("The demon attacks you with a right hook!")
+                strike_direction = fight_menu()
+                if strike_direction == "3":
+                    print("Your blade is faster than your opponnent's attack!")
+                    print("After hitting your opponent, he vanishes into thin air...")
+                    print("Focus was raised by 1.")
+                    player.raise_stat('focus', 1)
+                    CHOICES_MADE.add('gym_approach')
+                else:
+                    print("You feel a hit to your left cheek!")
+                    print("You fall to the ground!")
+                    print("As you get back up, the demon is gone...")
+                    print("Constitution was decreased by 2.")
+                    player.decrease_stat('constitution', 2)
+                    CHOICES_MADE.add('gym_approach')
             else:
                 redundant_choice2()
         elif choice == '2':
             if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
                 print("But before you can even react, the demon strikes you in the head.")
-                print("Constitution was decreased by 3")
+                print("Constitution was decreased by 3.")
                 player.decrease_stat('constitution', 3)
                 CHOICES_MADE.add('gym_ambush')
             else:
@@ -550,7 +567,7 @@ def gym():
         elif choice == '3':
             if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
                 print("You throw a small cupboard in-between you and the demon.")
-                print("You ready your weapon as you realize:'He's gone'.")
+                print("You ready your weapon as you realize:'He's gone!'")
                 print("Instead, you find some bandages, which fell out of the cupboard.")
                 print("Constitution was increased by 2.")
                 player.raise_stat('constitution', 2)
@@ -575,9 +592,7 @@ def office():
             if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):    
                 print("You ascertain whether the figure is actually a demon.")
                 print("You find that it is only a coat on the chair.")
-                print("Focus was decreased by 1.")
                 print("Luck was raised by 1.")
-                player.decrease_stat('focus', 1)
                 player.raise_stat('luck', 1)
                 CHOICES_MADE.add('coat_demon')
             else:
@@ -586,7 +601,7 @@ def office():
             if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):     
                 print("Just as you start listening to your surroundings...")
                 print("A dagger pierces your right chest!")
-                print("Constitution was decreased by 2")
+                print("Constitution was decreased by 2.")
                 player.decrease_stat('constitution', 2)
                 CHOICES_MADE.add('dagger_pierce')
             else:
@@ -596,9 +611,22 @@ def office():
                 print("You throw a coat rack, which was right next to the door...")
                 print("directly in the direction of the chair!")
                 print("You hear a terrifying cry.")
-                print("Focus was raised by 1.")
-                player.raise_stat('focus', 1)
-                CHOICES_MADE.add('coat_rack')
+                print("Before you can even blink, a demon attemps...")
+                print("... to kick you from below!")
+                strike_direction = fight_menu()
+                if strike_direction == "1":
+                    print("You strike at the demon from above!")
+                    print("As your slash comes to an end...")
+                    print("Only black smoke remains...")
+                    print("Focus was raised by 1.")
+                    player.raise_stat('focus', 1)
+                    CHOICES_MADE.add('coat_rack')
+                else:
+                    print("You feel a hit to your stomack!")
+                    print("You stumble backwards!")
+                    print("As you get back up, the demon is gone...")
+                    player.decrease_stat('constitution', 2)
+                    CHOICES_MADE.add('coat_rack')
             else:
                 redundant_choice2()
         elif choice == '4':
@@ -656,22 +684,29 @@ def bathroom():
         player.check_stats()
 
 def second_floor_boss():
-    print("You engage a terrifying monster.")
+    print("You engage a terrifying monster in battle.")
+    print("It tries to headbutt you!")
     strike_direction = fight_menu()
-    if strike_direction == '1':
-        print("Just before your blade hits...")
-        second_floor_gameover()
-    elif strike_direction == '2':
-        print("Just before your blade hits...")
-        second_floor_gameover()
-    elif strike_direction == '3':
-        print("Just before your blade hits...")
-        second_floor_gameover()
-    elif strike_direction == '4':
+    if strike_direction == '4':
         print("You have hit the enemy's weak spot!")
-        start_floor3()
+        print("You hear a loud shriek.")
+        print("The monster staggers, but goes back on the attack...")
+        print("with a haymaker from its left side.")
+        fight_menu()
+        if strike_direction == '2':
+            print("The monster can't keep up with your speed.")
+            print("You wound it once more. It can barely stand.")
+            print("It uses its remaining power to punch you...")
+            print("...in the gut.")
+            fight_menu()
+            if strike_direction == '1':
+                print("Once more, your blade strikes true.")
+                print("You hit the monster the third time.")
+                print("It shrieks loudly one more time...")
+                print("...before turning into black smoke.")
+                print("You descend another spiraling staircase.")
+                start_floor3()
     else:
-        print("You were too slow to react!")
         second_floor_gameover()
 
 def start_floor3():
