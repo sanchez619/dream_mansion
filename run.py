@@ -108,17 +108,23 @@ class items:
 """
 Instances for samurai class
 """
+
+
 # Creates a player based on samurai class
 player=samurai(constitution=5, focus=5, luck=5, inventory=[])
 
 """
 Instances for items class
 """
+
+
+# Katana Item
 katana_descr = "It is a sharp longsword with only one cutting edge."
 katana_use = "You feel your own soul reverberating in it."
 katana=items("Katana", description=katana_descr, action="swing", content=katana_use)
 
 
+# Diary Item
 diary_descr = "It contains the daily life stories of an unbeaten swordsman."
 diary_cont = """
 There is only one readable entry:
@@ -131,6 +137,8 @@ At this rate, he will never be a true samurai...
 """
 diary=items("Diary", description=diary_descr, action="read", content=diary_cont)
 
+
+# Fighting Demons 101 Item
 d101_descr = "They are notes about how to fight demons effectively."
 d101_cont = """
 Fighting demons in a combat of strength is futile.
@@ -146,6 +154,8 @@ All other notes were ripped out.
 """
 demons_101=items("'Fighting Demons 101'", description=d101_descr, action="read", content=d101_cont)
 
+
+# Wakizashi Item
 waki_descr = "It is a shortsword used for rituals. You cannot fight with it."
 waki_use = """
 While you take a closer look at it, you remember something.
@@ -157,6 +167,8 @@ and their lord's honor was seen as a virtue.
 """
 wakizashi=items("Wakizashi", description=waki_descr, action="look at", content=waki_use)
 
+
+# 'Key' Item
 key_descr = "It is a short key, probably for one of the mansion's rooms."
 key_use = """
 Weird. There were no rooms locked in this mansion until now.
@@ -164,9 +176,21 @@ This probably does not open one of the bigger rooms then.
 """
 key = items("Key", description=key_descr, action="grab", content=key_use)
 
+
+"""
+Constants for Maintaining Menu Choices and Navigation
+"""
+
+
 CHOICES_MADE = set()
+IN_FLOOR = False
 IN_ROOM = False
 IN_INVENTORY = False
+
+
+"""
+Functions for Describing Player Actions
+"""
 
 
 def investigate():
@@ -343,7 +367,9 @@ def fight_menu():
     strike_direction = input("Enter your choice (1-4): ")
     return strike_direction
 
-# Function for title screen
+"""
+Title Screen Functions
+"""
 
 
 def title_screen():
@@ -443,7 +469,12 @@ def display_credits():
         error_input()
 
 
-# Functions for main story
+"""
+Functions for Main Story
+"""
+
+
+# Functions for 1st floor
 def start_floor1():
     print("Several doors appear in front of you.")
     print("Which one do you want to enter")
@@ -482,7 +513,7 @@ def lounge():
             if 'diary' not in CHOICES_MADE:
                 print("As you look around the lobby, you find a small book.")
                 print("It says 'Musashi's Diary'.")
-                print("Added 'Musashi's Diary' to your inventory.")
+                print("Added 'Diary' to your inventory.")
                 CHOICES_MADE.add('diary')
                 player.inventory.append(diary)
             else:
@@ -507,6 +538,8 @@ def lounge():
         elif choice == '4':
             IN_ROOM = False
             start_floor1()
+        elif choice == '5' or '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -568,6 +601,11 @@ def storage_chamber():
         player.check_stats()
 
 
+"""
+Floor Lobby - 1st player riddle (checks also if Katana is in inventory)
+"""
+
+
 def floor_lobby3():
     print("You enter the floor lobby.")
     print("As you enter, you see a door leading to a spiraling stairway.")
@@ -620,7 +658,7 @@ def floor_lobby3():
             error_input()
         player.check_stats()
 
-
+# Functions for Second Floor
 def start_floor2():
     print()
     print()
@@ -651,6 +689,10 @@ def start_floor2():
             second_floor_boss()
         else:
             error_input()
+
+"""
+Gym - Demon Encounter (Demon Fight)
+"""
 
 
 def gym():
@@ -704,6 +746,11 @@ def gym():
         else:
             error_input()
         player.check_stats()
+
+
+"""
+Office - (Demon Fight)
+"""
 
 
 def office():
@@ -760,6 +807,10 @@ def office():
             error_input()
         player.check_stats()
 
+"""
+Bathroom - (Each event can be triggered)
+"""
+
 
 def bathroom():
     print("You enter the bathroom.")
@@ -807,6 +858,11 @@ def bathroom():
         player.check_stats()
 
 
+"""
+Second Floor Boss - Fight with Game Over Potential
+"""
+
+
 def second_floor_boss():
     print("You engage a terrifying monster in battle.")
     print("It tries to headbutt you!")
@@ -834,6 +890,7 @@ def second_floor_boss():
         second_floor_gameover()
 
 
+# Functions for Floor 3:
 def start_floor3():
     print()
     print()
@@ -873,6 +930,12 @@ def start_floor3():
         else:
             error_input()
 
+
+"""
+Kitchen - Demon Fight (Only one choice possible)
+"""
+
+
 def kitchen():
     print("You enter the kitchen.")
     print("You see a demon eating something red on a plate.")
@@ -885,9 +948,21 @@ def kitchen():
                 print("You find a note.")
                 print("It says: 'Keep important things close to your chest.'")
                 print("The demon notices you and attacks!")
-                print("Luck was decreased by 1.")
-                player.decrease_stat('luck', 1)
-                CHOICES_MADE.add('kitchen_note')
+                print("It tries to kick you.")
+                strike_direction = fight_menu()
+                if strike_direction = '1'
+                    print("You successfully slice the demon in half.")
+                    print("The two halves turn into black smoke.")
+                    print("Focus was raised by 1.")
+                    player.raise_stat('focus', 1)
+                    CHOICES_MADE.add('kitchen_note')
+                else:
+                    print("You feel a sharp pain between your legs")
+                    print("As you shortly look up from your wimpering...")
+                    print("the demon is nowhere to be found!")
+                    print("Constitution was decreased by 2.")
+                    player.decrease_stat('constitution', 2)
+                    CHOICES_MADE.add('kitchen_note')
             else:
                 redundant_choice2()
         elif choice == '2':
@@ -895,8 +970,8 @@ def kitchen():
                 print("You feel the demon's greed for blood.")
                 print("He is too entranced to notice you.")
                 print("You approach him from behind and slice his throat.")
-                print("Focus was raised by 1.")
-                player.raise_stat('focus', 1)
+                print("Luck was raised by 1.")
+                player.raise_stat('luck', 1)
                 CHOICES_MADE.add('kitchen_slice')
             else:
                 redundant_choice2()
@@ -916,6 +991,11 @@ def kitchen():
         else:
             error_input()
         player.check_stats()
+
+
+"""
+Living Room - Each Choice possible once
+"""
 
 
 def living_room():
@@ -962,6 +1042,12 @@ def living_room():
             error_input()
         player.check_stats()
 
+
+"""
+Guest Room - Demon Fight
+"""
+
+
 def guest_room():
     print("You enter the guest room.")
     print("Something is lurking under the bed sheet.")
@@ -971,8 +1057,8 @@ def guest_room():
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['bed_sheet', 'musical_box', 'mattress']):
                 print("You pull the sheet from the bed.")
-                print("A demon was hidden under the sheet!")
-                print("It uses the opportunity to jump you.")
+                print("A demon was hidden under the sheet.")
+                print("It uses the opportunity to jump you!")
                 print("Constitution was decreased by 2")
                 player.decrease_stat('constitution', 2)
                 CHOICES_MADE.add('bed_sheet')
@@ -993,9 +1079,23 @@ def guest_room():
                 print("You lever the mattress to the right.")
                 print("You hear a loud thud. It sounded like someone fell to the floor.")
                 print("As you ready yourself, a demon approaches you.")
-                print("Luck was decreased by 1.")
-                player.decrease_stat('luck', 1)
-                CHOICES_MADE.add('mattress')
+                print("It tries to attack you with a haymaker from the right.")
+                strike_direction = fight_menu()
+                if strike_direction = '3'
+                    print("You anticipate the demon's attack.")
+                    print("Cut in upper and lower halves...")
+                    print("The demon's remains vanish.")
+                    print("Focus was raised by 1.")
+                    player.raise_stat('focus', 1)
+                    CHOICES_MADE.add('mattress')
+                else:
+                    print("The impact of the strike is stron.")
+                    print("It makes you writhe in pain")
+                    print("Yet again, you do not know...")
+                    print("Why the demons keep disappearing.")
+                    print("Constitution was decreased by 2.")
+                    player.decrease_stat('constitution', 2)
+                    CHOICES_MADE.add('mattress')
             else:
                 redundant_choice2()
         elif choice == '4':
@@ -1004,6 +1104,11 @@ def guest_room():
         else:
             error_input()
         player.check_stats()
+
+
+"""
+Bed Room - Demon Fight (Contains Key for Closet)
+"""
 
 
 def bed_room():
@@ -1054,6 +1159,10 @@ def bed_room():
             error_input()
         player.check_stats()
 
+"""
+Closet - Vital Hint for Final Riddle (No Player Interaction)
+"""
+
 
 def closet():
     if key in player.inventory:
@@ -1072,6 +1181,11 @@ def closet():
         print("The door is locked.")
         print("You leave the closet be...")
     start_floor3()
+
+
+"""
+Guest Room - Demon Fight
+"""
 
 
 def final_room():
@@ -1094,6 +1208,11 @@ def final_room():
         print("...")
         print("...")
 
+
+"""
+Final Scene - Epilogue and Determination of Player Ending
+"""
+
 def final_scene():
     print("You have done it! You have broken the illusion!")
     print("Your opponent, the demon Maboroshi, stands before you.")
@@ -1108,6 +1227,12 @@ def final_scene():
         print("Neutral Ending")
     elif end_stat >= 11:
         print("True Ending")
+
+
+"""
+Function to start game
+"""
+
 
 def game_start():
     print("...")
