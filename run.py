@@ -406,32 +406,39 @@ def storage_chamber():
     while IN_ROOM == True:
         choice = room_menu()
         if choice == '1':
-            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage ambush']):
+            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage_ambush']):
                 print("As you try to inspect the room further, you hear something!")
                 print("As you turn around, you see black smoke a few meters in front of you.")
-                print("Focus was decreased by 1.")
+                print("Focus was raised by 1.")
                 print("Luck was raised by 1.")
-                player.decrease_stat('focus', 1)
+                player.raise_stat('focus', 1)
                 player.raise_stat('luck', 1)
                 CHOICES_MADE.add('storage_investigation')
             else:
                 redundant_choice2()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage ambush']):
+            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage_ambush']):
                 print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
-                print("You anxiously turn around to see some black some disappearing.")
+                print("You anxiously turn around to see some black smoke disappearing.")
                 print("Focus was decreased by 1.")
                 player.decrease_stat('focus', 1)
                 CHOICES_MADE.add('storage_voices')
             else:
                 redundant_choice2()
         elif choice == '3':
-            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage ambush']):
+            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage_ambush']):
                 print("While rearranging the shelves, a dark figure jumps you!")
-                print("You fell hard onto the ground, but you cannot see anyone...")
-                print("Constitution was decreased by 2.")
-                player.decrease_stat('constitution', 2)
-                CHOICES_MADE.add('storage_ambush')
+                if katana in player.inventory:
+                    print("Instinctively, you grab your katana and slash towards the figure!")
+                    print("However, the only thing you see after your attack is black smoke.")
+                    print("You calm yourself to regain your composure.")
+                    player.decrease_stat('focus', 1)
+                    CHOICES_MADE.add('storage_ambush')
+                else:
+                    print("You fell hard onto the ground, but you cannot see anyone...")
+                    print("Constitution was decreased by 2.")
+                    player.decrease_stat('constitution', 2)
+                    CHOICES_MADE.add('storage_ambush')
             else:
                 redundant_choice2()
         elif choice == '4':
@@ -882,17 +889,21 @@ def bed_room():
         player.check_stats()
 
 def closet():
-    print("There is nothing in the room.")
-    print("It is completely empty...")
-    print("As you were about to leave the room...")
-    print("You see something written on the wall:")
-    print()
-    print("DO NOT FEAR ...!!!")
-    print("DO FEAR LIVING AS A PUPPET!!!")
-    print()
-    print("One word is stained with blood.")
-    print("You cannot decipher it.")
-    print("You leave the closet.")
+    if key in player.inventory:
+        print("There is nothing in the room.")
+        print("It is completely empty...")
+        print("As you were about to leave the room...")
+        print("You see something written on the wall:")
+        print()
+        print("DO NOT FEAR ...!!!")
+        print("DO FEAR LIVING AS A PUPPET!!!")
+        print()
+        print("One word is stained with blood.")
+        print("You cannot decipher it.")
+        print("You leave the closet.")
+    else:
+        print("The door is locked.")
+        print("You leave the closet be...")
     start_floor3()
 
 def final_room():
