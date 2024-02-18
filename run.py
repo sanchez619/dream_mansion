@@ -3,7 +3,9 @@ Dream Mansion - a text based game
 """
 import sys
 
-#Main Class - Containts player's starting stats
+# Main Class - Containts player's starting stats
+
+
 class samurai:
     def __init__(self, constitution, focus, luck, inventory):
         self.constitution = constitution
@@ -23,7 +25,6 @@ class samurai:
         print("You currently are carrying the following items:")
         for item in self.inventory:
             print(f"- {item.name}")
-
 
     def decrease_stat(self, stat, number):
         """
@@ -59,35 +60,30 @@ class samurai:
         """
         if self.constitution <= 0:
             print("""
-            
             You can barely stand, your wounds are too severe.
             Your sight turns red, you feel your limbs become numb...
-
             Game Over
             """)
             sys.exit()
         elif self.focus <= 0:
             print("""
-            
             You cannot form one clear thought, the voices are too loud!
             It hurts!! You beg it to STOP!!!
-
             Game Over
             """)
             sys.exit()
         elif self.luck <= 0:
             print("""
-            
             Suddenly, you hear a voice out of nowhere.
             'You know what? I have become weary of you...'
-
             Game Over
             """)
             sys.exit()
-    
+
     def check_final_stats(self):
         """
-        Adds the sum of all player character's stats after reaching the final scene.
+        Adds the sum of all player character's stats after reaching the final
+        scene.
         """
         final_stat = self.constitution + self.focus + self.luck
         return final_stat
@@ -99,9 +95,9 @@ class items:
         self.description = description
         self.action = action
         self.content = content
-    
+
     def display_description(self):
-        print(f"You hold a {self.name} in your hand.") 
+        print(f"You hold a {self.name} in your hand.")
         print(f"{self.description}")
 
     def use_item(self):
@@ -113,14 +109,15 @@ class items:
 Instances for samurai class
 """
 # Creates a player based on samurai class
-player = samurai(constitution = 5, focus = 5, luck = 5, inventory = [])
+player=samurai(constitution=5, focus=5, luck=5, inventory=[])
 
 """
 Instances for items class
 """
 katana_descr = "It is a sharp longsword with only one cutting edge."
 katana_use = "You feel your own soul reverberating in it."
-katana = items("Katana", description = katana_descr, action = "swing", content = katana_use)
+katana=items("Katana", description=katana_descr, action="swing", content=katana_use)
+
 
 diary_descr = "It contains the daily life stories of an unbeaten swordsman."
 diary_cont = """
@@ -132,10 +129,10 @@ Mirror the opponent's atttack with the opposite movement.
 Still, he does nothing but blindly rush into a fight.
 At this rate, he will never be a true samurai...
 """
-diary = items("Musashi's Diary", description = diary_descr, action = "read", content = diary_cont)
+diary=items("Diary", description=diary_descr, action="read", content=diary_cont)
 
-demons_101_descr = "They are notes about how to fight demons effectively."
-demons_101_cont = """
+d101_descr = "They are notes about how to fight demons effectively."
+d101_cont = """
 Fighting demons in a combat of strength is futile.
 Their strength far surpasses anything a human is capable of.
 However, they are slow, and they are vunerable to sword slashes.
@@ -147,7 +144,7 @@ will hit you on the other side...
 ...
 All other notes were ripped out.
 """
-demons_101 = items("'Fighting Demons 101'", description = demons_101_descr, action = "read", content = demons_101_cont)
+demons_101=items("'Fighting Demons 101'", description=d101_descr, action="read", content=d101_cont)
 
 waki_descr = "It is a shortsword used for rituals. You cannot fight with it."
 waki_use = """
@@ -158,18 +155,19 @@ They would serve their lord until the bitter end.
 Sacrificing their lives to protect their own
 and their lord's honor was seen as a virtue.
 """
-wakizashi = items("Wakizashi", description = waki_descr, action = "look at", content = waki_use)
+wakizashi=items("Wakizashi", description=waki_descr, action="look at", content=waki_use)
 
 key_descr = "It is a short key, probably for one of the mansion's rooms."
 key_use = """
 Weird. There were no rooms locked in this mansion until now.
 This probably does not open one of the bigger rooms then.
 """
-key = items("Key", description = key_descr, action = "grab", content = key_use)
+key = items("Key", description=key_descr, action="grab", content=key_use)
 
 CHOICES_MADE = set()
 IN_ROOM = False
 IN_INVENTORY = False
+
 
 def investigate():
     print("You carefully investigate the room...")
@@ -182,24 +180,37 @@ def perceive():
 def rearrange():
     print("You rearrange items in the room, looking for hidden clues...")
 
+
+"""
+Redundancy and error messages - Tell the user that a input the did was either
+not valid or cannot be triggered anymore
+"""
+
+
 def redundant_choice():
     print("You have already taken this action.")
     print("You will not find anything new repeating it.")
+
 
 def redundant_choice2():
     print("You do not feel an enemy presence anymore.")
     print("There is nothing more to find here...")
 
+
 def redundant_choice3():
     print("You have already used up the bathroom with your actions.")
     print("Hopefully, you haven't broken it...")
 
+
 def error_input():
     print("Invalid choice. Please enter a number indicating one of the rooms.")
 
+
 """
-Game Overs and Endings - Lists all messages after ending the game (except stat-based Game Overs)
+Game Overs and Endings - Lists all messages after ending the game (except stat-
+based Game Overs)
 """
+
 
 def second_floor_gameover():
     print("""
@@ -213,6 +224,7 @@ def second_floor_gameover():
 
     Game Over
     """)
+
 
 def bad_ending():
     print("""
@@ -234,6 +246,7 @@ def bad_ending():
     End - Bad Ending
     """)
 
+
 def neutral_ending():
     print("""
     
@@ -250,6 +263,7 @@ def neutral_ending():
 
     End - Neutral Ending
     """)
+
 
 def true_ending():
     print("""
@@ -269,7 +283,12 @@ def true_ending():
     End - True Ending
     """)
 
-# Menu for interacting in rooms
+
+"""
+Menus - Two Menus - User interfaces for fighting and exploring
+"""
+
+
 def room_menu():
     print("What would you like to do?")
     print("1. Investigate")
@@ -307,11 +326,12 @@ def room_menu():
                     if item_detail == "2":
                         item.use_item()
                     break
-            else: 
+            else:
                 print("This item is currently not in your possession.")
     elif choice == "6":
-        player.display_stat()               
+        player.display_stat()
     return choice
+
 
 def fight_menu():
     print("You are engaged in a fight.'")
@@ -324,6 +344,7 @@ def fight_menu():
     return strike_direction
 
 # Function for title screen
+
 
 def title_screen():
     print("Ladies and gentleman!")
@@ -359,6 +380,7 @@ def title_screen():
     else:
         error_input()
 
+
 def display_faq():
     print("""
     About Dream Mansion:
@@ -367,14 +389,15 @@ def display_faq():
     Can you find the exit?
 
     General Gameplay:
-    While traversing the mansion, you will find yourself in its different rooms.
+    While traversing the mansion, you will explore different rooms.
     After most events, you will be shown a list of options.
-    To take actions in this game, simply put in a number to take the respective action.
+    To take actions in this game, simply put in a number
+    You will the do the action for this specific room.
 
     User Input:
     There will be times when the game requires you to put in a word.
     In that case, fill in the word or phrase.
-    You do not need to capitalize your words, but watch out for spelling errors.
+    Please watch out for spelling errors.
 
     Your Character:
     The player character starts with five points in each of their stats.
@@ -400,6 +423,7 @@ def display_faq():
     else:
         error_input()
 
+
 def display_credits():
     print("Code Institute")
     print()
@@ -418,6 +442,7 @@ def display_credits():
     else:
         error_input()
 
+
 # Functions for main story
 def start_floor1():
     print("Several doors appear in front of you.")
@@ -435,15 +460,18 @@ def start_floor1():
     else:
         error_input()
 
+
 """
 Lounge Room - on Floor Three (Each event can be triggered)
 """
+
+
 def lounge():
     print("You enter the floor lobby.")
     print("It contains multiple cupboards.")
     print("They once seemed to contain many different items.")
     IN_ROOM = True
-    while IN_ROOM == True:
+    if cond is True:
         choice = room_menu()
         if choice == '1':
             if 'diary' not in CHOICES_MADE:
@@ -456,7 +484,8 @@ def lounge():
                 redundant_choice()
         elif choice == '2':
             if 'lounge_voices' not in CHOICES_MADE:
-                print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
+                print("The voices you hear get louder.")
+                print("They say:'Give in, you cannot escape...'")
                 print("Focus was lowered by 1.")
                 player.decrease_stat('focus', 1)
                 CHOICES_MADE.add('lounge_voices')
@@ -482,16 +511,19 @@ def lounge():
 """
 Storage Chamber - on Floor Three (Only one event can be triggered)
 """
+
+
 def storage_chamber():
     print("You enter the storage chamber.")
     print("Someone took all consumable items.")
     IN_ROOM = True
-    while IN_ROOM == True:
+    if cond is True:
         choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage_ambush']):
-                print("As you try to inspect the room further, you hear something!")
-                print("As you turn around, you see black smoke a few meters in front of you.")
+                print("As you try to inspect the room further...")
+                print("...you hear something!")
+                print("You see black smoke a few meters in front of you.")
                 print("Focus was raised by 1.")
                 print("Luck was raised by 1.")
                 player.raise_stat('focus', 1)
@@ -532,11 +564,12 @@ def storage_chamber():
             error_input()
         player.check_stats()
 
+
 def floor_lobby3():
     print("You enter the floor lobby.")
     print("As you enter, you see a door leading to a spiraling stairway.")
     IN_ROOM = True
-    while IN_ROOM == True:
+    if cond is true:
         choice = room_menu()
         if choice == '1':
             print("As you try to go down the stairs, you hear a voice.")
@@ -568,7 +601,8 @@ def floor_lobby3():
                 redundant_choice()
         elif choice == '3':
             if 'beartrap' not in CHOICES_MADE:
-                print("You try to move the couch when your leg suddenly starts hurting.")
+                print("You try to move the couch.")
+                print("Suddenly your leg starts hurting.")
                 print("You have stepped into a beartrap.")
                 print("Constitution was decreased by 2")
                 print("Luck was decreased by 1")
@@ -584,6 +618,7 @@ def floor_lobby3():
         else:
             error_input()
         player.check_stats()
+
 
 def start_floor2():
     print()
@@ -610,11 +645,12 @@ def start_floor2():
     else:
         error_input
 
+
 def gym():
     print("You enter the gym.")
     print("Before you can see anything else, a demon appears in front of you!")
     IN_ROOM = True
-    while IN_ROOM == True:
+    if cond is true:
         choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
@@ -663,6 +699,7 @@ def gym():
             error_input()
         player.check_stats()
 
+
 def office():
     print("You enter the office.")
     print("A dark figure sits on a chair behind the desk.")
@@ -670,7 +707,7 @@ def office():
     while IN_ROOM == True:
         choice = room_menu()
         if choice == '1':
-            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):    
+            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):
                 print("You ascertain whether the figure is actually a demon.")
                 print("You find that it is only a coat on the chair.")
                 print("Luck was raised by 1.")
@@ -679,16 +716,16 @@ def office():
             else:
                 redundant_choice2()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):     
+            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):
                 print("Just as you start listening to your surroundings...")
                 print("A dagger pierces your right chest!")
                 print("Constitution was decreased by 2.")
                 player.decrease_stat('constitution', 2)
                 CHOICES_MADE.add('dagger_pierce')
             else:
-                redundant_choice2()    
+                redundant_choice2()
         elif choice == '3':
-            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']): 
+            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):
                 print("You throw a coat rack, which was right next to the door...")
                 print("directly in the direction of the chair!")
                 print("You hear a terrifying cry.")
@@ -718,12 +755,13 @@ def office():
             error_input()
         player.check_stats()
 
+
 def bathroom():
     print("You enter the bathroom.")
     print("This room is actually lit. You can see the bathtub filled with water.")
     IN_ROOM = True
-    while IN_ROOM == True:
-        choice = room_menu() 
+    if cond is True:
+        choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['demons_101', 'power_out']):
                 print("Next to the bathtub is another cupboard.")
@@ -745,7 +783,7 @@ def bathroom():
             else:
                 redundant_choice3()
         elif choice == '3':
-            if not 'power_out' in CHOICES_MADE:
+            if 'power_out' not in CHOICES_MADE:
                 print("You try to move the bathtub, as it suddenly gets dark.")
                 print("You feel something crush you feet and")
                 print("your body being soaked in water.")
@@ -763,6 +801,7 @@ def bathroom():
         else:
             error_input()
         player.check_stats()
+
 
 def second_floor_boss():
     print("You engage a terrifying monster in battle.")
@@ -789,6 +828,7 @@ def second_floor_boss():
                 start_floor3()
     else:
         second_floor_gameover()
+
 
 def start_floor3():
     print()
@@ -826,7 +866,7 @@ def kitchen():
     print("You see a demon eating something red on a plate.")
     print("It has not seen you yet.")
     IN_ROOM = True
-    while IN_ROOM == True:
+    if cond is True:
         choice = room_menu()
         if choice == '1':
             if not any(choice in CHOICES_MADE for choice in ['kitchen_note', 'kitchen_slice', 'table_flip']):
@@ -839,7 +879,7 @@ def kitchen():
             else:
                 redundant_choice2()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['kitchen_note', 'kitchen_slice', 'table_flip']):    
+            if not any(choice in CHOICES_MADE for choice in ['kitchen_note', 'kitchen_slice', 'table_flip']):
                 print("You feel the demon's greed for blood.")
                 print("He is too entranced to notice you.")
                 print("You approach him from behind and slice his throat.")
@@ -849,7 +889,7 @@ def kitchen():
             else:
                 redundant_choice2()
         elif choice == '3':
-            if not any(choice in CHOICES_MADE for choice in ['kitchen_note', 'kitchen_slice', 'table_flip']): 
+            if not any(choice in CHOICES_MADE for choice in ['kitchen_note', 'kitchen_slice', 'table_flip']):
                 print("You try to flip the table onto the demon.")
                 print("It is too heavy, and you are unable to.")
                 print("In the meantime, the demon jumps you!")
@@ -866,12 +906,13 @@ def kitchen():
             error_input()
         player.check_stats()
 
+
 def living_room():
     print("You enter the living room.")
     print("It is dark, and you can find nothing of note.")
     print("A radio is placed on a table. It is turned on.")
     IN_ROOM = True
-    while IN_ROOM == True:
+    if cond is True:
         choice = room_menu()
         if choice == '1':
             if 'beer_bottle' not in CHOICES_MADE:
@@ -885,7 +926,7 @@ def living_room():
             else:
                 redundant_choice()
         elif choice == '2':
-            if 'radio' not in CHOICES_MADE:    
+            if 'radio' not in CHOICES_MADE:
                 print("You listen more closely to the radio.")
                 print("Thousands of voices tell you to give in.")
                 print("Your mind becomes foggier.")
@@ -895,7 +936,7 @@ def living_room():
             else:
                 redundant_choice()
         elif choice == '3':
-            if 'pointless_search' not in CHOICES_MADE:    
+            if 'pointless_search' not in CHOICES_MADE:
                 print("You rearrange the furniture, looking for clues.")
                 print("After 15 minutes of dragging large objects, you give up.")
                 print("Luck was decreased by 1.")
@@ -915,10 +956,10 @@ def guest_room():
     print("You enter the guest room.")
     print("Something is lurking under the bed sheet.")
     IN_ROOM = True
-    while IN_ROOM == True:
+    if cond is True:
         choice = room_menu()
         if choice == '1':
-            if not any(choice in CHOICES_MADE for choice in ['bed_sheet', 'musical_box', 'mattress']): 
+            if not any(choice in CHOICES_MADE for choice in ['bed_sheet', 'musical_box', 'mattress']):
                 print("You pull the sheet from the bed.")
                 print("A demon was hidden under the sheet!")
                 print("It uses the opportunity to jump you.")
@@ -928,7 +969,7 @@ def guest_room():
             else:
                 redundant_choice2()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['bed_sheet', 'musical_box', 'mattress']):    
+            if not any(choice in CHOICES_MADE for choice in ['bed_sheet', 'musical_box', 'mattress']):
                 print("You hear a musical box. You decide to turn up the volume.")
                 print("The demon under the bed falls asleep.")
                 print("You then cleanly slice its neck.")
@@ -955,12 +996,13 @@ def guest_room():
             error_input()
         player.check_stats()
 
+
 def bed_room():
     print("You enter the bed room.")
     print("You see a silver briefcase lying on the bed.")
     print("Faint voices can be heard.")
     IN_ROOM = True
-    while IN_ROOM == True:
+    if cond is True:
         choice = room_menu()
         if choice == '1':
             if 'wakizashi' not in CHOICES_MADE:
@@ -1004,6 +1046,7 @@ def bed_room():
             error_input()
         player.check_stats()
 
+
 def closet():
     if key in player.inventory:
         print("There is nothing in the room.")
@@ -1022,6 +1065,7 @@ def closet():
         print("You leave the closet be...")
     start_floor3()
 
+
 def final_room():
     print("The door to the outside is sealed.")
     print("On the seal, you can spot one empty circle.")
@@ -1029,7 +1073,7 @@ def final_room():
     print("'You want to leave this place?!'")
     print("'Write the word of your salvation onto the seal!'")
     print("'Accept it, and become a samurai once again!'")
-    final_riddle = input ("The salvation of a samurai is...")
+    final_riddle = input("The salvation of a samurai is...")
     if final_riddle == "death":
         print("After you step away from the seal, it begins to shine.")
         print("Suddenly, everything around you is engulfed in light!")
@@ -1075,5 +1119,6 @@ def game_start():
         print("...")
         print("...")
         start_floor1()
+
 
 title_screen()
