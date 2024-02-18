@@ -55,16 +55,34 @@ class samurai:
     def check_stats(self):
         """
         Checks whether one of the player's stats are either 0 or below.
-        Triggers Game Over text.
+        Triggers stat-based Game Over
         """
         if self.constitution <= 0:
-            print("Constitution Game Over")
+            print("""
+            
+            You can barely stand, your wounds are too severe.
+            Your sight turns red, you feel your limbs become numb...
+
+            Game Over
+            """)
             sys.exit()
         elif self.focus <= 0:
-            print("Focus Game Over")
+            print("""
+            
+            You cannot form one clear thought, the voices are too loud!
+            It hurts!! You beg it to STOP!!!
+
+            Game Over
+            """)
             sys.exit()
         elif self.luck <= 0:
-            print("Luck Game Over")
+            print("""
+            
+            Suddenly, you hear a voice out of nowhere.
+            'You know what? I have become weary of you...'
+
+            Game Over
+            """)
             sys.exit()
     
     def check_final_stats(self):
@@ -179,14 +197,77 @@ def redundant_choice3():
 def error_input():
     print("Invalid choice. Please enter a number indicating one of the rooms.")
 
+"""
+Game Overs and Endings - Lists all messages after ending the game (except stat-based Game Overs)
+"""
+
 def second_floor_gameover():
-    print("You feel a large object piercing your throat.")
-    print("You desperately try to breathe, but the...")
-    print(...)
-    print(...)
-    print("Can't... move...")
-    print(...)
-    print(...)
+    print("""
+    A large force hits your body.
+    You feel your bones split, and your flesh tearing!
+    You almost pass out from the pain.
+
+    However, there is nothing that you can do.
+    Your body does not listen to you anymore.
+    You cannot even breathe...
+
+    Game Over
+    """)
+
+def bad_ending():
+    print("""
+
+
+    You want to reach out to grab your blade, but your powers are waning.
+    In desparation, you barely manage to unsheathe the blade.
+    But in exactly that moment you hear Maboroshi's voice.
+    '...you are mine...'
+
+    Six months later:
+    'Samurai, our attack on Kyoto is imminent.
+    Signal the other demons that the end of dusk is the starting point.
+    Turn as many people as possible into demons.
+    Let the rest perish...'
+
+    You answer: '... as you wish...'
+
+    End - Bad Ending
+    """)
+
+def neutral_ending():
+    print("""
+    
+    
+    The illusion has taken a toll on you. You are not at your best.
+    Still, you have to try. You cannot let Maboroshi get away.
+    You prepare your katana for a counterattack.
+    You swing your blade, as you feel...
+
+    In a graveyard in Kyoto, stones are laid upon a grave.
+    It reads: 'Here rests the slayer of Maboroshi'
+    It is a symbol of hope in trying times.
+    Without you, who will stand up to the demons?
+
+    End - Neutral Ending
+    """)
+
+def true_ending():
+    print("""
+    
+    
+    This is your moment. You know Maboroshi is bluffing.
+    He casted the illusion because he cannot defeat you directly.
+    You approach him with silence, but also with determination.
+    He screams: "Begone!"
+
+    In a flash, you behead Maboroshi. He could not even react.
+    You finally relax: A big threat of demonkind has vanished.
+    Surely, many other challenges wait for you.
+    But if you stay true to yourself, you are sure to overcome...
+    every challenge on your path.
+
+    End - True Ending
+    """)
 
 # Menu for interacting in rooms
 def room_menu():
@@ -970,7 +1051,7 @@ def final_scene():
     print("'But in the end, you will still become my puppet!'")
     end_stat = player.check_final_stats()
     if end_stat <= 5:
-        print("Bad Ending")
+        bad_ending()
     elif end_stat <= 10:
         print("Neutral Ending")
     elif end_stat >= 11:
