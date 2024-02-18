@@ -950,7 +950,7 @@ def kitchen():
                 print("The demon notices you and attacks!")
                 print("It tries to kick you.")
                 strike_direction = fight_menu()
-                if strike_direction = '1'
+                if strike_direction == '1':
                     print("You successfully slice the demon in half.")
                     print("The two halves turn into black smoke.")
                     print("Focus was raised by 1.")
@@ -1081,7 +1081,7 @@ def guest_room():
                 print("As you ready yourself, a demon approaches you.")
                 print("It tries to attack you with a haymaker from the right.")
                 strike_direction = fight_menu()
-                if strike_direction = '3'
+                if strike_direction == '3':
                     print("You anticipate the demon's attack.")
                     print("Cut in upper and lower halves...")
                     print("The demon's remains vanish.")
