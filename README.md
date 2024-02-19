@@ -11,10 +11,9 @@ The player's goal is to escape the mansion and find out who they really are.
 1. [How to play](#How-to-play)
 2. [Planning Stages](#planning-stages)
 3. [Structure](#structure)
-4. [Individual Page Features](#individual-page-features)
-5. [Testing](#testing)
+4. [Testing](#testing)
+5. [Deployment] (#deployment)
 6. [Credits](#credits)
-7. [Special Thanks to](#special-thanks-to)
 
 ## **How to play**
 
@@ -224,11 +223,24 @@ A total of six rooms can be accessed:
 
 #### Kitchen
 
+- Another demon encounter is waiting for the player here.
+- While this hint is not displayed as an item, one event hints the player to open the chest in the bedroom.
+- 
+
 #### Living Room
+
+- In essence, this room is a trap. The player is hinted at that there is nothing to find here.
+- If they choose to interact, they in most cases lose focus or luck. The only neutral interaction is a swap for constitution with focus. This might help in a situation where the player has depleted their constitution too much.
+- Each event can be triggered once.
 
 #### Guest Room
 
+- This room contains the final demon encounter. 
+- In the best case, the player can get focus without fighting. On the other hand, they can lose focus by
+
 #### Bed Room
+
+- This room contains the chest hinted at in the kitchen. It contains the two items which give the player access to the two hints about the 
 
 #### Closet
 
@@ -238,6 +250,47 @@ A total of six rooms can be accessed:
 - However, the word is not visible. The player has to deduce the word from its context.
 
 #### The Exit
+
+- This room riddle triggers as soon as you enter.
+- The player has to enter the keyword "death".
+- If the player does so, they witness the final scene.
+- If not, they get a game over screen.
+
+### Final Scene
+
+- The player alr
+
+## **Testing**
+
+### Bugs
+
+- One big issue arose from the coordination of how the program would check which events were triggered. The idea of a list was considered first, but it turned out to be impractical. The events could be saved twice.
+- Instead of a list, the set() function was used to save which options the player has already selected. Then, each branch of the conditional statements uses lists to check whether an event has already been triggered.
+
+<hr>
+
+- Due to the implementation of different menus, the loops for rooms and floors would interact with each other. This would lead to the console jumping to options between different menus.
+- The while loops are linked to a constant IN_FLOOR or IN_ROOM. This way, only the code from each respective loop executes.
+
+<hr>
+
+- The first ASCIII Logo would not be displayed on the console correctly. One of the lines would shift drastically to the right. This would lead to numerous errors on the validator
+- Another font was used and all whitespaces were removed.
+
+## Deployment
+
+In order to deploy Dream Mansion to Heroku, the following steps were taken.
+
+1. Deploy the prototype version on Github
+2. Log in to Heroku
+3. Use an unused name
+4. Create a key for PORT with the value 8000
+5. Deploy the Node.js to the already activated Python Buildpack
+6. Choose Github in the Deploy Menu
+7. Select "Automatically Deploy"
+
+After taking these steps, the project was successfully deployed on Heroku.
+
 
 ## **Credits**
 
@@ -256,21 +309,4 @@ Reminders
 - Your code must be placed in the `run.py` file
 - Your dependencies must be placed in the `requirements.txt` file
 - Do not edit any of the other files or your code may not deploy properly
-
-Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
 
