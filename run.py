@@ -321,7 +321,7 @@ def room_menu():
     print("4: Change rooms")
     print("5: Display items")
     print("6. Display stats")
-    choice = input("Enter your choice (1-6): ")
+    choice = input("Enter your choice (1-6):\n")
     if choice == '1':
         investigate()
     elif choice == '2':
@@ -333,18 +333,18 @@ def room_menu():
         print("What do you want to do?")
         print("1.List collected items")
         print("2.Take closer look at an item")
-        item_input = input("Enter your choice (1-2):")
+        item_input = input("Enter your choice (1-2):,\n")
         if item_input == "1":
             player.display_inventory()
         elif item_input == "2":
             print("You take out the...")
-            select_item = input("Write out the item you want to use:")
+            select_item = input("Write out the item you want to use:\n")
             for item in player.inventory:
                 if select_item.lower() == item.name.lower():
                     print("What would you want to do with it?")
                     print("1.Remember what it is")
                     print("2.Use it")
-                    item_detail = input("Enter your choice (1-2):")
+                    item_detail = input("Enter your choice (1-2):\n")
                     if item_detail == "1":
                         item.display_description()
                     if item_detail == "2":
@@ -364,7 +364,7 @@ def fight_menu():
     print("2. Strike from left flank")
     print("3. Strike from right flank")
     print("4: Strike from below")
-    strike_direction = input("Enter your choice (1-4): ")
+    strike_direction = input("Enter your choice (1-4):\n")
     return strike_direction
 
 """
@@ -483,7 +483,7 @@ def start_floor1():
     print("3. The Floor Lobby")
     IN_FLOOR = True
     while IN_FLOOR:
-        room_choice = input("Enter your choice (1-3): ")
+        room_choice = input("Enter your choice (1-3):\n")
         if room_choice == '1':
             IN_FLOOR = False
             lounge()
@@ -616,7 +616,7 @@ def floor_lobby3():
             print("As you try to go down the stairs, you hear a voice.")
             print("'Those without identity cannot pass!'")
             print("'Who are you?'")
-            solution_1 = input ("I am a...")
+            solution_1 = input ("I am a...\n")
             if solution_1 == "samurai":
                 if katana in player.inventory:
                     print("The powers cannot hold you anymore.")
@@ -674,7 +674,7 @@ def start_floor2():
     print("4. End of the Corridor")
     IN_FLOOR = True
     while IN_FLOOR:
-        room_choice = input("Enter your choice (1-4): ")
+        room_choice = input("Enter your choice (1-4):\n")
         if room_choice == '1':
             IN_FLOOR = False
             gym()
@@ -914,7 +914,7 @@ def start_floor3():
     print("6. The Exit")
     IN_FLOOR = True
     while IN_FLOOR:
-        room_choice = input("Enter your choice (1-6): ")
+        room_choice = input("Enter your choice (1-6):\n")
         if room_choice == '1':
             IN_FLOOR = False
             kitchen()
@@ -1201,7 +1201,7 @@ def final_room():
     print("'You want to leave this place?!'")
     print("'Write the word of your salvation onto the seal!'")
     print("'Accept it, and become a samurai once again!'")
-    final_riddle = input("The salvation of a samurai is...")
+    final_riddle = input("The salvation of a samurai is...\n")
     if final_riddle == "death":
         print("After you step away from the seal, it begins to shine.")
         print("Suddenly, everything around you is engulfed in light!")
