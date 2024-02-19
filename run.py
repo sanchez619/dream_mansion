@@ -111,7 +111,7 @@ Instances for samurai class
 
 
 # Creates a player based on samurai class
-player=samurai(constitution=5, focus=5, luck=5, inventory=[])
+player = samurai(constitution=5, focus=5, luck=5, inventory=[])
 
 """
 Instances for items class
@@ -121,7 +121,12 @@ Instances for items class
 # Katana Item
 katana_descr = "It is a sharp longsword with only one cutting edge."
 katana_use = "You feel your own soul reverberating in it."
-katana=items("Katana", description=katana_descr, action="swing", content=katana_use)
+katana = items(
+    "Katana",
+    description=katana_descr,
+    action="swing",
+    content=katana_use
+)
 
 
 # Diary Item
@@ -135,7 +140,12 @@ Mirror the opponent's atttack with the opposite movement.
 Still, he does nothing but blindly rush into a fight.
 At this rate, he will never be a true samurai...
 """
-diary=items("Diary", description=diary_descr, action="read", content=diary_cont)
+diary = items(
+    "Diary",
+    description=diary_descr,
+    action="read",
+    content=diary_cont
+)
 
 
 # Fighting Demons 101 Item
@@ -152,7 +162,12 @@ will hit you on the other side...
 ...
 All other notes were ripped out.
 """
-demons_101=items("'Fighting Demons 101'", description=d101_descr, action="read", content=d101_cont)
+demons_101 = items(
+    "'Fighting Demons 101'",
+    description=d101_descr,
+    action="read",
+    content=d101_cont
+)
 
 
 # Wakizashi Item
@@ -165,7 +180,12 @@ They would serve their lord until the bitter end.
 Sacrificing their lives to protect their own
 and their lord's honor was seen as a virtue.
 """
-wakizashi=items("Wakizashi", description=waki_descr, action="look at", content=waki_use)
+wakizashi = items(
+    "Wakizashi",
+    description=waki_descr,
+    action="look at",
+    content=waki_use
+)
 
 
 # 'Key' Item
@@ -174,8 +194,12 @@ key_use = """
 Weird. There were no rooms locked in this mansion until now.
 This probably does not open one of the bigger rooms then.
 """
-key = items("Key", description=key_descr, action="grab", content=key_use)
-
+key = items(
+    "Key",
+    description=key_descr,
+    action="grab",
+    content=key_use
+)
 
 """
 Constants for Maintaining Menu Choices and Navigation
@@ -273,8 +297,8 @@ def bad_ending():
 
 def neutral_ending():
     print("""
-    
-    
+
+
     The illusion has taken a toll on you. You are not at your best.
     Still, you have to try. You cannot let Maboroshi get away.
     You prepare your katana for a counterattack.
@@ -291,8 +315,8 @@ def neutral_ending():
 
 def true_ending():
     print("""
-    
-    
+
+
     This is your moment. You know Maboroshi is bluffing.
     He casted the illusion because he cannot defeat you directly.
     You approach him with silence, but also with determination.
@@ -367,6 +391,7 @@ def fight_menu():
     strike_direction = input("Enter your choice (1-4):\n")
     return strike_direction
 
+
 """
 Title Screen Functions
 """
@@ -378,18 +403,19 @@ def title_screen():
     print()
     print()
     print("""
-    ________                                         
-    \______ \_______   ____ _____    _____           
-     |    |  \_  __ \_/ __ \\__  \  /     \          
-     |    `   \  | \/\  ___/ / __ \|  Y Y  \         
-    /_______  /__|    \___  >____  /__|_|  /         
-            \/            \/     \/      \/          
-       _____                       .__               
-      /     \ _____    ____   _____|__| ____   ____  
-     /  \ /  \\__  \  /    \ /  ___/  |/  _ \ /    \ 
-    /    Y    \/ __ \|   |  \\___ \|  (  <_> )   |  \
-    \____|__  (____  /___|  /____  >__|\____/|___|  /
-            \/     \/     \/     \/               \/ 
+██████╗ ██████╗ ███████╗ █████╗ ███╗   ███╗
+██╔══██╗██╔══██╗██╔════╝██╔══██╗████╗ ████║
+██║  ██║██████╔╝█████╗  ███████║██╔████╔██║
+██║  ██║██╔══██╗██╔══╝  ██╔══██║██║╚██╔╝██║
+██████╔╝██║  ██║███████╗██║  ██║██║ ╚═╝ ██║
+╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝
+
+███╗   ███╗ █████╗ ███╗   ██╗███████╗██╗ ██████╗ ███╗   ██╗
+████╗ ████║██╔══██╗████╗  ██║██╔════╝██║██╔═══██╗████╗  ██║
+██╔████╔██║███████║██╔██╗ ██║███████╗██║██║   ██║██╔██╗ ██║
+██║╚██╔╝██║██╔══██║██║╚██╗██║╚════██║██║██║   ██║██║╚██╗██║
+██║ ╚═╝ ██║██║  ██║██║ ╚████║███████║██║╚██████╔╝██║ ╚████║
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝
     """)
     print()
     print("What would you like to do?")
@@ -557,7 +583,11 @@ def storage_chamber():
     while IN_ROOM:
         choice = room_menu()
         if choice == '1':
-            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage_ambush']):
+            if not any(
+                choice in CHOICES_MADE
+                for choice in
+                ['storage_investigation', 'storage_voices', 'storage_ambush']
+            ):
                 print("As you try to inspect the room further...")
                 print("...you hear something!")
                 print("You see black smoke a few meters in front of you.")
@@ -569,25 +599,38 @@ def storage_chamber():
             else:
                 redundant_choice2()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage_ambush']):
-                print("The voices you hear get louder. They say:'Give in, you cannot escape...'")
-                print("You anxiously turn around to see some black smoke disappearing.")
+            if not any(
+                choice in CHOICES_MADE
+                for choice in
+                ['storage_investigation', 'storage_voices', 'storage_ambush']
+            ):
+                print("The voices you hear get louder.")
+                print("They say:'Give in, you cannot escape...'")
+                print("You anxiously turn around to see...")
+                print("some black smoke disappearing.")
                 print("Focus was decreased by 1.")
                 player.decrease_stat('focus', 1)
                 CHOICES_MADE.add('storage_voices')
             else:
                 redundant_choice2()
         elif choice == '3':
-            if not any(choice in CHOICES_MADE for choice in ['storage_investigation', 'storage_voices', 'storage_ambush']):
-                print("While rearranging the shelves, a dark figure jumps you!")
+            if not any(
+                choice in CHOICES_MADE
+                for choice in
+                ['storage_investigation', 'storage_voices', 'storage_ambush']
+            ):
+                print("While rearranging the shelves, a silhouette jumps you!")
+                print("While rearranging the shelves, a silhouette jumps you!")
                 if katana in player.inventory:
-                    print("Instinctively, you grab your katana and slash towards the figure!")
-                    print("However, the only thing you see after your attack is black smoke.")
-                    print("You calm yourself to regain your composure.")
+                    print("Instinctively, you grab your katana...")
+                    print("and slash towards the figure!")
+                    print("However, the only thing you see...")
+                    print(" after your attack is black smoke.")
                     player.decrease_stat('focus', 1)
                     CHOICES_MADE.add('storage_ambush')
                 else:
-                    print("You fell hard onto the ground, but you cannot see anyone...")
+                    print("You fell hard onto the ground, but...")
+                    print("nobody else seems to be here but you...")
                     print("Constitution was decreased by 2.")
                     player.decrease_stat('constitution', 2)
                     CHOICES_MADE.add('storage_ambush')
@@ -616,7 +659,7 @@ def floor_lobby3():
             print("As you try to go down the stairs, you hear a voice.")
             print("'Those without identity cannot pass!'")
             print("'Who are you?'")
-            solution_1 = input ("I am a...\n")
+            solution_1 = input("I am a...\n")
             if solution_1 == "samurai":
                 if katana in player.inventory:
                     print("The powers cannot hold you anymore.")
@@ -658,6 +701,7 @@ def floor_lobby3():
             error_input()
         player.check_stats()
 
+
 # Functions for Second Floor
 def start_floor2():
     print()
@@ -690,6 +734,7 @@ def start_floor2():
         else:
             error_input()
 
+
 """
 Gym - Demon Encounter (Demon Fight)
 """
@@ -702,14 +747,18 @@ def gym():
     while IN_ROOM:
         choice = room_menu()
         if choice == '1':
-            if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
+            if not any(
+                choice in CHOICES_MADE
+                for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']
+            ):
                 print("You try finding something to help against the demon.")
                 print("However, you cannot find anything useful.")
                 print("The demon attacks you with a right hook!")
                 strike_direction = fight_menu()
                 if strike_direction == "3":
                     print("Your blade is faster than your opponnent's attack!")
-                    print("After hitting your opponent, he vanishes into thin air...")
+                    print("After hitting your opponent...")
+                    print("it vanishes into thin air...")
                     print("Focus was raised by 1.")
                     player.raise_stat('focus', 1)
                     CHOICES_MADE.add('gym_approach')
@@ -723,18 +772,25 @@ def gym():
             else:
                 redundant_choice2()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
-                print("But before you can even react, the demon strikes you in the head.")
+            if not any(
+                choice in CHOICES_MADE
+                for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']
+            ):
+                print("But before you can even react...")
+                print("the demon strikes you in the head!")
                 print("Constitution was decreased by 3.")
                 player.decrease_stat('constitution', 3)
                 CHOICES_MADE.add('gym_ambush')
             else:
                 redundant_choice2()
         elif choice == '3':
-            if not any(choice in CHOICES_MADE for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']):
-                print("You throw a small cupboard in-between you and the demon.")
+            if not any(
+                choice in CHOICES_MADE
+                for choice in ['gym_approach', 'gym_ambush', 'gym_vanish']
+            ):
+                print("You throw a small cupboard between you and the demon.")
                 print("You ready your weapon as you realize:'He's gone!'")
-                print("Instead, you find some bandages, which fell out of the cupboard.")
+                print("You find some first aid hidden in the cupboard.")
                 print("Constitution was increased by 2.")
                 player.raise_stat('constitution', 2)
                 CHOICES_MADE.add('gym_vanish')
@@ -760,7 +816,10 @@ def office():
     while IN_ROOM:
         choice = room_menu()
         if choice == '1':
-            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):
+            if not any(
+                choice in CHOICES_MADE
+                for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']
+            ):
                 print("You ascertain whether the figure is actually a demon.")
                 print("You find that it is only a coat on the chair.")
                 print("Luck was raised by 1.")
@@ -769,7 +828,10 @@ def office():
             else:
                 redundant_choice2()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):
+            if not any(
+                choice in CHOICES_MADE
+                for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']
+            ):
                 print("Just as you start listening to your surroundings...")
                 print("A dagger pierces your right chest!")
                 print("Constitution was decreased by 2.")
@@ -778,8 +840,11 @@ def office():
             else:
                 redundant_choice2()
         elif choice == '3':
-            if not any(choice in CHOICES_MADE for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']):
-                print("You throw a coat rack, which was right next to the door...")
+            if not any(
+                choice in CHOICES_MADE
+                for choice in ['coat_demon', 'dagger_pierce', 'coat_rack']
+            ):
+                print("You throw a coat rack placed next to the door...")
                 print("directly in the direction of the chair!")
                 print("You hear a terrifying cry.")
                 print("Before you can even blink, a demon attemps...")
@@ -807,19 +872,23 @@ def office():
             error_input()
         player.check_stats()
 
+
 """
 Bathroom - (Each event can be triggered)
 """
 
 
 def bathroom():
-    print("You enter the bathroom.")
-    print("This room is actually lit. You can see the bathtub filled with water.")
+    print("You enter the bathroom. It actually has working lights!")
+    print("The bathtub filled with water.")
     IN_ROOM = True
     while IN_ROOM:
         choice = room_menu()
         if choice == '1':
-            if not any(choice in CHOICES_MADE for choice in ['demons_101', 'power_out']):
+            if not any(
+                choice in CHOICES_MADE for choice in
+                ['demons_101', 'power_out']
+            ):
                 print("Next to the bathtub is another cupboard.")
                 print("In one of the drawers, you find a small book.")
                 print("Added 'Fighting Demons 101' to your inventory.")
@@ -828,7 +897,10 @@ def bathroom():
             else:
                 redundant_choice3()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['bathtub', 'power_out']):
+            if not any(
+                choice in CHOICES_MADE for choice in
+                ['demons_101', 'power_out']
+            ):
                 print("You feel that the room is devoid of malice.")
                 print("You choose to enter the bath and relax.")
                 print("Constitution was raised by 2")
@@ -890,7 +962,7 @@ def second_floor_boss():
                 print("...before turning into black smoke.")
                 print("You descend another spiraling staircase.")
                 start_floor3()
-            else: 
+            else:
                 second_floor_gameover()
     else:
         second_floor_gameover()
@@ -950,7 +1022,10 @@ def kitchen():
     while IN_ROOM:
         choice = room_menu()
         if choice == '1':
-            if not any(choice in CHOICES_MADE for choice in ['kitchen_note', 'kitchen_slice', 'table_flip']):
+            if not any(
+                choice in CHOICES_MADE for choice in
+                ['kitchen_note', 'kitchen_slice', 'table_flip']
+            ):
                 print("You find a note.")
                 print("It says: 'Keep important things close to your chest.'")
                 print("The demon notices you and attacks!")
@@ -972,7 +1047,10 @@ def kitchen():
             else:
                 redundant_choice2()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['kitchen_note', 'kitchen_slice', 'table_flip']):
+            if not any(
+                choice in CHOICES_MADE for choice in
+                ['kitchen_note', 'kitchen_slice', 'table_flip']
+            ):
                 print("You feel the demon's greed for blood.")
                 print("He is too entranced to notice you.")
                 print("You approach him from behind and slice his throat.")
@@ -982,7 +1060,10 @@ def kitchen():
             else:
                 redundant_choice2()
         elif choice == '3':
-            if not any(choice in CHOICES_MADE for choice in ['kitchen_note', 'kitchen_slice', 'table_flip']):
+            if not any(
+                choice in CHOICES_MADE for choice in
+                ['kitchen_note', 'kitchen_slice', 'table_flip']
+            ):
                 print("You try to flip the table onto the demon.")
                 print("It is too heavy, and you are unable to.")
                 print("In the meantime, the demon jumps you!")
@@ -1035,7 +1116,7 @@ def living_room():
         elif choice == '3':
             if 'pointless_search' not in CHOICES_MADE:
                 print("You rearrange the furniture, looking for clues.")
-                print("After 15 minutes of dragging large objects, you give up.")
+                print("After 15 minutes, completely exhausted, you give up.")
                 print("Luck was decreased by 1.")
                 player.decrease_stat('luck', 1)
                 CHOICES_MADE.add('pointless_search')
@@ -1061,7 +1142,10 @@ def guest_room():
     while IN_ROOM:
         choice = room_menu()
         if choice == '1':
-            if not any(choice in CHOICES_MADE for choice in ['bed_sheet', 'musical_box', 'mattress']):
+            if not any(
+                choice in CHOICES_MADE
+                for choice in ['bed_sheet', 'musical_box', 'mattress']
+            ):
                 print("You pull the sheet from the bed.")
                 print("A demon was hidden under the sheet.")
                 print("It uses the opportunity to jump you!")
@@ -1071,8 +1155,12 @@ def guest_room():
             else:
                 redundant_choice2()
         elif choice == '2':
-            if not any(choice in CHOICES_MADE for choice in ['bed_sheet', 'musical_box', 'mattress']):
-                print("You hear a musical box. You decide to turn up the volume.")
+            if not any(
+                choice in CHOICES_MADE
+                for choice in ['bed_sheet', 'musical_box', 'mattress']
+            ):
+                print("You hear a musical box.")
+                print("You decide to turn up the volume.")
                 print("The demon under the bed falls asleep.")
                 print("You then cleanly slice its neck.")
                 print("Focus was raised by 1.")
@@ -1081,9 +1169,13 @@ def guest_room():
             else:
                 redundant_choice2()
         elif choice == '3':
-            if not any(choice in CHOICES_MADE for choice in ['bed_sheet', 'musical_box', 'mattress']):    
+            if not any(
+                choice in CHOICES_MADE
+                for choice in ['bed_sheet', 'musical_box', 'mattress']
+            ):
                 print("You lever the mattress to the right.")
-                print("You hear a loud thud. It sounded like someone fell to the floor.")
+                print("You hear a loud thud.")
+                print("It sounded like someone fell to the floor.")
                 print("As you ready yourself, a demon approaches you.")
                 print("It tries to attack you with a haymaker from the right.")
                 strike_direction = fight_menu()
@@ -1165,6 +1257,7 @@ def bed_room():
             error_input()
         player.check_stats()
 
+
 """
 Closet - Vital Hint for Final Riddle (No Player Interaction)
 """
@@ -1218,6 +1311,7 @@ def final_room():
 """
 Final Scene - Epilogue and Determination of Player Ending
 """
+
 
 def final_scene():
     print("You have done it! You have broken the illusion!")
