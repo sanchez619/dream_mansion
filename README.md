@@ -116,7 +116,10 @@ While not my favourite genre of games, I have played many different visual novel
 As such, I had experience of how to envision the progression of such a game.
 
 The only step from there was to envision a setting.
-The
+To keep the story concise, I stuck with a more functional setting. The player should feel like they are in an escape room spanning multiple floors. 
+While connceptualizing this idea, I remembered a story line from the famous animation series "Demon Slayer" or "Kimetsu no Yaiba".
+It took place in a mansion where the trapped party had to best multiple demons.
+I then added a final scenario based off the movie from the same franchise.
 
 ### Target Audience(s):
 
@@ -259,6 +262,79 @@ A total of six rooms can be accessed:
 ### Final Scene
 
 - The player alr
+
+## **Features**
+
+While I went over the functions in the How to play section already, I will illustrate how the main player features work and what they achieve.
+
+### Title Menu 
+
+The title menu is the simplest to explain. Like all menus, it consists of a while-loop guarded by a constant.
+
+- If the player wants to start the game, the constant becomes false to allow a transition between the while-loops. It then calls the game_start functio
+- Options 2 & 3 display a print message in the loop.
+- Option 4 ends the program.
+
+### Floor Menu
+
+- The option in every floor menu lead to another room.
+- All invalid options keep the loop intact while displaying the error message.
+- All valid options contain code to change the IN_FLOOR value to False.
+
+### Room Menu
+
+Before tackling the first hree options, I will explain the simpler player options 4-6.
+
+- Change Room calls the respective floor function. It also changes the IN_ROOM values.
+- Check Items calls the inventory function. The IN_ROOM value does not change.
+- Display stats calls the respective function in the samurai class.
+
+The first three functions contain code that simulate events happening and affecting the player. 
+This is achieved in the following ways:
+
+- Many print messages are shown to the player to tell every event.
+- Most choices either call the player.raise_stat or decrease_ stat functions. These aaffect the players stats according to the triggered event.
+- In some cases, the player.inventory.append() function is called to add each item instance to the inventory list.
+- Every room function contains a variable which is added to a set. Based on the nature of the rooms, these prevent the player from triggering scenes in an unrealistic manner.
+- Each branch of the first three options contain an else statement leading to one of the three redundant_choice option. These indicate choices the player cannot take anymore via simple print messages. The IN_ROOM while loop is kept intact in that case.
+
+#### Logic options
+
+"Normal Rooms"
+
+- Each normal room checks the variable of each choice only after the input of said player choice. 
+- As result, each event can be triggered once, while the variable is not in the set.
+- If the variable is in the set, redundant_choice() is called instead.
+
+<hr>
+
+"Fight Rooms" 
+
+- Each fight room checks a list containing all variables in the function.
+- If one variable is added to the set, all other choices will result in the function calling redundant_choice2().
+- This logic simulates how each fight in the program is a one time event and how the demon illusions disappear afterwards.
+
+<br>
+
+"Bathroom"
+
+- The bathroom() function calls redundant_choice3() based on two conditions.
+- Either, the variable 'power_out' has been added to the set or...
+- One of the choices adding the respective branch's variable has been added.
+- This type of conditions simulate two scenarios.
+- Scenario 1 is the player not being able to experience an event twice.
+- Scenario 2 is the player not being able to interact with the room as they have damaged it.
+
+#### Exceptions
+
+- The location "End of the corridor" does lead to another loop that the player cannot turn back from.
+- The same applies for "Final Room" except that the function does not have a while loop.
+- In both cases, the player must confirm their entering by choosing one option from an if-statement.
+- 
+
+
+
+
 
 ## **Testing**
 
