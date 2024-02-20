@@ -899,7 +899,7 @@ def bathroom():
         elif choice == '2':
             if not any(
                 choice in CHOICES_MADE for choice in
-                ['demons_101', 'power_out']
+                ['bathtub', 'power_out']
             ):
                 print("You feel that the room is devoid of malice.")
                 print("You choose to enter the bath and relax.")
