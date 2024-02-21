@@ -377,12 +377,14 @@ def return_question():
     return_answer = input(
         "Return to title screen (Yes = 1; No = 0):\n"
     )
-    if return_answer == "0":
-        exit()
-    elif return_answer == "1":
-        title_screen()
-    else:
-        error_input()
+    IN_ROOM = True:
+    while IN_ROOM:
+        if return_answer == "0":
+            exit()
+        elif return_answer == "1":
+            title_screen()
+        else:
+            error_input()
 
 
 """
@@ -1396,8 +1398,8 @@ def final_room():
     """
     Guest Room - Demon Fight
     """
-    print("You see a large monster.")
-    print("You won't be able to run from it!")
+    print("You fear a dark aura, pulling you in.")
+    print("If you go now, you cannot turn back!")
     final_check = input(
         "Proceed? (Yes = 1; No = 0):\n"
     )
