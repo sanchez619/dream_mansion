@@ -383,7 +383,7 @@ def return_question():
     elif return_answer == "1":
         title_screen()
     else:
-        error_input
+        error_input()
 
 """
 Menus - Two Menus - User interfaces for fighting and exploring
@@ -415,7 +415,7 @@ def room_menu():
         print("What do you want to do?")
         print("1.List collected items")
         print("2.Take closer look at an item")
-        item_input = input("Enter your choice (1-2):,\n")
+        item_input = input("Enter your choice (1-2):\n")
         if item_input == "1":
             player.display_inventory()
         elif item_input == "2":
