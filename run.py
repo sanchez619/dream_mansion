@@ -1282,7 +1282,7 @@ def bed_room():
     Bed Room - Demon Fight (Contains Key for Closet)
     """
     print("You enter the bed room.")
-    print("You see a silver briefcase lying on the bed.")
+    print("You see a silver chest lying on the bed.")
     print("Faint voices can be heard.")
     IN_ROOM = True
     while IN_ROOM:
