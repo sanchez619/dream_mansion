@@ -276,7 +276,6 @@ def error_input():
     print("Invalid choice. Please enter a valid input.")
 
 
-
 """
 Game Overs and Endings - Lists all messages after ending the game (except stat-
 based Game Overs)
@@ -384,6 +383,7 @@ def return_question():
         title_screen()
     else:
         error_input()
+
 
 """
 Menus - Two Menus - User interfaces for fighting and exploring
@@ -719,6 +719,10 @@ def storage_chamber():
         elif choice == '4':
             IN_ROOM = False
             start_floor1()
+        elif choice == '5':
+            pass
+        elif choice == '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -775,6 +779,10 @@ def floor_lobby():
         elif choice == '4':
             IN_ROOM = False
             start_floor1()
+        elif choice == '5':
+            pass
+        elif choice == '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -878,6 +886,10 @@ def gym():
         elif choice == '4':
             IN_ROOM = False
             start_floor2()
+        elif choice == '5':
+            pass
+        elif choice == '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -945,6 +957,10 @@ def office():
         elif choice == '4':
             IN_ROOM = False
             start_floor2()
+        elif choice == '5':
+            pass
+        elif choice == '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -1000,6 +1016,10 @@ def bathroom():
         elif choice == '4':
             IN_ROOM = False
             start_floor2()
+        elif choice == '5':
+            pass
+        elif choice == '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -1157,6 +1177,10 @@ def kitchen():
         elif choice == '4':
             IN_ROOM = False
             start_floor3()
+        elif choice == '5':
+            pass
+        elif choice == '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -1205,6 +1229,10 @@ def living_room():
         elif choice == '4':
             IN_ROOM = False
             start_floor3()
+        elif choice == '5':
+            pass
+        elif choice == '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -1277,6 +1305,10 @@ def guest_room():
         elif choice == '4':
             IN_ROOM = False
             start_floor3()
+        elif choice == '5':
+            pass
+        elif choice == '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -1329,6 +1361,10 @@ def bed_room():
         elif choice == '4':
             IN_ROOM = False
             start_floor3()
+        elif choice == '5':
+            pass
+        elif choice == '6':
+            pass
         else:
             error_input()
         player.check_stats()
@@ -1387,7 +1423,8 @@ def final_room():
             print("...")
             print("Game Over")
             return_question()
-    else: error_input()
+    else:
+        error_input()
 
 
 def final_scene():
@@ -1407,6 +1444,7 @@ def final_scene():
         neutral_ending()
     elif end_stat >= 11:
         true_ending()
+
 
 def game_start():
     """
