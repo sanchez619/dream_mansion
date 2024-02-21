@@ -429,13 +429,16 @@ def room_menu():
                     item_detail = input("Enter your choice (1-2):\n")
                     if item_detail == "1":
                         item.display_description()
-                    if item_detail == "2":
+                    elif item_detail == "2":
                         item.use_item()
-                    break
+                    else:
+                        error_input()
                 else:
                     print("This item is currently not in your possession.")
     elif choice == "6":
         player.display_stat()
+    else:
+        error_input()
     return choice
 
 
@@ -581,7 +584,7 @@ def start_floor1():
     Floor Menu for 1st floor
     """
     print("Several doors appear in front of you.")
-    print("Which one do you want to enter")
+    print("Which one do you want to enter?")
     print("1. The Lounge")
     print("2. The Storage Chamber")
     print("3. The Floor Lobby")
