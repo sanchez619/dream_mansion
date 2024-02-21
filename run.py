@@ -435,6 +435,8 @@ def room_menu():
                         error_input()
                 else:
                     print("This item is currently not in your possession.")
+        else:
+            error_input()
     elif choice == "6":
         player.display_stat()
     else:
