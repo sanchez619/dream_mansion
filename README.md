@@ -5,6 +5,7 @@ Similar to the Episodes 10-14, the player is trapped in a mansion.
 
 The player's goal is to escape the mansion and find out who they really are.
 
+![Resposivity Screenshot](docs/screenshots/am_I_responsive.jpg)
 
 ## Index
 
@@ -32,10 +33,10 @@ Any other inputs will result in an error message and replay the last menu.
 The game consists of three floors. Each floor has its own floor menu.
 In that menu, the player can choose which room to enter.
 The number is at least three, at most 6 options.
-
 In most cases, the player can return to the floor menu.
-However, in the case of the Second Floor Boss, they cannot return if they chose that room.
-In contrast, the player will be looped back to the floor menu if they do not have the key to the closet.
+However, there are rooms which behave differently for the players.
+
+![Start Floor 3 Menu](docs/screenshots/closet_lock.jpg)
 
 #### Fight Menus
 
@@ -51,6 +52,8 @@ If the player is successful, the focus of the player will rise by 1.
 If the player is unsuccessful, the constitution of the player will decrease by 2.
 Each battle can only be triggered once.
 
+![Fight Menu](docs/screenshots/failed_office_fight.jpg)
+
 #### Room Menu
 
 In each room, the player has access to the Room Menu. This menu offers six options.
@@ -61,9 +64,13 @@ Finally, option number 6 displays the stats to the character.
 
 ### Text Input
 
+Naturally, a text-based game revolves around player output.
+However, this game makes mostly use of singular numerical input.
+Thus the aspect of typing is reserved for a few interactions.
+
 #### Item Menu
 
-In order to access their collected Items, the player has to type in their name.
+In order to access their collected items, the player has to type in their name.
 In this case, the console will check whether an entry in the inventory matches the player input.
 They then can decide whether to get a general description of it or interact with it.
 Some items describe a general use of the weapon and have no further usage.
@@ -79,6 +86,8 @@ The first solution is 'samurai' and the second is 'death'.
 
 The player is given hints in form of the items and also the message hidden in the closet.
 The first riddle can be redone infinitely, while failing the second riddle results in a game over.
+
+![Failed Final Riddle](docs/screenshots/failed_final_riddle.jpg)
 
 ### Player Goals
 
@@ -105,6 +114,8 @@ The program will determine which ending the player gets based on the final stats
 1. Bad Ending (5 or below): The player is taken over by Maboroshi and helps their new master conquer Kyoto.
 2. Neutral Ending (6 to 10): The player takes down Maboroshi, but dies in the process.
 3. Good Ending(11+): The player defeats Maboroshi and lives on to fight other demons.
+
+![True Ending](docs/screenshots/true_ending.jpg)
 
 ## **Planning Stages**
 
@@ -180,6 +191,8 @@ The floor consists of three rooms:
 - The first puzzle shows its head right before the next floor. The riddle checks whether you have understood the theme of the game and also checks whether the player has a katana in their inventory
 - Without it, the class does not let the player progress any further.
 
+![Missing Katana](docs/screenshots/katana_miss_event.jpg)
+
 ### Second Floor
 
 The second floor has the most fights in the game. 
@@ -190,14 +203,19 @@ The floor consists of four rooms:
 
 - The gym has a good chance of positively influencing the player's stats if they pick the right solution. At the same time, this room contains the first battle with the fight menu. Thus, they are likely to gamble 2 Constitution due to not having found the item in the bathroom.
 - The office has a very similar design. It is a fight room, which could cost the player dearly if they have no other idea how the fight system operates.
-- The bathroom is the most important room on this floor. It contains a guide for battles in Demons 101 and can noticebly increase Constitution as well as luck. However, triggering the power_out will keep players out from gaining both boosts if they cause a power_out
+- The bathroom is the most important room on this floor. It contains a guide for battles in Demons 101 and can noticebly increase Constitution as well as luck. However, triggering the power_out will keep players out from gaining both boosts if they cause a power_out.
 - The end of the corridor contains a monster. As this battle is deadly - regardless of stats, the function first calls an input field to confirm whether the player wants to proceed. Afterwards, the player must dodge three attacks in total to not experience the second_floor_gameover.
+
+![Second Floor Game Over](docs/screenshots/second_boss_game_over.jpg)
 
 ### Third Floor
 
 On the third floor, the player needs to solve one more puzzle.
 At this stage, the potential to have low constitution is high. Thus, the player needs to carefully access their options.
 There are only two fights on this floor, but the amount of stat-decreasing events was increased.
+
+![Closet Lock](docs/screenshots/failed_office_fight.jpg)
+
 
 A total of six rooms can be accessed:
 
@@ -207,6 +225,7 @@ A total of six rooms can be accessed:
 - The bedroom is the location which the player was hinted at in the kitchen. One can find two items with important information about the last riddle. However, all other interactions cost the player a lot of stat points.
 - The closet is a hidden room which can only be opened with the key from the bedroom. It only contains a print statement, which has the solution for "The Exit" blurred out. Still, the player could definitely be able to infer the word in question.
 - The Exit is split into two parts. Before entering, the player has to confirm that they want to proceed before solving the puzzle.
+
 
 #### The Ending
 
@@ -223,9 +242,11 @@ While I went over the functions in the How to play section already, I will illus
 
 The title menu is the simplest to explain. Like all menus, it consists of a while-loop guarded by a constant.
 
-- If the player wants to start the game, the constant becomes false to allow a transition between the while-loops. It then calls the game_start functio
+- If the player wants to start the game, the constant becomes false to allow a transition between the while-loops. It then calls the game_start function.
 - Options 2 & 3 display a print message in the loop.
 - Option 4 ends the program.
+
+![Title Screen](docs/screenshots/titlescreen.jpg)
 
 ### Floor Menu
 
@@ -277,6 +298,8 @@ This is achieved in the following ways:
 - Scenario 1 is the player not being able to experience an event twice.
 - Scenario 2 is the player not being able to interact with the room as they have damaged it.
 
+![Power Out Consequences](docs/screenshots/power_out_event.jpg)
+
 #### Exceptions
 
 - The locations End of the Corridors and The Exit are not styled to be repeated. They are "make or break" moment for the player.
@@ -304,7 +327,7 @@ The testing was conducted in three methods:
 
 1. Each function was tested on whether it produced the result it intended to.
 2. Another major part of the bug test was the tests of the conditional logic. Every option was put into the console multiple times to check whether the logic applies.
-3. The most important testing was testing the menus for weaknesses. By putting in wildly different inputs, switching often between menus and also changing the style input was put in revealed, I was able to identify and fix many faulty pieces of the program 
+3. The most important testing was testing the menus for weaknesses. By putting in wildly different inputs, switching often between menus and also changing the style input was put in revealed, I was able to identify and fix many faulty pieces of the program.
 
 ### Bugs
 
@@ -325,7 +348,7 @@ The testing was conducted in three methods:
 
 <hr>
 
-- In unifying the files, the return question function was not identified as missing. Thus, a 
+- In unifying the files, the return question function was not identified as missing. Thus, the program could not establish a way in which the player could start to beginning.
 - Via testing, functions with missing function calls or while loops were identified and fixed.
 
 ##### Unsolved
@@ -338,10 +361,19 @@ The testing was conducted in three methods:
 - Sometimes, the console would either double error messages or show them where no "wrong input" was done. The item menu is especially prone to these bugs.
 - Seemingly, the issue lies in the interaction between the room_menu() function and the singular room functions. While these might take too long to solve, none of the bugs interfere with the gameplay.
 
+![Bug Item Display](docs/screenshots/bug_display_menu.jpg)
+
+<br>
+
+- On short notice, another bug would be that a replay with the current data structure does not reset the player characters or its inventory. The player could not trigger events again.
+- A quick fix which I attempted is putting the player character into the '1' path of return_question. However, under any circumstance, a reset of the player instance would likely be the solution, in worst case being of the hard nature.
+
 #### Validation
 
 All versions of the code where passed through the validator provided by Code Institute.
 With some cleaning of the code, it came out with no issues.
+
+![Python Validator](docs/screenshots/pep8_validator_screenshot.jpg)
 
 ## **Deployment**
 
@@ -360,19 +392,9 @@ After taking these steps, the project was successfully deployed on Heroku.
 
 ## **Credits**
 
-- "Kimetsu no Yaiba" serves as the biggest inspration for the
+- "Kimetsu no Yaiba" serves as the biggest inspration for the setting of the program.
 - The title screen logo was created with the help from "patorjk.com".
 - The insight into Japanese samurai culture was provided by Heiko Bittmann, both in person and via his book "Samuari und Schwert"
 - As starting point for programming a text-based game, I consulted the following two videos:
 "Simple Python Project | Text-Based Adventure Game: Time Unraveled" by Comp Sci Central
 "How To Code A Python Text-Based Adventure Game In 11 Minutes | Programming Tutorial For Beginners" by Shaun Halverson
-
-
-
-
-Reminders
-
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-

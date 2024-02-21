@@ -382,6 +382,7 @@ def return_question():
         if return_answer == "0":
             exit()
         elif return_answer == "1":
+            player = samurai(constitution=5, focus=5, luck=5, inventory=[])
             title_screen()
         else:
             error_input()
