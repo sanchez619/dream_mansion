@@ -423,14 +423,14 @@ def title_screen():
     print("2.How to play")
     print("3.Credits")
     print("4.Exit Game")
-    title_choice = input("Enter your choice (1-3):")
+    title_choice = input("Enter your choice (1-4):")
     if title_choice == "1":
         game_start()
     elif title_choice == "2":
         display_faq()
     elif title_choice == "3":
         display_credits()
-    elif title_choice == "3":
+    elif title_choice == "4":
         exit()
     else:
         error_input()
