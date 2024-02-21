@@ -155,6 +155,12 @@ As a user:
 
 ## **Structure**
 
+### General Structure
+
+In essence, Dream Mansion consists of four bigger parts. 
+The first three parts are the three floors of the mansion.
+The last part, while non-interactive, is the narrative highlight, as it reveals the truth to the players and shows them their overall performance via different endings.
+
 ### First Floor
 
 The first floor is an introductory stage of the game. 
@@ -163,25 +169,16 @@ At this stage, there is no combination of events that could lead to a game over.
 
 The floor consists of three rooms:
 
-#### Lounge
 
-- The player can find two items: the Katana and Musashi's Diary
-- The player can only decrease his focus by one.
-- Each event can be triggered once.
-- Note: The katana is necessary for the player to proceed. If the player does not have it in their inventory, the start_floor2 function cannot be accessed.
+- In the lounge, the player can find two items: the Katana and Musashi's Diary. This room mainly serves to illustrate two things: 
 
-#### Storage Room
+1. Knowledge is important for figuring out the game, and this knowledge will be essential for mastering the game. 
+2. If the player does not thread carefully, they can loose their stats.
 
-- The player can raise their luck and focus or decrease their focus and constitution.
-- The player encounters their first demon illusion. This encounter will not yet trigger the fight_menu.
-- Only one event can be triggered.
+- The storage room simulates a battle scenario, whereby having the katana alone turns one negative event into a positive event for the player.
 
-#### Floor Lounge
-
-- The player can raise their luck or decrease their constitution.
-- From this floor, the player proceeds to the second floor. Two requirements need to be met.
-- The player solves the ridde about their identity.
-- The player has the katana in their inventory.
+- The first puzzle shows its head right before the next floor. The riddle checks whether you have understood the theme of the game and also checks whether the player has a katana in their inventory
+- Without it, the class does not let the player progress any further.
 
 ### Second Floor
 
@@ -191,30 +188,10 @@ From this stage on, the player's action can result in a game over.
 
 The floor consists of four rooms:
 
-#### Gym
-
-- The player can raise all stats or decrease their focus and constitution.
-- For the first time, the player can trigger a fight with a demon illusion.
-- Only one event can be triggered.
-
-#### Office
-
-- 
-- This room triggers another fight.
-- Once more, only one event can be triggered.
-
-#### Bathroom
-
-- In this room, the player does not encounter enemies.
-- The player can raise their focus and constitution and decrease their luck and constitution.
-- Each event can be triggered.
-- Should the player decide to rearrange the objects in the room, the other option cannot be triggered.
-
-#### End of the Corridor
-
-- The player encounters a monster. The player needs to win three stages of the battle to proceed.
-- There are no second chances. If the player chooses a wrong option, they trigger a game over.
-- To have the best chances, the player needs to understand the fighting system. The best chance of understanding so is to find the "Demon Fighting 101" in the bathroom and reading its content.
+- The gym has a good chance of positively influencing the player's stats if they pick the right solution. At the same time, this room contains the first battle with the fight menu. Thus, they are likely to gamble 2 Constitution due to not having found the item in the bathroom.
+- The office has a very similar design. It is a fight room, which could cost the player dearly if they have no other idea how the fight system operates.
+- The bathroom is the most important room on this floor. It contains a guide for battles in Demons 101 and can noticebly increase Constitution as well as luck. However, triggering the power_out will keep players out from gaining both boosts if they cause a power_out
+- The end of the corridor contains a monster. As this battle is deadly - regardless of stats, the function first calls an input field to confirm whether the player wants to proceed. Afterwards, the player must dodge three attacks in total to not experience the second_floor_gameover.
 
 ### Third Floor
 
@@ -224,44 +201,19 @@ There are only two fights on this floor, but the amount of stat-decreasing event
 
 A total of six rooms can be accessed:
 
-#### Kitchen
+- The kitchen triggers another fight and contains a hint towards one important event for the player to trigger.
+- The living room is more of a trap. While there are no opponents in the room, no event in the function gains the player a net gain in stats.
+- The guest room contains the last enemy of the game. Going to that room is naturally risky, but a player who had understood the mechanics can gain more stats.
+- The bedroom is the location which the player was hinted at in the kitchen. One can find two items with important information about the last riddle. However, all other interactions cost the player a lot of stat points.
+- The closet is a hidden room which can only be opened with the key from the bedroom. It only contains a print statement, which has the solution for "The Exit" blurred out. Still, the player could definitely be able to infer the word in question.
+- The Exit is split into two parts. Before entering, the player has to confirm that they want to proceed before solving the puzzle.
 
-- Another demon encounter is waiting for the player here.
-- While this hint is not displayed as an item, one event hints the player to open the chest in the bedroom.
-- 
+#### The Ending
 
-#### Living Room
-
-- In essence, this room is a trap. The player is hinted at that there is nothing to find here.
-- If they choose to interact, they in most cases lose focus or luck. The only neutral interaction is a swap for constitution with focus. This might help in a situation where the player has depleted their constitution too much.
-- Each event can be triggered once.
-
-#### Guest Room
-
-- This room contains the final demon encounter. 
-- In the best case, the player can get focus without fighting. On the other hand, they can lose focus by
-
-#### Bed Room
-
-- This room contains the chest hinted at in the kitchen. It contains the two items which give the player access to the two hints about the 
-
-#### Closet
-
-- There are no events in the room.
-- The player cannot access the room without finding the key in the bedroom first.
-- If accessed, the player can read a message with the word for the final riddle. 
-- However, the word is not visible. The player has to deduce the word from its context.
-
-#### The Exit
-
-- This room riddle triggers as soon as you enter.
-- The player has to enter the keyword "death".
-- If the player does so, they witness the final scene.
-- If not, they get a game over screen.
-
-### Final Scene
-
-- The player alr
+The ending is a purely narrative tool that gives the actions of the player a concrete picture of the framework, which is the mansion.
+Getting there is not guaranteed, as next to the stat-based Game Overs and the Monster, the players may fail to reach the ending if they cannot solve the final puzzle.
+Each ending and game over displays an input to play the game again.
+The player is encouraged to play the game multiple times to figure out the logic of the game in detail.
 
 ## **Features**
 
@@ -327,18 +279,36 @@ This is achieved in the following ways:
 
 #### Exceptions
 
-- The location "End of the corridor" does lead to another loop that the player cannot turn back from.
-- The same applies for "Final Room" except that the function does not have a while loop.
-- In both cases, the player must confirm their entering by choosing one option from an if-statement.
-- 
+- The locations End of the Corridors and The Exit are not styled to be repeated. They are "make or break" moment for the player.
+- Both, however, display an input message which allow the player to trigger a condition that directs them back to the 2nd / 3rd floor and get more information.
 
 
+### Fight Menu
 
+- The fight menu in itself is only an input that returns a value representing the player's attack direction.
+- The returned value triggers either a positive outcome  or a negative outcome for the player.
+- A successful encounter rewards the player with 1 focus and punishes unsuccessful encounters by subtracting 2 constitution.
+- Normal room encounters affect the player's stats and trigger the fight menu once.
+- The end of corridor uses a conditional statement that makes use of the fight menu thrice. The player has to successfully trigger the mechanic three times.
+
+Unlike the rooms and floors, a incorrect input does not lead to an error_input(), but to a failed attempt.
+This is supposed to display the instantaneous nature of samurai battles, which often are decided with one single strike. 
 
 
 ## **Testing**
 
+### Manual Testing
+
+Manual Testing was done throughout the entirety of the development process.
+The testing was conducted in three methods:
+
+1. Each function was tested on whether it produced the result it intended to.
+2. Another major part of the bug test was the tests of the conditional logic. Every option was put into the console multiple times to check whether the logic applies.
+3. The most important testing was testing the menus for weaknesses. By putting in wildly different inputs, switching often between menus and also changing the style input was put in revealed, I was able to identify and fix many faulty pieces of the program 
+
 ### Bugs
+
+#### Solved
 
 - One big issue arose from the coordination of how the program would check which events were triggered. The idea of a list was considered first, but it turned out to be impractical. The events could be saved twice.
 - Instead of a list, the set() function was used to save which options the player has already selected. Then, each branch of the conditional statements uses lists to check whether an event has already been triggered.
@@ -353,7 +323,27 @@ This is achieved in the following ways:
 - The first ASCIII Logo would not be displayed on the console correctly. One of the lines would shift drastically to the right. This would lead to numerous errors on the validator
 - Another font was used and all whitespaces were removed.
 
-## Deployment
+<hr>
+
+- In unifying the files, the return question function was not identified as missing. Thus, a 
+- Via testing, functions with missing function calls or while loops were identified and fixed.
+
+##### Unsolved
+
+- For better readability of the code, a build concerning multiple files was attempted. However, the build could not support any calls to the title screen, as any attempted import logic would be circular.
+- To enable the function return_question, all code was reincluded back onto one file.
+
+<br>
+
+- Sometimes, the console would either double error messages or show them where no "wrong input" was done. The item menu is especially prone to these bugs.
+- Seemingly, the issue lies in the interaction between the room_menu() function and the singular room functions. While these might take too long to solve, none of the bugs interfere with the gameplay.
+
+#### Validation
+
+All versions of the code where passed through the validator provided by Code Institute.
+With some cleaning of the code, it came out with no issues.
+
+## **Deployment**
 
 In order to deploy Dream Mansion to Heroku, the following steps were taken.
 
@@ -372,7 +362,7 @@ After taking these steps, the project was successfully deployed on Heroku.
 
 - "Kimetsu no Yaiba" serves as the biggest inspration for the
 - The title screen logo was created with the help from "patorjk.com".
-- The insight into
+- The insight into Japanese samurai culture was provided by Heiko Bittmann, both in person and via his book "Samuari und Schwert"
 - As starting point for programming a text-based game, I consulted the following two videos:
 "Simple Python Project | Text-Based Adventure Game: Time Unraveled" by Comp Sci Central
 "How To Code A Python Text-Based Adventure Game In 11 Minutes | Programming Tutorial For Beginners" by Shaun Halverson
