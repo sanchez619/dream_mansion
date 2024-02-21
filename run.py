@@ -164,7 +164,7 @@ will hit you on the other side...
 All other notes were ripped out.
 """
 demons_101 = items(
-    "'Fighting Demons 101'",
+    "Fighting Demons 101",
     description=d101_descr,
     action="read",
     content=d101_cont
