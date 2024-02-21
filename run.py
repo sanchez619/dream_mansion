@@ -422,6 +422,7 @@ def title_screen():
     print("1.Start game")
     print("2.How to play")
     print("3.Credits")
+    print("4.Exit Game")
     title_choice = input("Enter your choice (1-3):")
     if title_choice == "1":
         game_start()
@@ -429,6 +430,8 @@ def title_screen():
         display_faq()
     elif title_choice == "3":
         display_credits()
+    elif title_choice == "3":
+        exit()
     else:
         error_input()
 
