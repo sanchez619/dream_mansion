@@ -464,36 +464,44 @@ def display_faq():
     Some are neccessary to proceed, some provide very important information.
     You can check your inventory whenever you are in a room.
     """)
+    print()
     print("What would you like to do?")
     print("1.Start game")
     print("2.How to play")
     print("3.Credits")
-    title_choice = input("Enter your choice (1-3):")
+    print("4.Exit Game")
+    title_choice = input("Enter your choice (1-4):")
     if title_choice == "1":
         game_start()
     elif title_choice == "2":
         display_faq()
     elif title_choice == "3":
         display_credits()
+    elif title_choice == "4":
+        exit()
     else:
         error_input()
 
 
 def display_credits():
+    print("Creator: Sebastian Bucher")
+    print("Mentor: Richard Wells")
     print("Code Institute")
-    print()
     print()
     print("What would you like to do?")
     print("1.Start game")
     print("2.How to play")
     print("3.Credits")
-    title_choice = input("Enter your choice (1-3):")
+    print("4.Exit Game")
+    title_choice = input("Enter your choice (1-4):")
     if title_choice == "1":
         game_start()
     elif title_choice == "2":
         display_faq()
     elif title_choice == "3":
         display_credits()
+    elif title_choice == "4":
+        exit()
     else:
         error_input()
 
