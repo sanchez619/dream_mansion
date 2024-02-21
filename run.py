@@ -374,11 +374,11 @@ def return_question():
     """
     Return function - Sends user to title screen
     """
-    return_answer = input(
-        "Return to title screen (Yes = 1; No = 0):\n"
-    )
-    IN_ROOM = True:
+    IN_ROOM = True
     while IN_ROOM:
+        return_answer = input(
+        "Return to title screen (Yes = 1; No = 0):\n"
+        )
         if return_answer == "0":
             exit()
         elif return_answer == "1":
@@ -1033,42 +1033,48 @@ def second_floor_boss():
     """
     print("You see a large monster.")
     print("You won't be able to run from it!")
-    val_answer = input(
-        "Proceed? (Yes = 1; No = 0):\n"
-    )
-    if val_answer == '0':
-        start_floor2()
-    elif val_answer == '1':
-        print("You engage a terrifying monster in battle.")
-        print("It tries to headbutt you!")
-        strike_direction = fight_menu()
-        if strike_direction == '4':
-            print("You have hit the enemy's weak spot!")
-            print("You hear a loud shriek.")
-            print("The monster staggers, but goes back on the attack...")
-            print("with a haymaker from its left side.")
-            strike_direction2 = fight_menu()
-            if strike_direction2 == '2':
-                print("The monster can't keep up with your speed.")
-                print("You wound it once more. It can barely stand.")
-                print("It uses its remaining power to punch you...")
-                print("...in the gut.")
-                strike_direction3 = fight_menu()
-                if strike_direction3 == '1':
-                    print("Once more, your blade strikes true.")
-                    print("You hit the monster the third time.")
-                    print("It shrieks loudly one more time...")
-                    print("...before turning into black smoke.")
-                    print("You descend another spiraling staircase.")
-                    start_floor3()
+    IN_ROOM = True
+    while IN_ROOM:
+        val_answer = input(
+            "Proceed? (Yes = 1; No = 0):\n"
+        )
+        if val_answer == '0':
+            start_floor2()
+        elif val_answer == '1':
+            print("You engage a terrifying monster in battle.")
+            print("It tries to headbutt you!")
+            strike_direction = fight_menu()
+            if strike_direction == '4':
+                print("You have hit the enemy's weak spot!")
+                print("You hear a loud shriek.")
+                print("The monster staggers, but goes back on the attack...")
+                print("with a haymaker from its left side.")
+                strike_direction2 = fight_menu()
+                if strike_direction2 == '2':
+                    print("The monster can't keep up with your speed.")
+                    print("You wound it once more. It can barely stand.")
+                    print("It uses its remaining power to punch you...")
+                    print("...in the gut.")
+                    strike_direction3 = fight_menu()
+                    if strike_direction3 == '1':
+                        print("Once more, your blade strikes true.")
+                        print("You hit the monster the third time.")
+                        print("It shrieks loudly one more time...")
+                        print("...before turning into black smoke.")
+                        print("You descend another spiraling staircase.")
+                        IN_ROOM = False
+                        start_floor3()
+                    else:
+                        IN_ROOM = False
+                        second_floor_gameover()
                 else:
+                    IN_ROOM = False
                     second_floor_gameover()
             else:
+                IN_ROOM = False
                 second_floor_gameover()
         else:
-            second_floor_gameover()
-    else:
-        error_input()
+            error_input()
 
 
 # Functions for Floor 3:
@@ -1427,6 +1433,7 @@ def final_room():
             return_question()
     else:
         error_input()
+        start_floor3()
 
 
 def final_scene():
@@ -1446,6 +1453,9 @@ def final_scene():
         neutral_ending()
     elif end_stat >= 11:
         true_ending()
+    else: 
+        print("Unknown error! Start from the beginning!")
+        return_question()
 
 
 def game_start():
