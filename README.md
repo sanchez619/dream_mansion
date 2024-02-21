@@ -238,6 +238,28 @@ The player is encouraged to play the game multiple times to figure out the logic
 
 While I went over the functions in the How to play section already, I will illustrate how the main player features work and what they achieve.
 
+### Samurai and Items Class
+
+For this program, I made use of two dedicated classes. These would serve practical purposes in displaying information about the character as well as determining the progress of the character.
+
+#### Samurai Class
+
+In essence, the samurai class is a blueprint for all instances and changes to the player instace.
+It contains the following functions:
+
+- display_stat() shows the current status points of the player character. 
+- raise/decrease stat change the status points based on the events the character has taken.
+- check_stats() triggers a gameover whenever a stat point falls to or below 0.
+- check_final_stats() calculates the sum of all three stats after completing the third floor.
+
+
+#### Item Class
+
+Everything that is contained in the item class basically constitutes the functionality of the item menu inside the room_menu.
+Originally, this class was not to exist. All items, except for the sword would be stationary.
+However, the use of a dedicated class for item has provided a tool to keep all information the player needs in the inventory their character has.
+
+
 ### Title Menu 
 
 The title menu is the simplest to explain. Like all menus, it consists of a while-loop guarded by a constant.
@@ -326,8 +348,23 @@ Manual Testing was done throughout the entirety of the development process.
 The testing was conducted in three methods:
 
 1. Each function was tested on whether it produced the result it intended to.
+
+- This method was mainly used to see whether the functions would target each other and create one story around one threat.
+- Due to the structure of the mansion having benn decided in advance, this was the easiest way for test
+
+<br>
+
 2. Another major part of the bug test was the tests of the conditional logic. Every option was put into the console multiple times to check whether the logic applies.
+
+- Only by checking against the code itself was I able to discern the weaknesses of a list for keeping one-time events in mind.
+- In the end, this way of testing made the logic proof against manipulation from other functions.
+
+<br>
+
 3. The most important testing was testing the menus for weaknesses. By putting in wildly different inputs, switching often between menus and also changing the style input was put in revealed, I was able to identify and fix many faulty pieces of the program.
+
+- Espacially the use of completely uncorrect inputs saved my code from ending prematurely.
+- However, the method also showed that while the code does work, the interactions between the room functions and menues can lead to confusing code.
 
 ### Bugs
 
