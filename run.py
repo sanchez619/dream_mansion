@@ -377,7 +377,7 @@ def return_question():
     IN_ROOM = True
     while IN_ROOM:
         return_answer = input(
-        "Return to title screen (Yes = 1; No = 0):\n"
+            "Return to title screen (Yes = 1; No = 0):\n"
         )
         if return_answer == "0":
             exit()
@@ -1453,7 +1453,7 @@ def final_scene():
         neutral_ending()
     elif end_stat >= 11:
         true_ending()
-    else: 
+    else:
         print("Unknown error! Start from the beginning!")
         return_question()
 
