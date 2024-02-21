@@ -13,7 +13,7 @@ The player's goal is to escape the mansion and find out who they really are.
 2. [Planning Stages](#planning-stages)
 3. [Structure](#structure)
 4. [Testing](#testing)
-5. [Deployment] (#deployment)
+5. [Deployment](#deployment)
 6. [Credits](#credits)
 
 ## **How to play**
