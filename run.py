@@ -63,21 +63,21 @@ class samurai:
             Your sight turns red, you feel your limbs become numb...
             Game Over
             """)
-            return_answer()
+            return_question()
         elif self.focus <= 0:
             print("""
             You cannot form one clear thought, the voices are too loud!
             It hurts!! You beg it to STOP!!!
             Game Over
             """)
-            return_answer()
+            return_question()
         elif self.luck <= 0:
             print("""
             Suddenly, you hear a voice out of nowhere.
             'You know what? I have become weary of you...'
             Game Over
             """)
-            return_answer()
+            return_question()
 
     def check_final_stats(self):
         """
@@ -640,7 +640,9 @@ def lounge():
         elif choice == '4':
             IN_ROOM = False
             start_floor1()
-        elif choice == '5' or '6':
+        elif choice == '5':
+            pass
+        elif choice == '6':
             pass
         else:
             error_input()
