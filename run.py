@@ -1,7 +1,6 @@
 """
 Dream Mansion - a text based game
 """
-import sys
 
 # Main Class - Containts player's starting stats
 
@@ -64,21 +63,21 @@ class samurai:
             Your sight turns red, you feel your limbs become numb...
             Game Over
             """)
-            sys.exit()
+            return_answer()
         elif self.focus <= 0:
             print("""
             You cannot form one clear thought, the voices are too loud!
             It hurts!! You beg it to STOP!!!
             Game Over
             """)
-            sys.exit()
+            return_answer()
         elif self.luck <= 0:
             print("""
             Suddenly, you hear a voice out of nowhere.
             'You know what? I have become weary of you...'
             Game Over
             """)
-            sys.exit()
+            return_answer()
 
     def check_final_stats(self):
         """
@@ -90,6 +89,9 @@ class samurai:
 
 
 class items:
+    """
+    Class for handling interaction with Items menu
+    """
     def __init__(self, name, description, action, content):
         self.name = name
         self.description = description
@@ -106,12 +108,11 @@ class items:
 
 
 """
-Instances for samurai class
+Instance for samurai class
 """
 
-
-# Creates a player based on samurai class
 player = samurai(constitution=5, focus=5, luck=5, inventory=[])
+
 
 """
 Instances for items class
@@ -218,14 +219,23 @@ Functions for Describing Player Actions
 
 
 def investigate():
+    """
+    Reminder Text for Option 1
+    """
     print("You carefully investigate the room...")
 
 
 def perceive():
+    """
+    Reminder Text for Option 2
+    """
     print("You perceive your surroundings, trying to gather information...")
 
 
 def rearrange():
+    """
+    Reminder Text for Option 3
+    """
     print("You rearrange items in the room, looking for hidden clues...")
 
 
@@ -236,22 +246,35 @@ not valid or cannot be triggered anymore
 
 
 def redundant_choice():
+    """
+    Redundancy message for normal room
+    """
     print("You have already taken this action.")
     print("You will not find anything new repeating it.")
 
 
 def redundant_choice2():
+    """
+    Redundancy message for fight room
+    """
     print("You do not feel an enemy presence anymore.")
     print("There is nothing more to find here...")
 
 
 def redundant_choice3():
+    """
+    Redundancy message for exception - bathroom
+    """
     print("You have already used up the bathroom with your actions.")
     print("Hopefully, you haven't broken it...")
 
 
 def error_input():
-    print("Invalid choice. Please enter a number indicating one of the rooms.")
+    """
+    User message in case of irregular input
+    """
+    print("Invalid choice. Please enter a valid input.")
+
 
 
 """
@@ -261,6 +284,9 @@ based Game Overs)
 
 
 def second_floor_gameover():
+    """
+    Gained after losing to Monster on 2nd floor
+    """
     print("""
     A large force hits your body.
     You feel your bones split, and your flesh tearing!
@@ -272,9 +298,13 @@ def second_floor_gameover():
 
     Game Over
     """)
+    return_question()
 
 
 def bad_ending():
+    """
+    Gained after finishing game with final_stat <= 5
+    """
     print("""
 
 
@@ -293,9 +323,13 @@ def bad_ending():
 
     End - Bad Ending
     """)
+    return_question()
 
 
 def neutral_ending():
+    """
+    Gained after finishing game with final_stat <= 10
+    """
     print("""
 
 
@@ -311,9 +345,13 @@ def neutral_ending():
 
     End - Neutral Ending
     """)
+    return_question()
 
 
 def true_ending():
+    """
+    Gained after finishing game with final_stat > 10
+    """
     print("""
 
 
@@ -330,7 +368,22 @@ def true_ending():
 
     End - True Ending
     """)
+    return_question()
 
+
+def return_question():
+    """
+    Return function - Sends user to title screen
+    """
+    return_answer = input(
+        "Return to title screen (Yes = 1; No = 0):\n"
+    )
+    if return_answer == "0":
+        exit()
+    elif return_answer == "1":
+        title_screen()
+    else:
+        error_input
 
 """
 Menus - Two Menus - User interfaces for fighting and exploring
@@ -338,6 +391,9 @@ Menus - Two Menus - User interfaces for fighting and exploring
 
 
 def room_menu():
+    """
+    Menu for room interaction
+    """
     print("What would you like to do?")
     print("1. Investigate")
     print("2. Perceive")
@@ -352,6 +408,8 @@ def room_menu():
         perceive()
     elif choice == '3':
         rearrange()
+    elif choice == '4':
+        pass
     elif choice == '5':
         print("You take a look at your equipment.")
         print("What do you want to do?")
@@ -374,14 +432,17 @@ def room_menu():
                     if item_detail == "2":
                         item.use_item()
                     break
-            else:
-                print("This item is currently not in your possession.")
+                else:
+                    print("This item is currently not in your possession.")
     elif choice == "6":
         player.display_stat()
     return choice
 
 
 def fight_menu():
+    """
+    Menu for fight scenarios
+    """
     print("You are engaged in a fight.'")
     print("From where do you want to strike?")
     print("1. Strike from above")
@@ -398,6 +459,9 @@ Title Screen Functions
 
 
 def title_screen():
+    """
+    Starting screen
+    """
     print("Ladies and gentleman!")
     print("I welcome you to...")
     print()
@@ -513,6 +577,9 @@ Functions for Main Story
 
 # Functions for 1st floor
 def start_floor1():
+    """
+    Floor Menu for 1st floor
+    """
     print("Several doors appear in front of you.")
     print("Which one do you want to enter")
     print("1. The Lounge")
@@ -529,17 +596,15 @@ def start_floor1():
             storage_chamber()
         elif room_choice == '3':
             IN_FLOOR = False
-            floor_lobby3()
+            floor_lobby()
         else:
             error_input()
 
 
-"""
-Lounge Room - on Floor Three (Each event can be triggered)
-"""
-
-
 def lounge():
+    """
+    Lounge Room - normal room
+    """
     print("You enter the floor lobby.")
     print("It contains multiple cupboards.")
     print("They once seemed to contain many different items.")
@@ -582,12 +647,10 @@ def lounge():
         player.check_stats()
 
 
-"""
-Storage Chamber - on Floor Three (Only one event can be triggered)
-"""
-
-
 def storage_chamber():
+    """
+    Storage Chamber - fight room (but no fight menu)
+    """
     print("You enter the storage chamber.")
     print("Someone took all consumable items.")
     IN_ROOM = True
@@ -637,7 +700,6 @@ def storage_chamber():
                     print("and slash towards the figure!")
                     print("However, the only thing you see...")
                     print(" after your attack is black smoke.")
-                    player.decrease_stat('focus', 1)
                     CHOICES_MADE.add('storage_ambush')
                 else:
                     print("You fell hard onto the ground, but...")
@@ -655,12 +717,10 @@ def storage_chamber():
         player.check_stats()
 
 
-"""
-Floor Lobby - 1st player riddle (checks also if Katana is in inventory)
-"""
-
-
-def floor_lobby3():
+def floor_lobby():
+    """
+    Floor Lobby - 1st player riddle (checks also if Katana is in inventory)
+    """
     print("You enter the floor lobby.")
     print("As you enter, you see a door leading to a spiraling stairway.")
     IN_ROOM = True
@@ -671,7 +731,7 @@ def floor_lobby3():
             print("'Those without identity cannot pass!'")
             print("'Who are you?'")
             solution_1 = input("I am a...\n")
-            if solution_1 == "samurai":
+            if solution_1.lower() == "samurai":
                 if katana in player.inventory:
                     print("The powers cannot hold you anymore.")
                     print("You descend to the first floor.")
@@ -715,6 +775,9 @@ def floor_lobby3():
 
 # Functions for Second Floor
 def start_floor2():
+    """
+    Floor Menu for 2nd floor
+    """
     print()
     print()
     print("The second floor has an even more ominous feeling.")
@@ -746,12 +809,10 @@ def start_floor2():
             error_input()
 
 
-"""
-Gym - Demon Encounter (Demon Fight)
-"""
-
-
 def gym():
+    """
+    Gym - Fight Room
+    """
     print("You enter the gym.")
     print("Before you can see anything else, a demon appears in front of you!")
     IN_ROOM = True
@@ -815,12 +876,10 @@ def gym():
         player.check_stats()
 
 
-"""
-Office - (Demon Fight)
-"""
-
-
 def office():
+    """
+    Office - Fight Room
+    """
     print("You enter the office.")
     print("A dark figure sits on a chair behind the desk.")
     IN_ROOM = True
@@ -869,7 +928,7 @@ def office():
                     player.raise_stat('focus', 1)
                     CHOICES_MADE.add('coat_rack')
                 else:
-                    print("You feel a hit to your stomack!")
+                    print("You feel a hit to your stomach!")
                     print("You stumble backwards!")
                     print("As you get back up, the demon is gone...")
                     player.decrease_stat('constitution', 2)
@@ -884,12 +943,10 @@ def office():
         player.check_stats()
 
 
-"""
-Bathroom - (Each event can be triggered)
-"""
-
-
 def bathroom():
+    """
+    Bathroom - Special Trigger Room
+    """
     print("You enter the bathroom. It actually has working lights!")
     print("The bathtub filled with water.")
     IN_ROOM = True
@@ -941,46 +998,55 @@ def bathroom():
         player.check_stats()
 
 
-"""
-Second Floor Boss - Fight with Game Over Potential
-"""
-
-
 def second_floor_boss():
-    print("You engage a terrifying monster in battle.")
-    print("It tries to headbutt you!")
-    strike_direction = fight_menu()
-    if strike_direction == '4':
-        print("You have hit the enemy's weak spot!")
-        print("You hear a loud shriek.")
-        print("The monster staggers, but goes back on the attack...")
-        print("with a haymaker from its left side.")
-        fight_menu()
-        if strike_direction != '2':
-            second_floor_gameover()
-        elif strike_direction == '2':
-            print("The monster can't keep up with your speed.")
-            print("You wound it once more. It can barely stand.")
-            print("It uses its remaining power to punch you...")
-            print("...in the gut.")
-            fight_menu()
-            if strike_direction != '1':
-                second_floor_gameover()
-            if strike_direction == '1':
-                print("Once more, your blade strikes true.")
-                print("You hit the monster the third time.")
-                print("It shrieks loudly one more time...")
-                print("...before turning into black smoke.")
-                print("You descend another spiraling staircase.")
-                start_floor3()
+    """
+    Second Floor Boss - Fight with Game Over Potential
+    """
+    print("You see a large monster.")
+    print("You won't be able to run from it!")
+    val_answer = input(
+        "Proceed? (Yes = 1; No = 0):\n"
+    )
+    if val_answer == '0':
+        start_floor2()
+    elif val_answer == '1':
+        print("You engage a terrifying monster in battle.")
+        print("It tries to headbutt you!")
+        strike_direction = fight_menu()
+        if strike_direction == '4':
+            print("You have hit the enemy's weak spot!")
+            print("You hear a loud shriek.")
+            print("The monster staggers, but goes back on the attack...")
+            print("with a haymaker from its left side.")
+            strike_direction2 = fight_menu()
+            if strike_direction2 == '2':
+                print("The monster can't keep up with your speed.")
+                print("You wound it once more. It can barely stand.")
+                print("It uses its remaining power to punch you...")
+                print("...in the gut.")
+                strike_direction3 = fight_menu()
+                if strike_direction3 == '1':
+                    print("Once more, your blade strikes true.")
+                    print("You hit the monster the third time.")
+                    print("It shrieks loudly one more time...")
+                    print("...before turning into black smoke.")
+                    print("You descend another spiraling staircase.")
+                    start_floor3()
+                else:
+                    second_floor_gameover()
             else:
                 second_floor_gameover()
+        else:
+            second_floor_gameover()
     else:
-        second_floor_gameover()
+        error_input()
 
 
 # Functions for Floor 3:
 def start_floor3():
+    """
+    Floor Menu for 3rd floor
+    """
     print()
     print()
     print("You arrive at the first floor.")
@@ -1020,12 +1086,10 @@ def start_floor3():
             error_input()
 
 
-"""
-Kitchen - Demon Fight (Only one choice possible)
-"""
-
-
 def kitchen():
+    """
+    Kitchen - Demon Fight (Only one choice possible)
+    """
     print("You enter the kitchen.")
     print("You see a demon eating something red on a plate.")
     print("It has not seen you yet.")
@@ -1091,12 +1155,10 @@ def kitchen():
         player.check_stats()
 
 
-"""
-Living Room - Each Choice possible once
-"""
-
-
 def living_room():
+    """
+    Living Room - fight room
+    """
     print("You enter the living room.")
     print("It is dark, and you can find nothing of note.")
     print("A radio is placed on a table. It is turned on.")
@@ -1141,12 +1203,10 @@ def living_room():
         player.check_stats()
 
 
-"""
-Guest Room - Demon Fight
-"""
-
-
 def guest_room():
+    """
+    Guest Room - fight room
+    """
     print("You enter the guest room.")
     print("Something is lurking under the bed sheet.")
     IN_ROOM = True
@@ -1198,7 +1258,7 @@ def guest_room():
                     player.raise_stat('focus', 1)
                     CHOICES_MADE.add('mattress')
                 else:
-                    print("The impact of the strike is stron.")
+                    print("The impact of the strike is strong.")
                     print("It makes you writhe in pain")
                     print("Yet again, you do not know...")
                     print("Why the demons keep disappearing.")
@@ -1215,12 +1275,10 @@ def guest_room():
         player.check_stats()
 
 
-"""
-Bed Room - Demon Fight (Contains Key for Closet)
-"""
-
-
 def bed_room():
+    """
+    Bed Room - Demon Fight (Contains Key for Closet)
+    """
     print("You enter the bed room.")
     print("You see a silver briefcase lying on the bed.")
     print("Faint voices can be heard.")
@@ -1269,12 +1327,10 @@ def bed_room():
         player.check_stats()
 
 
-"""
-Closet - Vital Hint for Final Riddle (No Player Interaction)
-"""
-
-
 def closet():
+    """
+    Closet - Vital Hint for Final Riddle (No Player Interaction)
+    """
     if key in player.inventory:
         print("There is nothing in the room.")
         print("It is completely empty...")
@@ -1293,38 +1349,44 @@ def closet():
     start_floor3()
 
 
-"""
-Guest Room - Demon Fight
-"""
-
-
 def final_room():
-    print("The door to the outside is sealed.")
-    print("On the seal, you can spot one empty circle.")
-    print("You hear a voice!")
-    print("'You want to leave this place?!'")
-    print("'Write the word of your salvation onto the seal!'")
-    print("'Accept it, and become a samurai once again!'")
-    final_riddle = input("The salvation of a samurai is...\n")
-    if final_riddle == "death":
-        print("After you step away from the seal, it begins to shine.")
-        print("Suddenly, everything around you is engulfed in light!")
-        final_scene()
-    else:
-        print("After you step away from the seal, it begins to wither.")
-        print("Suddenly, you and everything around you begins to decay!")
-        print("You try to reach...")
-        print("...")
-        print("...")
-        print("...")
-
-
-"""
-Final Scene - Epilogue and Determination of Player Ending
-"""
+    """
+    Guest Room - Demon Fight
+    """
+    print("You see a large monster.")
+    print("You won't be able to run from it!")
+    final_check = input(
+        "Proceed? (Yes = 1; No = 0):\n"
+    )
+    if final_check == '0':
+        start_floor3()
+    elif final_check == '1':
+        print("The door to the outside is sealed.")
+        print("On the seal, you can spot one empty circle.")
+        print("You hear a voice!")
+        print("'You want to leave this place?!'")
+        print("'Write the word of your salvation onto the seal!'")
+        print("'Accept it, and become a samurai once again!'")
+        final_riddle = input("The salvation of a samurai is...\n")
+        if final_riddle.lower() == "death":
+            print("After you step away from the seal, it begins to shine.")
+            print("Suddenly, everything around you is engulfed in light!")
+            final_scene()
+        else:
+            print("After you step away from the seal, it begins to wither.")
+            print("Suddenly, you and everything around you begins to decay!")
+            print("You try to reach...")
+            print("...")
+            print("...")
+            print("Game Over")
+            return_question()
+    else: error_input()
 
 
 def final_scene():
+    """
+    Final Scene - Epilogue and Determination of Player Ending
+    """
     print("You have done it! You have broken the illusion!")
     print("Your opponent, the demon Maboroshi, stands before you.")
     print("'It seems this illusion could not bend you to my will...'")
@@ -1335,17 +1397,14 @@ def final_scene():
     if end_stat <= 5:
         bad_ending()
     elif end_stat <= 10:
-        print("Neutral Ending")
+        neutral_ending()
     elif end_stat >= 11:
-        print("True Ending")
-
-
-"""
-Function to start game
-"""
-
+        true_ending()
 
 def game_start():
+    """
+    Function to start game
+    """
     print("...")
     print("...")
     print("I'm so tired...")
@@ -1365,6 +1424,7 @@ def game_start():
             print("You wake up in an unknown location...")
             print("...")
             print("...")
+            IN_FLOOR = False
             start_floor1()
         else:
             error_input()
